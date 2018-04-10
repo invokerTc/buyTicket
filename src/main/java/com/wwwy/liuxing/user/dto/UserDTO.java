@@ -21,7 +21,7 @@ public class UserDTO implements Serializable {
     /**
      * 用户密码
      */
-    private String password;
+    private String userPassword;
     /**
      * 用户名称
      */
@@ -34,10 +34,10 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(Integer userId, String userName, String password, String userRealName, String userTel) {
+    public UserDTO(Integer userId, String userName, String userPassword, String userRealName, String userTel) {
         this.userId = userId;
         this.userName = userName;
-        this.password = password;
+        this.userPassword = userPassword;
         this.userRealName = userRealName;
         this.userTel = userTel;
     }
@@ -47,7 +47,7 @@ public class UserDTO implements Serializable {
         return "UserDTO{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+                ", userPassword='" + userPassword + '\'' +
                 ", userRealName='" + userRealName + '\'' +
                 ", userTel='" + userTel + '\'' +
                 '}';
@@ -70,7 +70,7 @@ public class UserDTO implements Serializable {
         if (userName != null ? !userName.equals(userDTO.userName) : userDTO.userName != null) {
             return false;
         }
-        if (password != null ? !password.equals(userDTO.password) : userDTO.password != null) {
+        if (userPassword != null ? !userPassword.equals(userDTO.userPassword) : userDTO.userPassword != null) {
             return false;
         }
         return userRealName != null ? userRealName.equals(userDTO.userRealName) : userDTO.userRealName == null && (userTel != null ? userTel.equals(userDTO.userTel) : userDTO.userTel == null);
@@ -81,7 +81,7 @@ public class UserDTO implements Serializable {
     public int hashCode() {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
         result = 31 * result + (userRealName != null ? userRealName.hashCode() : 0);
         result = 31 * result + (userTel != null ? userTel.hashCode() : 0);
         return result;
@@ -103,12 +103,12 @@ public class UserDTO implements Serializable {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getUserRealName() {
