@@ -3,7 +3,7 @@ package com.wwwy.liuxing.user.dto;
 import java.io.Serializable;
 
 /**
- *
+ *用户实体类
  * @author W1665
  * @date 2018/4/10
  */
