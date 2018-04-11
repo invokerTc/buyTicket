@@ -28,7 +28,7 @@ public class AreaTest {
     private IAreaService areaService;
 
     @Test
-    public void testQueryAllArea(){
+    public void testQueryAllAreaByDAO(){
         List<AreaDTO> list = areaDAO.queryAllArea();
         logger.debug(list.size());
         for (AreaDTO area :
@@ -36,5 +36,15 @@ public class AreaTest {
             logger.debug(area.getAreaName());
         }
     }
+
+   @Test
+    public void testQueryAllAreaByService(){
+       List<AreaDTO> list = areaService.queryAllArea();
+       logger.debug(list.size());
+       for (AreaDTO area :
+               list) {
+           logger.debug(area.getAreaName());
+       }
+   }
 
 }

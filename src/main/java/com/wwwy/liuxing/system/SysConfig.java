@@ -15,5 +15,6 @@ public class SysConfig {
         public static final String BEGINMETHOD="begin::::";
         public static final String  ENDINGMETHOD="end::::";
         public static final String BEGINEXCEPTION="::::";
+        public static final String WHILEEXCEPTION="ex";
     }
 }
