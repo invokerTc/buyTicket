@@ -1,6 +1,9 @@
 package com.wwwy.liuxing.theater.dto;
 
+import com.wwwy.liuxing.hall.dto.HallDTO;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *电影院实体类
@@ -40,6 +43,11 @@ public class TheaterDTO implements Serializable {
      * 电影院地图纬度
      */
     private String theaterLatitude;
+
+    /**
+     * 电影院对应影厅的集合
+     */
+    private List<HallDTO> hallDTOList;
 
     public TheaterDTO() {
     }
@@ -101,6 +109,14 @@ public class TheaterDTO implements Serializable {
         result = 31 * result + (theaterLongitude != null ? theaterLongitude.hashCode() : 0);
         result = 31 * result + (theaterLatitude != null ? theaterLatitude.hashCode() : 0);
         return result;
+    }
+
+    public List<HallDTO> getHallDTOList() {
+        return hallDTOList;
+    }
+
+    public void setHallDTOList(List<HallDTO> hallDTOList) {
+        this.hallDTOList = hallDTOList;
     }
 
     public Integer getTheaterId() {

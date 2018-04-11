@@ -10,6 +10,14 @@
         <result property="theaterPhone" column="theater_phone" javaType="java.lang.String"/>
         <result property="theaterLongitude" column="theater_longitude" javaType="java.lang.String"/>
         <result property="theaterLatitude" column="theater_latitude" javaType="java.lang.String"/>
+
+        <collection property="hallDTOList" ofType="com.wwwy.liuxing.hall.dto.HallDTO">
+            <id property="hallId" column="hall_id" javaType="java.lang.Integer"/>
+            <result property="hallName" column="hall_name" javaType="java.lang.String"/>
+            <result property="fkTheaterId" column="fk_theater_id" javaType="java.lang.Integer"/>
+            <result property="hallCoordinateX" column="hall_coordinateX" javaType="java.lang.Integer"/>
+            <result property="hallCoordinateY" column="hall_coordinateY" javaType="java.lang.Integer"/>
+        </collection>
     </resultMap>
 
 

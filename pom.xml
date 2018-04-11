@@ -48,12 +48,7 @@
       <version>4.2.5.RELEASE</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-    <!--使用freemarker需要的依赖-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context-support</artifactId>
-      <version>4.2.5.RELEASE</version>
-    </dependency>
+
     <!--测试需要的依赖-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -97,6 +92,20 @@
       <artifactId>spring-beans</artifactId>
       <version>4.2.5.RELEASE</version>
     </dependency>
+
+    <!--使用freemarker需要的依赖-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>4.2.5.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.23</version>
+    </dependency>
+
 
     <!--mybatis整合spring的依赖-->
     <dependency>

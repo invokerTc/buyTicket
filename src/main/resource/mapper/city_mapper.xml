@@ -6,6 +6,11 @@
     <resultMap id="CityResultMap" type="com.wwwy.liuxing.city.dto.CityDTO">
         <id property="cityId" column="city_id" javaType="java.lang.Integer"/>
         <result property="cityName" column="city_name" javaType="java.lang.String"/>
+
+    <collection property="areaDTOList" ofType="com.wwwy.liuxing.area.dto.AreaDTO">
+        <id property="areaId" column="area_id" javaType="java.lang.Integer"/>
+        <result property="areaName" column="area_name" javaType="java.lang.String"/>
+    </collection>
     </resultMap>
 
 

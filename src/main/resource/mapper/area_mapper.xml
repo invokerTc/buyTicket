@@ -6,7 +6,18 @@
     <resultMap id="UserResultMap" type="com.wwwy.liuxin.area.dto.AreaDTO">
         <id property="areaId" column="area_id" javaType="java.lang.Integer"/>
         <result property="areaName" column="area_name" javaType="java.lang.String"/>
+
+        <collection property="theaterDTOList" ofType="com.wwwy.liuxing.theater.dto.TheaterDTO">
+            <id property="theaterId" column="theater_id" javaType="java.lang.Integer"/>
+            <result property="theaterName" column="theater_name" javaType="java.lang.String"/>
+            <result property="theaterAddress" column="theater_address" javaType="java.lang.String"/>
+            <result property="theaterPhone" column="theater_phone" javaType="java.lang.String"/>
+            <result property="theaterLongitude" column="theater_longitude" javaType="java.lang.String"/>
+            <result property="theaterLatitude" column="theater_latitude" javaType="java.lang.String"/>
+        </collection>
+
     </resultMap>
+
 
 
 </mapper>

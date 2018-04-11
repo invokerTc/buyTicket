@@ -1,6 +1,9 @@
 package com.wwwy.liuxing.area.dto;
 
+import com.wwwy.liuxing.theater.dto.TheaterDTO;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *地区实体类
@@ -20,6 +23,11 @@ public class AreaDTO implements Serializable {
      * 地区名称
      */
     private String areaName;
+
+    /**
+     * 地区对应的影院的集合
+     */
+    private List<TheaterDTO> theaterDTOList;
 
     public AreaDTO() {
     }
@@ -60,6 +68,14 @@ public class AreaDTO implements Serializable {
         int result = areaId != null ? areaId.hashCode() : 0;
         result = 31 * result + (areaName != null ? areaName.hashCode() : 0);
         return result;
+    }
+
+    public List<TheaterDTO> getTheaterDTOList() {
+        return theaterDTOList;
+    }
+
+    public void setTheaterDTOList(List<TheaterDTO> theaterDTOList) {
+        this.theaterDTOList = theaterDTOList;
     }
 
     public Integer getAreaId() {

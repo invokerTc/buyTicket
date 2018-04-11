@@ -1,6 +1,9 @@
 package com.wwwy.liuxing.city.dto;
 
+import com.wwwy.liuxing.area.dto.AreaDTO;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *城市实体类
@@ -20,6 +23,11 @@ public class CityDTO implements Serializable {
      * 城市名称
      */
     private String cityName;
+
+    /**
+     * 城市对应地区的集合
+     */
+    private List<AreaDTO> areaDTOList;
 
     public CityDTO() {
     }
@@ -60,6 +68,14 @@ public class CityDTO implements Serializable {
         int result = cityId != null ? cityId.hashCode() : 0;
         result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
         return result;
+    }
+
+    public List<AreaDTO> getAreaDTOList() {
+        return areaDTOList;
+    }
+
+    public void setAreaDTOList(List<AreaDTO> areaDTOList) {
+        this.areaDTOList = areaDTOList;
     }
 
     public Integer getCityId() {
