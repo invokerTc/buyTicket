@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wwwy.liuxing.hallmovie.dto.HallMovieMapper">
+    <resultMap id="HallMovieResultMap" type="com.wwwy.liuxing.hallmovie.dto.HallMovieDTO">
+        <id property="haMoId" column="ha_mo_id" javaType="java.lang.Integer"/>
+        <result property="fkHallId" column="fk_hall_id" javaType="java.lang.Integer"/>
+        <result property="fkMovieId" column="fk_movie_id" javaType="java.lang.Integer"/>
+        <result property="movieRuntime" column="movie_runtime" javaType="java.lang.String"/>
+        <result property="moviePrice" column="movie_price" javaType="java.lang.Integer"/>
+        <result property="movieVersion" column="movie_version" javaType="java.lang.String"/>
+    </resultMap>
+
+
+</mapper>

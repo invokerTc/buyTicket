@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wwwy.liuxing.movie.dto.MovieMapper">
+    <resultMap id="MovieResultMap" type="com.wwwy.liuxing.movie.dto.MovieDTO">
+        <id property="movieId" column="movie_id" javaType="java.lang.Integer"/>
+        <result property="movieName" column="movie_name" javaType="java.lang.String"/>
+        <result property="movieDirector" column="movie_director" javaType="java.lang.String"/>
+        <result property="movieStar" column="movie_star" javaType="java.lang.String"/>
+        <result property="movieType" column="movie_type" javaType="java.lang.String"/>
+        <result property="movieCountry" column="movie_country" javaType="java.lang.String"/>
+        <result property="movieLanguage" column="movie_language" javaType="java.lang.String"/>
+        <result property="movieTime" column="movie_time" javaType="java.lang.String"/>
+        <result property="movieDetails" column="movie_details" javaType="java.lang.String"/>
+        <result property="movieDate" column="movie_date" javaType="java.lang.String"/>
+        <result property="movieScore" column="movie_score" javaType="java.lang.String"/>
+        <result property="movieImg" column="movie_img" javaType="java.lang.String"/>
+        <result property="moviePreparation" column="movie_preparation" javaType="java.lang.String"/>
+    </resultMap>
+
+
+</mapper>

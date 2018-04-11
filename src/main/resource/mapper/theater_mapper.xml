@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wwwy.liuxing.theater.dto.TheaterMapper">
+    <resultMap id="TheaterResultMap" type="com.wwwy.liuxing.theater.dto.TheaterDTO">
+        <id property="theaterId" column="theater_id" javaType="java.lang.Integer"/>
+        <result property="theaterName" column="theater_name" javaType="java.lang.String"/>
+        <result property="theaterAddress" column="theater_address" javaType="java.lang.String"/>
+        <result property="theaterPhone" column="theater_phone" javaType="java.lang.String"/>
+        <result property="theaterLongitude" column="theater_longitude" javaType="java.lang.String"/>
+        <result property="theaterLatitude" column="theater_latitude" javaType="java.lang.String"/>
+    </resultMap>
+
+
+</mapper>
