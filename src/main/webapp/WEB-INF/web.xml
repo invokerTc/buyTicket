@@ -11,6 +11,23 @@
   </context-param>
 
 
+  <!--shiro的过滤器-->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <!--DelegatingFilterProxy代理过滤器，用来将web容器的过滤器委派给spring处理-->
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <!--在过滤器的整个生命周期类代理模式都有效-->
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <!--拦截所有请求-->
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

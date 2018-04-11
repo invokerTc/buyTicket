@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+
+        <!--<property name="unauthorizedUrl" value="error404.jsp"/>-->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp=anon<!--不需要做任何过滤的-->
+                /user/login=anon
+                /css/**=anon
+                /js/**=anon
+                <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
+                /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
+            </value>
+        </property>
+
+
+    </bean>
+    <!--cookie配置参数-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/> <!--避免XSS攻击-->
+        <property name="maxAge" value="10"/><!-- 失效时间 -->
+    </bean>
+
+    <!--用cookie保存用户登录状态的帮助类-->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="UserRealm" class="com.wwwy.liuxing.user.realm.UserRealm"/>
+       <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realms" ref="UserRealm"/>
+           <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+
+</beans>
