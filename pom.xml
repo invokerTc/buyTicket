@@ -100,6 +100,14 @@
       <version>4.2.5.RELEASE</version>
     </dependency>
 
+    <!--实现切面所需依赖-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.8.13</version>
+    </dependency>
+
+    <!--freemarker-->
     <dependency>
       <groupId>org.freemarker</groupId>
       <artifactId>freemarker</artifactId>
