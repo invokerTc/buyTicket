@@ -109,18 +109,6 @@ with(document)with(body)with(insertBefore(createElement("script"),firstChild))se
 						})(document.getElementById("J_LoginBox"))
 					</script>
 					<!--login box begin-->
-					
-
-
-
-
-
-
-
-
-
-
-
 
 	<div class="hd">
 	
@@ -138,8 +126,8 @@ with(document)with(body)with(insertBefore(createElement("script"),firstChild))se
                 <i class="iconfont">&#xe625;</i>扫码登录更安全
             </div>
         </div>
-    </div>                                 
-	
+    </div>
+
 	</div>
 <div class="bd">
 		<!--登录的错误信息结束-->
@@ -329,7 +317,7 @@ with(document)with(body)with(insertBefore(createElement("script"),firstChild))se
 
 			
 				<input id="J_UnitClose " value="true" type="hidden" />
-				<button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在登录...">登 录</button>
+				<button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在登录..." onclick="login()">登 录</button>
 			</div>
 			
 			<ul class="entries">
@@ -360,7 +348,32 @@ with(document)with(body)with(insertBefore(createElement("script"),firstChild))se
 			</div>
 		</form>
 	</div>
-	    
+<script type="text/javascript">
+	function login(userName) {
+		var usernameStr = $("#userName").val();
+		var passwordStr = $("#passWord").val();
+		var errArrays = new Array();
+		errArrays[0] ='账号输入错误，请重新输入';
+		errArrays[1] ='登录成功';
+		errArrays[2] ='密码错误，请重新输入';
+		//完成登录
+		$.post("/user/login",
+				{userName:usernameStr,passWord:passwordStr},
+				function(data) {
+					var jsonObj = JSON.parse(data)
+					var index =jsonObj.code;
+					if ( jsonObj.code== 1) {
+						alert(errArrays[index])
+						window.location.href="/index.jsp";
+					} else {
+						alert(errArrays[index]);
+					}
+				});
+	}
+	}
+	
+	
+</script>
 
 
 
