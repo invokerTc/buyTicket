@@ -30,5 +30,6 @@
     </plugins>-->
     <mappers>
         <mapper resource="mapper/user_mapper.xml"/>
+        <mapper resource="mapper/area_mapper.xml"/>
     </mappers>
 </configuration>
