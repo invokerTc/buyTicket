@@ -27,5 +27,13 @@
         </collection>
     </resultMap>
 
-
+    <!--根据电影院id和影厅id获取影厅信息-->
+    <select id="queryHallInfoByHallId" resultMap="HallResultMap">
+        select h.hall_id,h.hall_name,h.hall_coordinateX,h.hall_coordinateY
+        from tb_theater t
+        join tb_hall h
+        on t.theater_id = h.fk_theater_id
+        where t.theater_id=#{theaterId}
+        and h.hall_id = #{hallId}
+    </select>
 </mapper>

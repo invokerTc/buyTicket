@@ -12,7 +12,10 @@
                 /user/login=anon
                 /index.jsp=anon
                 /hou_login.html=anon
+                /login.jsp=anon<!--不需要做任何过滤的-->
+                /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
                 /user/login=anon
+                /hall/getHall=anon
                 /css/**=anon
                 /js/**=anon
                 <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
@@ -35,7 +38,6 @@
     </bean>
 
     <bean id="UserRealm" class="com.wwwy.liuxing.user.realm.UserRealm"/>
-
        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realms" ref="UserRealm"/>
            <property name="rememberMeManager" ref="rememberMeManager"/>
