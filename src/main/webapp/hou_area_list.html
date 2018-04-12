@@ -9,7 +9,7 @@
     <title>流星购票网后台管理系统</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,25 +24,20 @@
 
         <table class="table table-bordered">
             <thead class="bg-primary">
-            <td>姓名</td>
-            <td>类型</td>
-            <td>部门</td>
-            <td>创建时间</td>
-            <td>状态</td>
+            <td>地区id</td>
+            <td>地区名称</td>
             <td>操作</td>
             </thead>
-            <c:forEach items="${list}" var="task">
+            <#list areaDTOsList as area>
                 <tr>
-                    <td>${task.leaveName}</td>
-                    <td>${task.leaveType}</td>
-                    <td>${task.leaveDepartment}</td>
-                    <td>${task.leaveDate}</td>
+                    <td>${area.areaId}</td>
+                    <td>${area.areaName}</td>
                     <td>
-
+                        <input type="button" name="btnDelete" value="删除" onClick="doDelete(${area.areaId})"/>
+                        <input type="button" name="btnUpdate" value="修改" onClick="doUpdate(${area.areaId})"/>
                     </td>
-                    <td>0</td>
                 </tr>
-            </c:forEach>
+            </#list>
         </table>
     </div>
 
@@ -50,6 +45,6 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="<%=basePath%>/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

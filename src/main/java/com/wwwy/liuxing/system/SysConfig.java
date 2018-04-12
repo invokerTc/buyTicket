@@ -16,5 +16,7 @@ public class SysConfig {
         public static final String  ENDINGMETHOD="end::::";
         public static final String BEGINEXCEPTION="::::";
         public static final String WHILEEXCEPTION="ex";
+        public static final String PAGE_START="1";
+        public static final Integer PAGE_SIZE=6;
     }
 }
