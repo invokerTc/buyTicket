@@ -6,6 +6,7 @@
     <resultMap id="AreaResultMap" type="com.wwwy.liuxing.area.dto.AreaDTO">
         <id property="areaId" column="area_id" javaType="java.lang.Integer"/>
         <result property="areaName" column="area_name" javaType="java.lang.String"/>
+        <result property="fkCityId" column="fk_city_id" javaType="java.lang.Integer"/>
 
         <collection property="theaterDTOList" ofType="com.wwwy.liuxing.theater.dto.TheaterDTO">
             <id property="theaterId" column="theater_id" javaType="java.lang.Integer"/>
@@ -21,5 +22,22 @@
     <select id="queryAllArea" resultMap="AreaResultMap">
         SELECT area_id,area_name from tb_area
     </select>
+
+    <insert id="insertArea">
+        INSERT INTO tb_area(area_name,fk_city_id)VALUES (#{areaName},#{fkCityId})
+    </insert>
+
+    <delete id="deleteArea">
+        DELETE FROM tb_area WHERE area_id=#{areaId}
+    </delete>
+
+    <update id="updateArea">
+        UPDATE tb_area
+        <trim prefix="set" suffixOverrides=",">
+            <if test="areaName!=null">area_name=#{areaName},</if>
+            <if test="fkCityId!=null">fk_city_id=#{fkCityId},</if>
+        </trim>
+        WHERE area_id=#{areaId}
+    </update>
 
 </mapper>

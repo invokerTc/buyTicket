@@ -18,6 +18,17 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<script type="text/javascript">
+    function doDelete(id){
+        if(confirm("确认删除吗？")){
+            window.location.href='/area/delete?id='+id;
+        }
+    }
+
+    function doUpdate(id){
+        window.location.href='/area/preUpdate?id='+id;
+    }
+</script>
 <body>
 
     <div class="col-md-10">
@@ -40,6 +51,11 @@
             </#list>
         </table>
     </div>
+
+    <div class="ma_page">
+
+    </div>
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

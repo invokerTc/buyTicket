@@ -10,6 +10,7 @@
     <collection property="areaDTOList" ofType="com.wwwy.liuxing.area.dto.AreaDTO">
         <id property="areaId" column="area_id" javaType="java.lang.Integer"/>
         <result property="areaName" column="area_name" javaType="java.lang.String"/>
+        <result property="fkCityId" column="fk_city_id" javaType="java.lang.Integer"/>
     </collection>
     </resultMap>
 

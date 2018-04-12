@@ -18,18 +18,18 @@ public class ProxyAspect {
 
     private static final Logger logger = Logger.getLogger(ProxyAspect.class);
 
-    @Before("execution(* com.wwwy.liuxing.*(..))")
+    @Before("execution(* com.wwwy..*.*(..))")
     public void buyBefore(){
 
         logger.debug(SysConfig.BeforeConfig.BEGINMETHOD);
     }
 
-    @After("execution(* com.wwwy.liuxing.*(..))")
+    @After("execution(* com.wwwy..*.*(..))")
     public void buyAfter(){
 
         logger.debug(SysConfig.BeforeConfig.ENDINGMETHOD);
     }
-    @AfterThrowing(value = "execution(* com.wwwy.liuxing.*(..))",
+    @AfterThrowing(value = "execution(* com.wwwy..*.*(..))",
             throwing = SysConfig.BeforeConfig.WHILEEXCEPTION)
     public void throwEx(Exception ex){
         System.out.println(SysConfig.BeforeConfig.BEGINEXCEPTION+ex.getMessage());

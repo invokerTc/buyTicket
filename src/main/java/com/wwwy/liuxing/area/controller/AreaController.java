@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,17 +26,49 @@ public class AreaController {
     @Autowired
     private IAreaService areaService;
 
+    /**
+     * 查询所有的地区并分页
+     * @param request
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/all")
     public String queryAllArea(HttpServletRequest request,ModelMap modelMap){
-        String page = request.getParameter("page");
+        String pageStr = request.getParameter("page");
+        Integer page=Integer.parseInt(pageStr);
         if(null==page){
-            page= SysConfig.BeforeConfig.PAGE_START;
+            page=SysConfig.BeforeConfig.PAGE_START;
         }
-        PageHelper.startPage(Integer.parseInt(page), SysConfig.BeforeConfig.PAGE_SIZE);
-        List<AreaDTO> areaDTOsList = areaService.queryAllArea();
-        PageInfo<AreaDTO> p=new PageInfo<AreaDTO>(areaDTOsList);
-        modelMap.addAttribute("page", p);
-        modelMap.addAttribute("areaDTOsList",areaDTOsList);
-        return "hou_area_list";
+        List<AreaDTO> areaDTOsList = null;
+        try {
+            areaDTOsList = areaService.queryAllArea(page);
+            modelMap.addAttribute("page", page);
+            modelMap.addAttribute("areaDTOsList",areaDTOsList);
+            return "hou_area_list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "hou_area_list";
+        }
     }
+
+    /**
+     *插入一条新数据
+     */
+    @RequestMapping("/insert")
+    @ResponseBody
+    public String insertArea(String areaName,ModelMap modelMap){
+        AreaDTO areaDTO = new AreaDTO();
+        areaDTO.setAreaName(areaName);
+        areaDTO.setFkCityId(SysConfig.BeforeConfig.PAGE_START);
+        try {
+            Boolean aBoolean = areaService.insertArea(areaDTO);
+            if(aBoolean==true){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
 }
