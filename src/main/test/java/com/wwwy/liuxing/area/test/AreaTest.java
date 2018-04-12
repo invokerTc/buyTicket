@@ -96,4 +96,14 @@ public class AreaTest {
         logger.debug(aBoolean);
     }
 
+    @Test
+    public void testQueryById(){
+        try {
+            AreaDTO areaDTO = areaDAO.queryAreaById(1);
+            logger.debug(areaDTO.getAreaName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

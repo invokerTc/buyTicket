@@ -71,4 +71,52 @@ public class AreaController {
         return "fail";
     }
 
+    /**
+     * 删除一条新数据
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String deleteArea(String id){
+        try {
+            Boolean aBoolean = areaService.deleteArea(Integer.parseInt(id));
+            if(aBoolean==true){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
+    @RequestMapping("/preUpdate")
+    public String preUpdate(String id,ModelMap modelMap){
+        try {
+            AreaDTO areaDTO = areaService.queryAreaById(Integer.parseInt(id));
+            modelMap.addAttribute("areaDTO",areaDTO);
+            return "hou_area_update";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "hou_main_page";
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public String updateArea(String areaName,String id){
+        AreaDTO areaDTO = new AreaDTO();
+        areaDTO.setAreaId(Integer.parseInt(id));
+        areaDTO.setAreaName(areaName);
+        try {
+            Boolean aBoolean = areaService.updateArea(areaDTO);
+            if(aBoolean==true){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
+
+
 }

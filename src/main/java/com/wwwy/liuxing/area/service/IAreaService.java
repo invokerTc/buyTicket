@@ -19,6 +19,14 @@ public interface IAreaService {
     List<AreaDTO> queryAllArea(Integer currentPage)throws Exception;
 
     /**
+     * 根据id查询某一个地区的信息
+     * @param areaId
+     * @return
+     * @throws Exception
+     */
+    AreaDTO queryAreaById(Integer areaId)throws Exception;
+
+    /**
      * 插入新的地区
      * @param areaDTO
      * @return

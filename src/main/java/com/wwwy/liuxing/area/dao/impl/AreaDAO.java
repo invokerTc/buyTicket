@@ -32,6 +32,12 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     }
 
     @Override
+    public AreaDTO queryAreaById(Integer areaId) throws Exception {
+        AreaDTO area = getSqlSession().selectOne("com.wwwy.liuxin.area.dto.AreaMapper.queryAreaById", areaId);
+        return area;
+    }
+
+    @Override
     public Boolean insertArea(AreaDTO areaDTO)throws Exception {
         int insert = getSqlSession().insert("com.wwwy.liuxin.area.dto.AreaMapper.insertArea", areaDTO);
         return insert< SysConfig.BeforeConfig.PAGE_START?false:true;

@@ -43,6 +43,11 @@ public class AreaService implements IAreaService {
     }
 
     @Override
+    public AreaDTO queryAreaById(Integer areaId) throws Exception {
+        return areaDAO.queryAreaById(areaId);
+    }
+
+    @Override
     public Boolean insertArea(AreaDTO areaDTO)throws Exception {
         return areaDAO.insertArea(areaDTO);
     }

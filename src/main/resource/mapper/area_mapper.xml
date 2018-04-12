@@ -20,7 +20,11 @@
     </resultMap>
 
     <select id="queryAllArea" resultMap="AreaResultMap">
-        SELECT area_id,area_name from tb_area
+        SELECT area_id,area_name,fk_city_id FROM tb_area
+    </select>
+
+    <select id="queryAreaById" resultMap="AreaResultMap">
+        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
     </select>
 
     <insert id="insertArea">
