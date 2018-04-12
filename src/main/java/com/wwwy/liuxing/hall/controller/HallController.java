@@ -24,7 +24,7 @@ public class HallController {
         try {
             HallDTO hallDTO = hallService.queryHallByTheaterIdAndHallId(theaterId, hallId);
             logger.info("controller层从数据库取得影厅数据："+hallDTO.getHallName());
-            modelMap.addAttribute("hallDTO",hallDTO);
+            modelMap.put("hallDTO",hallDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
