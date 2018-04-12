@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 有关影厅的controller层
  */
 @Controller
-@RequestMapping("hall")
+@RequestMapping("/hall")
 public class HallController {
     private static final Logger logger = Logger.getLogger(HallController.class);
     @Autowired
