@@ -1,7 +1,5 @@
 package com.wwwy.liuxing.area.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
 import com.wwwy.liuxing.system.SysConfig;
@@ -113,7 +111,4 @@ public class AreaController {
         }
         return "fail";
     }
-
-
-
 }
