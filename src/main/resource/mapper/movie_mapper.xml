@@ -19,5 +19,4 @@
         <result property="moviePreparation" column="movie_preparation" javaType="java.lang.String"/>
     </resultMap>
 
-
 </mapper>
