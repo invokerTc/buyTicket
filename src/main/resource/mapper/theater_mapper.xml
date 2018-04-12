@@ -19,6 +19,9 @@
             <result property="hallCoordinateY" column="hall_coordinateY" javaType="java.lang.Integer"/>
         </collection>
     </resultMap>
-
+<select id="queryByPattern" resultMap="TheaterResultMap">
+    SELECT theater_id,theater_name,theater_address,theater_phone,theater_longitude,theater_latitude FROM tb_theater
+    WHERE theater_name LIKE "%"#{name}"%"
+</select>
 
 </mapper>
