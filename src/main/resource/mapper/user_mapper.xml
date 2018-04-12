@@ -11,5 +11,8 @@
         <result property="userTel" column="user_tel" javaType="java.lang.String"/>
     </resultMap>
 
+    <select id="getNameAndPassWord" resultMap="UserResultMap">
+        select user_name,user_password from tb_user;
+    </select>
 
 </mapper>

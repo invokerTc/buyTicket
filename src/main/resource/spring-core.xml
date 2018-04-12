@@ -11,10 +11,11 @@
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
 
+    <import resource="spring-mybatis.xml"/>
+
 
     <import resource="spring-freemarker.xml"/>
     <import resource="spring-mybatis.xml"/>
-    <import resource="spring-redis.xml"/>
     <import resource="spring-shiro.xml"/>
 
 
