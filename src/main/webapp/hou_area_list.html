@@ -3,19 +3,18 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>流星购票网后台管理系统</title>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/wedding-3.css" rel="stylesheet"/>
     <script src="/js/jquery-2.1.4.js" type="text/javascript"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
     <![endif]-->
 </head>
 <script type="text/javascript">
@@ -50,11 +49,11 @@
             </thead>
             <#list areaDTOsList as area>
                 <tr>
-                    <td>${area.areaId}</td>
-                    <td>${area.areaName}</td>
+                    <td style="font-size: medium">${area.areaId}</td>
+                    <td style="font-size: medium">${area.areaName}</td>
                     <td>
-                        <input type="button" name="btnDelete" value="删除" onClick="doDelete(${area.areaId})"/>
-                        <input type="button" name="btnUpdate" value="修改" onClick="doUpdate(${area.areaId})"/>
+                        <input type="button"  value="删除" style="font-size: medium" onClick="doDelete(${area.areaId})"/>
+                        <input type="button"  value="修改" style="font-size: medium" onClick="doUpdate(${area.areaId})"/>
                     </td>
                 </tr>
             </#list>
@@ -62,8 +61,13 @@
     </div>
 
     <div class="ma_page">
-
+        <p>一共${page.pages}页</p>
+        <a href="/area/all?page=${page.firstPage}">首页</a>
+        <a href="/area/all?page=${page.nextPage}">下一页</a>
+        <a href="/area/all?page=${page.prePage}">上一页</a>
+        <a href="/area/all?page=${page.lastPage}">末页</a>
     </div>
+
 
 
 

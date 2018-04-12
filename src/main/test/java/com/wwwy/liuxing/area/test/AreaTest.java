@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.area.test;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dao.IAreaDAO;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
@@ -44,17 +45,19 @@ public class AreaTest {
 
    @Test
     public void testQueryAllAreaByService(){
-       List<AreaDTO> list = null;
+       PageInfo<AreaDTO> list = null;
        try {
            list = areaService.queryAllArea(1);
        } catch (Exception e) {
            e.printStackTrace();
        }
-       logger.debug(list.size());
+       logger.debug("..............."+list.toString());
+       List<AreaDTO> list1 = list.getList();
        for (AreaDTO area :
-               list) {
+               list1) {
            logger.debug(area.getAreaName());
        }
+
    }
 
     @Test
