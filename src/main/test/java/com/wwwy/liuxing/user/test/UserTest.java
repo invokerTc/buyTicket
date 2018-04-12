@@ -3,6 +3,7 @@ package com.wwwy.liuxing.user.test;
 
 import com.wwwy.liuxing.user.dto.UserDTO;
 import com.wwwy.liuxing.user.dao.IUserDao;
+import com.wwwy.liuxing.user.service.IUserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +24,9 @@ public class UserTest {
     @Autowired
     private IUserDao userDao;
 
+    @Autowired
+    private IUserService userService;
+
     @Test
     public void testLogin(){
         UserDTO zhangsan = null;
@@ -32,5 +36,15 @@ public class UserTest {
             e.printStackTrace();
         }
         logger.info(zhangsan);
+    }
+
+    @Test
+    public void testLoginService(){
+        try {
+            UserDTO userNameAndPassWord = userService.checkUserNameAndPassWord("zhangsan");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 }

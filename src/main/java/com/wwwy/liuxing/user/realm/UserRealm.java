@@ -2,6 +2,7 @@ package com.wwwy.liuxing.user.realm;
 
 import com.wwwy.liuxing.user.dto.UserDTO;
 import com.wwwy.liuxing.user.service.IUserService;
+import org.apache.log4j.Logger;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserRealm extends AuthorizingRealm{
 
+    private static final Logger logger = Logger.getLogger(UserRealm.class);
+
     @Autowired
     private IUserService userService;
 
@@ -25,6 +28,7 @@ public class UserRealm extends AuthorizingRealm{
     public String getName() {
         return "UserRealm";
     }
+
 
     /*
     * 后台管理的权限管理方法
@@ -41,21 +45,26 @@ public class UserRealm extends AuthorizingRealm{
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
         String username = usernamePasswordToken.getUsername();
+        logger.info(username);
         char[] password = usernamePasswordToken.getPassword();
         String passwords = new String(password, 0, password.length);
+        logger.info(passwords);
         SimpleAuthenticationInfo simpleAuthenticationInfo =null;
         UserDTO userDTO =null;
         try {
             userDTO = userService.checkUserNameAndPassWord(username);
+            logger.info(userDTO);
         } catch (Exception e) {
             e.printStackTrace();
             throw new AuthenticationException("账号异常");
         }
-        if (username==null){
+        if (username==null||!username.equals(userDTO.getUserName())){
+            logger.info(userDTO.getUserName());
             throw new UnknownAccountException("用户名不存在");
         }
         SimpleHash md5 = new SimpleHash("MD5", passwords, userDTO.getUserName());
         String userPassword = userDTO.getUserPassword();
+        logger.info(userPassword);
         if (userPassword==null||!userPassword.equals(md5.toString())){
             throw new IncorrectCredentialsException("密码错误");
         }
