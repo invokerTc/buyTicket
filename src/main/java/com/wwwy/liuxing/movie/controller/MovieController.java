@@ -24,7 +24,7 @@ public class MovieController {
 
     @RequestMapping("getAllMovie")
     public String getAllMovieByCityName(String cityName, ModelMap modelMap){
-        logger.info("进入HallController 的 /movie/getAllMovie  方法");
+        logger.info("进入MovieController 的 /movie/getAllMovie  方法");
         try {
             List<MovieDTO> movieList = movieService.getAllMovieByCityName(cityName);
             modelMap.put("movieList",movieList);
@@ -32,5 +32,16 @@ public class MovieController {
             e.printStackTrace();
         }
         return "qian_films_list";
+    }
+    @RequestMapping("/getOneMovieInfo")
+    public String getOneMovieById(String cityId,String movieId,ModelMap modelMap){
+        logger.info("进入MovieController 的 /movie/getOneMovieInfo  方法");
+        try {
+            MovieDTO movieDTO = movieService.getMovieByCityIdAndMovieId(cityId, movieId);
+            modelMap.put("movieDTO",movieDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "qian_one_movie_info";
     }
 }

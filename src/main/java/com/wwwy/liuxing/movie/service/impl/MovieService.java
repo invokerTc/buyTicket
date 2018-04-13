@@ -29,4 +29,12 @@ public class MovieService implements IMovieService {
         List<MovieDTO> movieDTOList = movieDao.getAllMovieByCityName(cityName);
         return movieDTOList;
     }
+
+    @Override
+    public MovieDTO getMovieByCityIdAndMovieId(String cityId, String movieId) throws Exception {
+        int cityid = Integer.parseInt(cityId);
+        int movieid = Integer.parseInt(movieId);
+        MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(cityid, movieid);
+        return movieDTO;
+    }
 }
