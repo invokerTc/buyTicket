@@ -12,5 +12,23 @@
         <result property="movieVersion" column="movie_version" javaType="java.lang.String"/>
     </resultMap>
 
-
+    <!--##根据城市、影院、电影获取该电影院该电影的最低价格-->
+    <select id="queryLowestMoviePriceList" resultMap="HallMovieResultMap">
+        select  min(hm.movie_price) from tb_city c
+        join tb_area area
+        join tb_area_theater area_th
+        join tb_theater th
+        join tb_hall h
+        join tb_hall_movie hm
+        join tb_movie m
+        on c.city_id = area.fk_city_id
+        and area.area_id = area_th.fk_area_id
+        and area_th.fk_theater_id = th.theater_id
+        and th.theater_id = h.fk_theater_id
+        and h.hall_id = hm.fk_hall_id
+        and hm.fk_movie_id = m.movie_id
+        where c.city_id=#{cityId}
+        and m.movie_id=#{movieId}
+        and th.theater_id=#{theaterId};
+    </select>
 </mapper>
