@@ -51,5 +51,5 @@ public interface IAreaDAO {
      * @return
      * @throws Exception
      */
-    List<AreaDTO> queryAreaByAny()throws Exception;
+    List<AreaDTO> queryAreaByAny(String anyInfo)throws Exception;
 }

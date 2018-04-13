@@ -61,4 +61,19 @@ public class AreaService implements IAreaService {
     public Boolean updateArea(AreaDTO areaDTO)throws Exception {
         return areaDAO.updateArea(areaDTO);
     }
+
+    @Override
+    public PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page) throws Exception {
+        logger.debug("currentPage::::"+page);
+        int start=SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
+        }
+
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<AreaDTO> areaDTOList = areaDAO.queryAreaByAny(anyInfo);
+        PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
+        logger.debug("pageInfo"+pageInfo);
+        return pageInfo;
+    }
 }

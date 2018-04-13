@@ -47,4 +47,11 @@ public interface IAreaService {
      * @return
      */
     Boolean updateArea(AreaDTO areaDTO)throws Exception;
+
+    /**
+     * 根据任何信息查找地区信息
+     * @return
+     * @throws Exception
+     */
+    PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page)throws Exception;
 }

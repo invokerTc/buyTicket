@@ -108,5 +108,33 @@ public class AreaTest {
             e.printStackTrace();
         }
     }
+    
+    @Test
+    public void testQueryByAny(){
+        try {
+            List<AreaDTO> list = areaDAO.queryAreaByAny("1");
+            logger.debug(list.size());
+            for (AreaDTO area :
+                    list) {
+                logger.debug(area.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByAnyService(){
+        try {
+            PageInfo<AreaDTO> areaDTOPageInfo = areaService.queryAreaByAny("蔡甸区", null);
+            List<AreaDTO> list = areaDTOPageInfo.getList();
+            for (AreaDTO area :
+                    list) {
+                logger.debug(area.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
