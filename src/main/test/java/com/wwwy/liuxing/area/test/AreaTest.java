@@ -32,7 +32,7 @@ public class AreaTest {
     public void testQueryAllAreaByDAO(){
         List<AreaDTO> list = null;
         try {
-            list = areaDAO.queryAllArea();
+            list = areaDAO.queryAllArea(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class AreaTest {
     public void testQueryAllAreaByService(){
        PageInfo<AreaDTO> list = null;
        try {
-           list = areaService.queryAllArea(1);
+           list = areaService.queryAllArea(1,1);
        } catch (Exception e) {
            e.printStackTrace();
        }

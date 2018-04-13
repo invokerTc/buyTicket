@@ -36,7 +36,7 @@ public class AreaController {
         String pageStr = request.getParameter("page");
         Integer page=Integer.parseInt(pageStr);
         try {
-            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(page);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(SysConfig.BeforeConfig.PAGE_START,page);
             List<AreaDTO> list = pageInfo.getList();
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaDTOsList",list);

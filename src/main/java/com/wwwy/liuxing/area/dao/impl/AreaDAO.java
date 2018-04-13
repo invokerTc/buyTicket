@@ -26,8 +26,8 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
 
 
     @Override
-    public List<AreaDTO> queryAllArea() throws Exception{
-        List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAllArea");
+    public List<AreaDTO> queryAllArea(Integer cityId) throws Exception{
+        List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAllArea",cityId);
         return list;
     }
 
@@ -53,5 +53,10 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     public Boolean updateArea(AreaDTO areaDTO)throws Exception {
         int update = getSqlSession().update("com.wwwy.liuxin.area.dto.AreaMapper.updateArea", areaDTO);
         return update< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public List<AreaDTO> queryAreaByAny() throws Exception {
+        return null;
     }
 }

@@ -17,7 +17,7 @@ public interface IAreaService {
      * @param currentPage
      * @return
      */
-    PageInfo<AreaDTO> queryAllArea(Integer currentPage)throws Exception;
+    PageInfo<AreaDTO> queryAllArea(Integer cityId,Integer currentPage)throws Exception;
 
     /**
      * 根据id查询某一个地区的信息

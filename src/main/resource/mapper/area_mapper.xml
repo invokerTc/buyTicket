@@ -20,7 +20,7 @@
     </resultMap>
 
     <select id="queryAllArea" resultMap="AreaResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area
+        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE fk_city_id=#{fkCityId}
     </select>
 
     <select id="queryAreaById" resultMap="AreaResultMap">
@@ -43,5 +43,11 @@
         </trim>
         WHERE area_id=#{areaId}
     </update>
+
+    <select id="queryAny" resultMap="AreaResultMap">
+        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE
+        area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
+    </select>
 
 </mapper>
