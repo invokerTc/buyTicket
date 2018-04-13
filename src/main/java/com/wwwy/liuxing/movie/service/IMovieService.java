@@ -29,4 +29,12 @@ public interface IMovieService {
      */
     List<MovieDTO> getMoviesByCondition(String type, String country, String date) throws Exception;
 
+    /**
+     * 根据城市和电影获取放映该电影的电影院名和影院地址 （影院最低价格 用另一个sql在hallmovie_mapper.xml中查询每个放映该电影的最低价格）
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    MovieDTO getMovieByCityIdAndMovieId(String cityId,String movieId) throws Exception;
 }

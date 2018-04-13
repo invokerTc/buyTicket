@@ -67,4 +67,28 @@ public class MovieTest {
             e.printStackTrace();
         }
     }
+    /**
+     *测试MovieDao的  getMovieByCityIdAndMovieId(Integer cityId, Integer movieId)
+     */
+    @Test
+    public void testDaoGetMovieByCityIdAndMovieId(){
+        try {
+            MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(1, 1);
+            logger.info(movieDTO.getMovieName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 测试MovieService的  MovieDTO getMovieByCityIdAndMovieId(Integer cityId,Integer movieId) throws Exception;
+     */
+    @Test
+    public void testServiceGetMovieByCityIdAndMovieId(){
+        try {
+            MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(1, 1);
+            logger.info(movieDTO.getMovieName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

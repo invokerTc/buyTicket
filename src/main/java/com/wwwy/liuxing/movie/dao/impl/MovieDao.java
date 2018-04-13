@@ -56,4 +56,21 @@ public class MovieDao extends SqlSessionDaoSupport implements IMovieDao {
         List<MovieDTO> list = getSqlSession().selectList("com.wwwy.liuxing.movie.dto.MovieMapper.selectMovieByCondition", movieDTO);
         return list;
     }
+    /**
+     * 根据城市ID和电影ID获得一个电影信息
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public MovieDTO getMovieByCityIdAndMovieId(Integer cityId, Integer movieId) throws Exception {
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("cityId",cityId);
+        map.put("movieId",movieId);
+        MovieDTO movie = getSqlSession().selectOne("com.wwwy.liuxing.movie.dto.MovieMapper.getOneMovieByCityIdAnDMovieId", map);
+        return movie;
+    }
+
+
 }

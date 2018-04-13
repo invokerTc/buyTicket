@@ -31,6 +31,14 @@ public class MovieService implements IMovieService {
         return movieDTOList;
     }
 
+    @Override
+    public MovieDTO getMovieByCityIdAndMovieId(String cityId, String movieId) throws Exception {
+        int cityid = Integer.parseInt(cityId);
+        int movieid = Integer.parseInt(movieId);
+        MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(cityid, movieid);
+        return movieDTO;
+    }
+
     /**
      * 根据传入的条件动态查询符合的一个或多个条件的电影集合
      *

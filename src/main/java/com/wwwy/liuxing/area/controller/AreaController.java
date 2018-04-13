@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
 import com.wwwy.liuxing.system.SysConfig;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,6 +28,7 @@ public class AreaController {
     @Autowired
     private IAreaService areaService;
 
+    private static final Logger logger = Logger.getLogger(AreaController.class);
     /**
      * 查询所有的地区并分页
      * @param request
@@ -36,7 +40,7 @@ public class AreaController {
         String pageStr = request.getParameter("page");
         Integer page=Integer.parseInt(pageStr);
         try {
-            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(page);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(SysConfig.BeforeConfig.PAGE_START,page);
             List<AreaDTO> list = pageInfo.getList();
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaDTOsList",list);
@@ -84,6 +88,12 @@ public class AreaController {
         return "fail";
     }
 
+    /**
+     * 预更新
+     * @param id
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/preUpdate")
     public String preUpdate(String id,ModelMap modelMap){
         try {
@@ -96,6 +106,12 @@ public class AreaController {
         return "hou_main_page";
     }
 
+    /**
+     * 根据id更新一条数据
+     * @param areaName
+     * @param id
+     * @return
+     */
     @RequestMapping("update")
     @ResponseBody
     public String updateArea(String areaName,String id){
@@ -105,6 +121,52 @@ public class AreaController {
         try {
             Boolean aBoolean = areaService.updateArea(areaDTO);
             if(aBoolean==true){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
+
+    /**
+     * 根据任意信息查询数据库，获取所有查询到的值
+     * @param request
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/anyInfo")
+    public String queryAreaByAny(HttpServletRequest request,ModelMap modelMap){
+        String anyInfo = request.getParameter("anyInfo");
+        logger.debug("anyInfo"+anyInfo);
+        String page = request.getParameter("page");
+        List<AreaDTO> areaDTOList=null;
+        try {
+            PageInfo<AreaDTO> pageInfo = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
+            areaDTOList=pageInfo.getList();
+            modelMap.addAttribute("page",pageInfo);
+            modelMap.addAttribute("areaDTOsList",areaDTOList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("areaDTOsList",null);
+        }
+        return "hou_area_list";
+    }
+
+    @RequestMapping("/deleteBatch")
+    @ResponseBody
+    public String deleteBatchAreas(HttpServletRequest request,ModelMap modelMap){
+        String ids = request.getParameter("ids");
+        logger.debug("::::::ids"+ids);
+        String[] idStr=StringUtils.split(ids,",");
+        logger.debug(".......idStr"+idStr);
+        int[] areaIds = Arrays.stream(idStr).mapToInt(Integer::valueOf).toArray();
+        logger.debug(".........areaIds"+areaIds.toString());
+        try {
+            Boolean aBoolean = areaService.deleteBatchAreas(areaIds);
+            logger.debug(";;;;;aBoolean"+aBoolean);
+            if(aBoolean){
                 return "success";
             }
         } catch (Exception e) {

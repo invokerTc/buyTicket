@@ -15,4 +15,8 @@
         select user_name,user_password from tb_user WHERE user_name=#{userName};
     </select>
 
+    <insert id="setUserRegister">
+        INSERT INTO tb_user (user_name,user_password,user_realname,user_tel)
+        VALUES (#{userName},#{userPassword},#{userRealName},#{userTel});
+    </insert>
 </mapper>

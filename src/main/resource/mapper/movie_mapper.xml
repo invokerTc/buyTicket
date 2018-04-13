@@ -52,4 +52,27 @@
             </if>
         </trim>
     </select>
+
+    <!--根据城市和电影名来查找电影详情-->
+    <select id="getOneMovieByCityIdAnDMovieId" resultMap="MovieResultMap">
+        select distinct m.movie_id,m.movie_name,m.movie_type,m.movie_country,
+        m.movie_time,m.movie_score,m.movie_img
+        from tb_movie m
+        join tb_city c
+        join tb_area area
+        join tb_area_theater area_th
+        join tb_theater th
+        join tb_hall h
+        join tb_hall_movie hm
+        on c.city_id = area.fk_city_id
+        and area.area_id = area_th.fk_area_id
+        and area_th.fk_theater_id = th.theater_id
+        and th.theater_id = h.fk_theater_id
+        and h.hall_id = hm.fk_hall_id
+        and hm.fk_movie_id = m.movie_id
+        where c.city_id=#{cityId}
+        and m.movie_id=#{movieId};
+    </select>
+
+
 </mapper>

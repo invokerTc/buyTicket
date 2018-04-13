@@ -78,7 +78,7 @@
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-														<input type="text" class="form-control" placeholder="登录账号" name="userName" id="userName"
+														<input type="text" class="form-control" placeholder="登录账号" name="adminName" id="adminName"
                                                                value="" required="required"/>
 															<i class="icon-user"></i>
 														</span>
@@ -86,7 +86,7 @@
 
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" name="passWord" id="passWord" required="required"/>
+															<input type="password" class="form-control" placeholder="密码" name="adminPassword" id="adminPassword" required="required"/>
 															<i class="icon-lock"></i>
 														</span>
                                             </label>
@@ -136,21 +136,21 @@
 
 <script>
     function login() {
-        var usernameStr = $("#userName").val();
-        var passwordStr = $("#passWord").val();
+        var adminNameStr = $("#adminName").val();
+        var adminPasswordStr = $("#adminPassword").val();
         var errArrays = new Array();
         errArrays[0] ='账号输入错误，请重新输入';
         errArrays[1] ='登录成功';
         errArrays[2] ='密码错误，请重新输入';
         //完成登录
-        $.post("/user/login",
-                {userName:usernameStr,passWord:passwordStr},
+        $.post("/admin/login",
+                {adminName:adminNameStr,adminPassword:adminPasswordStr},
                 function(data) {
                     var jsonObj = JSON.parse(data)
                     var index =jsonObj.code;
                     if ( jsonObj.code== 1) {
                         alert(errArrays[index])
-                        window.location.href="/login.jsp";
+                        window.location.href="/hou_main_page.html";
                     } else {
                         alert(errArrays[index]);
                     }

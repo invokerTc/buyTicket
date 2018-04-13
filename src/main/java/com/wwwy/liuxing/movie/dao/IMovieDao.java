@@ -30,4 +30,13 @@ public interface IMovieDao {
      * @throws Exception
      */
     List<MovieDTO> getMoviesByCondition(String type, String country, String date) throws Exception;
+
+    /**
+     * 根据城市ID和电影ID获得一个电影信息
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    MovieDTO getMovieByCityIdAndMovieId(Integer cityId,Integer movieId) throws Exception;
 }
