@@ -9,6 +9,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,14 +30,14 @@ public class UserController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public String userLogin(String userName, String passWord, HttpServletRequest request){
+    public String userLogin(String userName, String passWord, Model model){
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, passWord);
         Subject subject = SecurityUtils.getSubject();
         try {
             //将用户输入的参数传给Realm验证
             subject.login(usernamePasswordToken);
             //可以调用登录用户名称传到前端页面
-            request.setAttribute("userName", userName);
+            model.addAttribute("userName", userName);
         }catch (UnknownAccountException e){
             e.printStackTrace();
             return "{\"code\":0}";
