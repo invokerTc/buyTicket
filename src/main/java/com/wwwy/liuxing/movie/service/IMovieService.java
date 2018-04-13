@@ -16,4 +16,12 @@ public interface IMovieService {
      * @throws Exception
      */
     List<MovieDTO> getAllMovieByCityName(String cityName) throws Exception;
+    /**
+     * 根据城市ID和电影ID获得一个电影信息
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    MovieDTO getMovieByCityIdAndMovieId(String cityId,String movieId) throws Exception;
 }

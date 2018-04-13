@@ -142,3 +142,81 @@
 2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中影烽禾影城==========黄陂区湖北省武汉市汉口北大道汉北广场三楼
 2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中影国际影城武汉江岸东购店==========江岸区二七路汉口东部购物公园C2栋4楼
 2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中南剧场1001天河影院==========江岸区京汉大道100号
+2018-04-13 11:27:28 722  INFO MLog:80 - MLog clients using log4j logging.
+2018-04-13 11:27:28 805  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.1 [built 15-March-2007 01:32:31; debug? true; trace: 10]
+2018-04-13 11:27:28 824 DEBUG DynamicPooledDataSourceManagerMBean:236 - MBean: com.mchange.v2.c3p0:type=PooledDataSource[1hgef419u1ggay961yi81dl|10f7f7de] registered.
+2018-04-13 11:27:29 168 DEBUG LogFactory:135 - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2018-04-13 11:27:31 203 DEBUG SqlSessionUtils:97 - Creating a new SqlSession
+2018-04-13 11:27:31 227 DEBUG SqlSessionUtils:148 - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c00fff0] was not registered for synchronization because synchronization is not active
+2018-04-13 11:27:31 314 DEBUG BasicResourcePool:404 - incremented pending_acquires: 1
+2018-04-13 11:27:31 314 DEBUG BasicResourcePool:404 - incremented pending_acquires: 2
+2018-04-13 11:27:31 315 DEBUG BasicResourcePool:404 - incremented pending_acquires: 3
+2018-04-13 11:27:31 317 DEBUG BasicResourcePool:289 - com.mchange.v2.resourcepool.BasicResourcePool@31500940 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; mox_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false]
+2018-04-13 11:27:31 322  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgef419u1ggay961yi81dl|10f7f7de, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgef419u1ggay961yi81dl|10f7f7de, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://192.168.71.161:3306/db_buyticket, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+2018-04-13 11:27:31 323 DEBUG BasicResourcePool:538 - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+2018-04-13 11:27:31 326 DEBUG BasicResourcePool:1291 - awaitAvailable(): [unknown]
+2018-04-13 11:27:31 327 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@31500940 [managed: 0, unused: 0, excluded: 0]
+2018-04-13 11:27:34 812 DEBUG C3P0PooledConnectionPool:217 - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@3dfb77e.acquireResource() returning. 
+2018-04-13 11:27:34 813 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@31500940 [managed: 1, unused: 1, excluded: 0]
+2018-04-13 11:27:34 815 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@31500940 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@1490e844)
+2018-04-13 11:27:34 815 DEBUG BasicResourcePool:422 - decremented pending_acquires: 2
+2018-04-13 11:27:34 816 DEBUG SpringManagedTransaction:87 - JDBC Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@7249dadf] will not be managed by Spring
+2018-04-13 11:27:34 821 DEBUG queryHallInfoByHallId:145 - ==>  Preparing: select h.hall_id,h.hall_name,h.hall_coordinateX,h.hall_coordinateY from tb_theater t join tb_hall h on t.theater_id = h.fk_theater_id where t.theater_id=? and h.hall_id = ? 
+2018-04-13 11:27:34 855 DEBUG queryHallInfoByHallId:145 - ==> Parameters: 1(Integer), 1(Integer)
+2018-04-13 11:27:34 887 DEBUG queryHallInfoByHallId:145 - <==      Total: 1
+2018-04-13 11:27:34 897 DEBUG SqlSessionUtils:191 - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c00fff0]
+2018-04-13 11:27:34 899 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@31500940 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@1490e844)
+2018-04-13 11:27:34 899  INFO HallTest:38 - 一号IMAX厅
+2018-04-13 12:14:16 253  INFO MLog:80 - MLog clients using log4j logging.
+2018-04-13 12:14:16 336  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.1 [built 15-March-2007 01:32:31; debug? true; trace: 10]
+2018-04-13 12:14:16 357 DEBUG DynamicPooledDataSourceManagerMBean:236 - MBean: com.mchange.v2.c3p0:type=PooledDataSource[1hgef419u1ghz4k71jwz5jl|4416d64f] registered.
+2018-04-13 12:14:16 597 DEBUG LogFactory:135 - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2018-04-13 12:14:18 151 DEBUG SqlSessionUtils:97 - Creating a new SqlSession
+2018-04-13 12:14:18 171 DEBUG SqlSessionUtils:148 - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d1f74b8] was not registered for synchronization because synchronization is not active
+2018-04-13 12:14:18 247 DEBUG BasicResourcePool:404 - incremented pending_acquires: 1
+2018-04-13 12:14:18 248 DEBUG BasicResourcePool:404 - incremented pending_acquires: 2
+2018-04-13 12:14:18 249 DEBUG BasicResourcePool:404 - incremented pending_acquires: 3
+2018-04-13 12:14:18 250 DEBUG BasicResourcePool:289 - com.mchange.v2.resourcepool.BasicResourcePool@2ef8a8c3 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; mox_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false]
+2018-04-13 12:14:18 251  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgef419u1ghz4k71jwz5jl|4416d64f, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgef419u1ghz4k71jwz5jl|4416d64f, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://192.168.71.161:3306/db_buyticket, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+2018-04-13 12:14:18 253 DEBUG BasicResourcePool:538 - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+2018-04-13 12:14:18 253 DEBUG BasicResourcePool:1291 - awaitAvailable(): [unknown]
+2018-04-13 12:14:18 254 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@2ef8a8c3 [managed: 0, unused: 0, excluded: 0]
+2018-04-13 12:14:18 897 DEBUG C3P0PooledConnectionPool:217 - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@df5dc41.acquireResource() returning. 
+2018-04-13 12:14:18 899 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@2ef8a8c3 [managed: 1, unused: 1, excluded: 0]
+2018-04-13 12:14:18 902 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@2ef8a8c3 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@728fbb34)
+2018-04-13 12:14:18 903 DEBUG BasicResourcePool:422 - decremented pending_acquires: 2
+2018-04-13 12:14:18 903 DEBUG SpringManagedTransaction:87 - JDBC Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1e11bc55] will not be managed by Spring
+2018-04-13 12:14:18 912 DEBUG getOneMovieByCityIdAnDMovieId:145 - ==>  Preparing: select distinct m.movie_id,m.movie_name,m.movie_type,m.movie_country, m.movie_time,m.movie_score,m.movie_img from tb_movie m join tb_city c join tb_area area join tb_area_theater area_th join tb_theater th join tb_hall h join tb_hall_movie hm on c.city_id = area.fk_city_id and area.area_id = area_th.fk_area_id and area_th.fk_theater_id = th.theater_id and th.theater_id = h.fk_theater_id and h.hall_id = hm.fk_hall_id and hm.fk_movie_id = m.movie_id where c.city_id=? and m.movie_id=?; 
+2018-04-13 12:14:18 960 DEBUG getOneMovieByCityIdAnDMovieId:145 - ==> Parameters: 1(Integer), 1(Integer)
+2018-04-13 12:14:19 007 DEBUG getOneMovieByCityIdAnDMovieId:145 - <==      Total: 1
+2018-04-13 12:14:19 015 DEBUG SqlSessionUtils:191 - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d1f74b8]
+2018-04-13 12:14:19 017 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@2ef8a8c3 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@728fbb34)
+2018-04-13 12:14:19 018  INFO MovieTest:64 - 头号玩家
+2018-04-13 14:12:20 542  INFO MLog:80 - MLog clients using log4j logging.
+2018-04-13 14:12:20 629  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.1 [built 15-March-2007 01:32:31; debug? true; trace: 10]
+2018-04-13 14:12:20 650 DEBUG DynamicPooledDataSourceManagerMBean:236 - MBean: com.mchange.v2.c3p0:type=PooledDataSource[1hgef419u1gm6ytxh6jv5g|6bf08014] registered.
+2018-04-13 14:12:20 942 DEBUG LogFactory:135 - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2018-04-13 14:12:22 660 DEBUG SqlSessionUtils:97 - Creating a new SqlSession
+2018-04-13 14:12:22 682 DEBUG SqlSessionUtils:148 - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@677dbd89] was not registered for synchronization because synchronization is not active
+2018-04-13 14:12:22 762 DEBUG BasicResourcePool:404 - incremented pending_acquires: 1
+2018-04-13 14:12:22 763 DEBUG BasicResourcePool:404 - incremented pending_acquires: 2
+2018-04-13 14:12:22 764 DEBUG BasicResourcePool:404 - incremented pending_acquires: 3
+2018-04-13 14:12:22 765 DEBUG BasicResourcePool:289 - com.mchange.v2.resourcepool.BasicResourcePool@285f09de config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; mox_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false]
+2018-04-13 14:12:22 766  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgef419u1gm6ytxh6jv5g|6bf08014, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgef419u1gm6ytxh6jv5g|6bf08014, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://192.168.71.161:3306/db_buyticket, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+2018-04-13 14:12:22 767 DEBUG BasicResourcePool:538 - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+2018-04-13 14:12:22 768 DEBUG BasicResourcePool:1291 - awaitAvailable(): [unknown]
+2018-04-13 14:12:22 769 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@285f09de [managed: 0, unused: 0, excluded: 0]
+2018-04-13 14:12:23 417 DEBUG C3P0PooledConnectionPool:217 - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@3d81cacf.acquireResource() returning. 
+2018-04-13 14:12:23 417 DEBUG C3P0PooledConnectionPool:217 - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@3d81cacf.acquireResource() returning. 
+2018-04-13 14:12:23 419 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@285f09de [managed: 1, unused: 1, excluded: 0]
+2018-04-13 14:12:23 421 DEBUG BasicResourcePool:422 - decremented pending_acquires: 2
+2018-04-13 14:12:23 421 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@285f09de [managed: 2, unused: 2, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@458e7856)
+2018-04-13 14:12:23 422 DEBUG BasicResourcePool:422 - decremented pending_acquires: 1
+2018-04-13 14:12:23 422 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@285f09de [managed: 2, unused: 1, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@458e7856)
+2018-04-13 14:12:23 424 DEBUG SpringManagedTransaction:87 - JDBC Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1827a871] will not be managed by Spring
+2018-04-13 14:12:23 441 DEBUG getOneMovieByCityIdAnDMovieId:145 - ==>  Preparing: select distinct m.movie_id,m.movie_name,m.movie_type,m.movie_country, m.movie_time,m.movie_score,m.movie_img from tb_movie m join tb_city c join tb_area area join tb_area_theater area_th join tb_theater th join tb_hall h join tb_hall_movie hm on c.city_id = area.fk_city_id and area.area_id = area_th.fk_area_id and area_th.fk_theater_id = th.theater_id and th.theater_id = h.fk_theater_id and h.hall_id = hm.fk_hall_id and hm.fk_movie_id = m.movie_id where c.city_id=? and m.movie_id=?; 
+2018-04-13 14:12:23 493 DEBUG getOneMovieByCityIdAnDMovieId:145 - ==> Parameters: 1(Integer), 1(Integer)
+2018-04-13 14:12:23 529 DEBUG getOneMovieByCityIdAnDMovieId:145 - <==      Total: 1
+2018-04-13 14:12:23 547 DEBUG SqlSessionUtils:191 - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@677dbd89]
+2018-04-13 14:12:23 549 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@285f09de [managed: 2, unused: 1, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@458e7856)
+2018-04-13 14:12:23 550  INFO MovieTest:76 - 头号玩家
