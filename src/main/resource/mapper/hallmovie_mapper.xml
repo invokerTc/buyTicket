@@ -12,5 +12,4 @@
         <result property="movieVersion" column="movie_version" javaType="java.lang.String"/>
     </resultMap>
 
-
 </mapper>

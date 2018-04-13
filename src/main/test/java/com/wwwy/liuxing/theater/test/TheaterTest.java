@@ -1,5 +1,7 @@
 package com.wwwy.liuxing.theater.test;
 
+import com.wwwy.liuxing.hall.dto.HallDTO;
+import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
 import org.apache.log4j.Logger;
@@ -19,6 +21,8 @@ import java.util.List;
 public class TheaterTest {
     private static final Logger logger = Logger.getLogger(TheaterTest.class);
     @Autowired
+    private ITheaterDAO theaterDAO;
+    @Autowired
     private ITheaterService theaterService;
     @Test
     public void testCase1(){
@@ -28,6 +32,17 @@ public class TheaterTest {
                 if (logger.isInfoEnabled()){
                     logger.info(theater.getTheaterName()+"=========="+theater.getTheaterAddress());
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testQueryLowestPriceTheaterList(){
+        try {
+            List<TheaterDTO> theaterDTOs = theaterDAO.queryLowestPriceTheaterList(1, 1);
+            for(TheaterDTO th:theaterDTOs){
+                logger.info(th.getTheaterName()+"\t"+th.getTheaterAddress());
             }
         } catch (Exception e) {
             e.printStackTrace();
