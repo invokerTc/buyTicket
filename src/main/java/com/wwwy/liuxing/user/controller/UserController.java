@@ -1,10 +1,11 @@
 package com.wwwy.liuxing.user.controller;
 
+import com.wwwy.liuxing.user.dto.UserDTO;
+import com.wwwy.liuxing.user.service.IUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private IUserService userService;
+
+    /**
+     * 登录shiro
+     */
     @RequestMapping("/login")
     @ResponseBody
     public String userLogin(String userName, String passWord, HttpServletRequest request){
@@ -38,5 +45,23 @@ public class UserController {
             return "{\"code\":2}";
         }
         return "{\"code\":1}";
+    }
+
+    /*
+    * 用户注册
+    * */
+    @RequestMapping("/register")
+    @ResponseBody
+    public String userRegister(UserDTO userDTO){
+        try {
+            boolean dto = userService.setUserDTO(userDTO);
+            if (dto){
+                return "{\"code\":1}";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{\"code\":0}";
+        }
+        return "";
     }
 }

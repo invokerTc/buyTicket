@@ -8,4 +8,6 @@ import com.wwwy.liuxing.user.dto.UserDTO;
 public interface IUserService {
 
     UserDTO checkUserNameAndPassWord(String userName)throws Exception;
+
+    boolean setUserDTO(UserDTO userDTO)throws Exception;
 }
