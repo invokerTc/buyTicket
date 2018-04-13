@@ -54,4 +54,17 @@ public class MovieTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testGetMovieByCondition(){
+        try {
+            List<MovieDTO> movieDTOs = movieDao.getMoviesByCondition("动作,科幻,冒险", "美国", "2018-03-30");
+            for (MovieDTO movie:movieDTOs) {
+                if (logger.isDebugEnabled()){
+                    logger.debug(movie.getMovieName());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

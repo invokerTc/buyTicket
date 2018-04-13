@@ -31,7 +31,7 @@ public class UserTest {
     public void testLogin(){
         UserDTO zhangsan = null;
         try {
-            zhangsan = userDao.getNameAndPassWord("zhangsan");
+            zhangsan = userDao.getNameAndPassWord("laoyang");
         } catch (Exception e) {
             e.printStackTrace();
         }
