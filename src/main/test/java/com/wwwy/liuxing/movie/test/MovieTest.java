@@ -57,7 +57,7 @@ public class MovieTest {
     @Test
     public void testGetMovieByCondition(){
         try {
-            List<MovieDTO> movieDTOs = movieDao.getMoviesByCondition("动作,科幻,冒险", "美国", "2018-03-30");
+            List<MovieDTO> movieDTOs = movieDao.getMoviesByCondition("动作,冒险,科幻", "",null);
             for (MovieDTO movie:movieDTOs) {
                 if (logger.isDebugEnabled()){
                     logger.debug(movie.getMovieName());

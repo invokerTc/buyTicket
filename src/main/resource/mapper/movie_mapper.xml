@@ -45,10 +45,10 @@
                 movie_country=#{movieCountry}
             </if>
             <if test="movieDate !=null">
-                movie_date=#{movieDate}
+                AND movie_date=#{movieDate}
             </if>
             <if test="movieType !=null">
-                movie_type=#{movieType}
+                AND movie_type=#{movieType}
             </if>
         </trim>
     </select>
