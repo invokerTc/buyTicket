@@ -37,8 +37,12 @@ public class TheaterTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 测试 dao层的List<TheaterDTO> queryLowestPriceTheaterList(Integer cityId,Integer movieId) throws Exception;
+     */
     @Test
-    public void testQueryLowestPriceTheaterList(){
+    public void testDaoQueryLowestPriceTheaterList(){
         try {
             List<TheaterDTO> theaterDTOs = theaterDAO.queryLowestPriceTheaterList(1, 1);
             for(TheaterDTO th:theaterDTOs){
@@ -48,4 +52,16 @@ public class TheaterTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testServiceQueryLowestPriceTheaterList(){
+        try {
+            List<TheaterDTO> theaterDTOList = theaterService.queryLowestPriceTheaterList("1", "1");
+            for (TheaterDTO th:theaterDTOList) {
+                logger.info(th.getTheaterId()+"\t"+th.getTheaterName()+"\t"+th.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

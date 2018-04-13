@@ -25,7 +25,7 @@
 </select>
     <!--####根据城市和电影获取放映该电影的电影院名和影院地址 （影院最低价格 用另一个sql在hallmovie_mapper.xml中查询每个放映该电影的最低价格））-->
     <select id="queryLowestPriceTheaterList" resultMap="TheaterResultMap">
-        select distinct th.theater_name,th.theater_address
+        select distinct th.theater_id, th.theater_name,th.theater_address
         from tb_city c
         join tb_area area
         join tb_area_theater area_th
