@@ -1,5 +1,7 @@
 package com.wwwy.liuxing.area.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dao.IAreaDAO;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
@@ -26,20 +28,18 @@ public class AreaService implements IAreaService {
     private static final Logger logger = Logger.getLogger(AreaService.class);
 
     @Override
-    public List<AreaDTO> queryAllArea(Integer currentPage)throws Exception {
-        logger.debug("currentPage::::"+currentPage);
-//        分页的初始位置
-        int index=SysConfig.BeforeConfig.PAGE_START;
-//        分页的大小
-        int pageSize=SysConfig.BeforeConfig.PAGE_SIZE;
-        if(currentPage< index){
-            currentPage=index;
+    public PageInfo<AreaDTO> queryAllArea(Integer page)throws Exception {
+        logger.debug("currentPage::::"+page);
+        int start=SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
         }
+
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<AreaDTO> areaDTOList = areaDAO.queryAllArea();
-        int firstIndex=(currentPage-index)*pageSize;
-        int lastIndex=currentPage*pageSize;
-        logger.debug(areaDTOList.subList(firstIndex,lastIndex));
-        return areaDTOList.subList(firstIndex,lastIndex);
+        PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
+        logger.debug("pageInfo"+pageInfo);
+        return pageInfo;
     }
 
     @Override

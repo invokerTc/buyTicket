@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.area.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
 import com.wwwy.liuxing.system.SysConfig;
@@ -34,14 +35,11 @@ public class AreaController {
     public String queryAllArea(HttpServletRequest request,ModelMap modelMap){
         String pageStr = request.getParameter("page");
         Integer page=Integer.parseInt(pageStr);
-        if(null==page){
-            page=SysConfig.BeforeConfig.PAGE_START;
-        }
-        List<AreaDTO> areaDTOsList = null;
         try {
-            areaDTOsList = areaService.queryAllArea(page);
-            modelMap.addAttribute("page", page);
-            modelMap.addAttribute("areaDTOsList",areaDTOsList);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(page);
+            List<AreaDTO> list = pageInfo.getList();
+            modelMap.addAttribute("page", pageInfo);
+            modelMap.addAttribute("areaDTOsList",list);
             return "hou_area_list";
         } catch (Exception e) {
             e.printStackTrace();
