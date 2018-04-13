@@ -23,7 +23,7 @@ public class TheaterTest {
     @Test
     public void testCase1(){
         try {
-            List<TheaterDTO> theaterDTOs = theaterService.queryTheaterByPattern("达");
+            List<TheaterDTO> theaterDTOs = theaterService.queryTheaterByPattern("中");
             for (TheaterDTO theater:theaterDTOs) {
                 if (logger.isInfoEnabled()){
                     logger.info(theater.getTheaterName()+"=========="+theater.getTheaterAddress());

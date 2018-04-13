@@ -110,3 +110,35 @@
 2018-04-12 20:45:45 117  INFO TheaterTest:29 - 武汉万达影城东西湖中心广场店==========东西湖区吴家山东吴大道中心广场4层
 2018-04-12 20:45:45 117  INFO TheaterTest:29 - 武汉万达影城汉阳汉商银座店==========汉阳区汉阳大道139号汉商银座购物中心F栋五层
 2018-04-12 20:45:45 118  INFO TheaterTest:29 - 武汉万达影城佰港城光魔酷映店==========洪山区北港村文治街武昌府维佳佰港城广场4楼	
+2018-04-12 20:50:48 131  INFO MLog:80 - MLog clients using log4j logging.
+2018-04-12 20:50:48 569  INFO C3P0Registry:204 - Initializing c3p0-0.9.1.1 [built 15-March-2007 01:32:31; debug? true; trace: 10]
+2018-04-12 20:50:48 666 DEBUG DynamicPooledDataSourceManagerMBean:236 - MBean: com.mchange.v2.c3p0:type=PooledDataSource[1hgef059u1fkzjed1fd981y|39d9314d] registered.
+2018-04-12 20:50:49 503 DEBUG LogFactory:135 - Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2018-04-12 20:50:53 694 DEBUG SqlSessionUtils:97 - Creating a new SqlSession
+2018-04-12 20:50:53 710 DEBUG SqlSessionUtils:148 - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3af4e0bf] was not registered for synchronization because synchronization is not active
+2018-04-12 20:50:53 991 DEBUG BasicResourcePool:404 - incremented pending_acquires: 1
+2018-04-12 20:50:53 992 DEBUG BasicResourcePool:404 - incremented pending_acquires: 2
+2018-04-12 20:50:53 992 DEBUG BasicResourcePool:404 - incremented pending_acquires: 3
+2018-04-12 20:50:53 993 DEBUG BasicResourcePool:289 - com.mchange.v2.resourcepool.BasicResourcePool@5ca17ab0 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; mox_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false]
+2018-04-12 20:50:53 994  INFO AbstractPoolBackedDataSource:462 - Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hgef059u1fkzjed1fd981y|39d9314d, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hgef059u1fkzjed1fd981y|39d9314d, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://192.168.71.161:3306/db_buyticket, lastAcquisitionFailureDefaultUser -> null, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+2018-04-12 20:50:53 995 DEBUG BasicResourcePool:538 - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+2018-04-12 20:50:53 995 DEBUG BasicResourcePool:1291 - awaitAvailable(): [unknown]
+2018-04-12 20:50:53 996 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@5ca17ab0 [managed: 0, unused: 0, excluded: 0]
+2018-04-12 20:50:55 841 DEBUG C3P0PooledConnectionPool:217 - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager@35083dc8.acquireResource() returning. 
+2018-04-12 20:50:55 843 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@5ca17ab0 [managed: 1, unused: 1, excluded: 0]
+2018-04-12 20:50:55 845 DEBUG BasicResourcePool:422 - decremented pending_acquires: 2
+2018-04-12 20:50:55 846 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@5ca17ab0 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@7e937d2d)
+2018-04-12 20:50:55 846 DEBUG SpringManagedTransaction:87 - JDBC Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@35293c05] will not be managed by Spring
+2018-04-12 20:50:55 889 DEBUG queryByPattern:145 - ==>  Preparing: SELECT theater_id,theater_name,theater_address,theater_phone,theater_longitude,theater_latitude FROM tb_theater WHERE theater_name LIKE "%"?"%" 
+2018-04-12 20:50:55 932 DEBUG queryByPattern:145 - ==> Parameters: 中(String)
+2018-04-12 20:50:55 978 DEBUG queryByPattern:145 - <==      Total: 8
+2018-04-12 20:50:55 987 DEBUG SqlSessionUtils:191 - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3af4e0bf]
+2018-04-12 20:50:56 005 DEBUG BasicResourcePool:1644 - trace com.mchange.v2.resourcepool.BasicResourcePool@5ca17ab0 [managed: 1, unused: 0, excluded: 0] (e.g. com.mchange.v2.c3p0.impl.NewPooledConnection@7e937d2d)
+2018-04-12 20:50:56 005  INFO TheaterTest:29 - 中影星美浩瀚国际影城（常福店）==========蔡甸区常福商务广场3楼
+2018-04-12 20:50:56 006  INFO TheaterTest:29 - 武汉万达影城东西湖中心广场店==========东西湖区吴家山东吴大道中心广场4层
+2018-04-12 20:50:56 006  INFO TheaterTest:29 - 中影星美浩瀚国际影城（铁桥店）==========汉阳区百灵路铁桥广场3楼	
+2018-04-12 20:50:56 006  INFO TheaterTest:29 - 武汉中影星美国际影城（创意天地店）==========洪山区野芷湖西路16号（创意天地剧场）
+2018-04-12 20:50:56 006  INFO TheaterTest:29 - 中影国际影城武汉光谷天河店==========洪山区光谷步行街C区3楼
+2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中影烽禾影城==========黄陂区湖北省武汉市汉口北大道汉北广场三楼
+2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中影国际影城武汉江岸东购店==========江岸区二七路汉口东部购物公园C2栋4楼
+2018-04-12 20:50:56 007  INFO TheaterTest:29 - 中南剧场1001天河影院==========江岸区京汉大道100号
