@@ -47,13 +47,13 @@
                         document.getElementById("userRealName").innerText = "昵称为2-4汉字";
                         return false;
                     }else {
-                    if (!(telReg.test(telStr))) {
-                        alert("手机号必须以1开头，第二位为3,4,5,7,8，总长度为11位")
-                        document.getElementById("userTel").innerText = "手机号必须以1开头，第二位为3,4,5,7,8，总长度为11位";
-                        return false;
+                        if (!(telReg.test(telStr))) {
+                            alert("手机号必须以1开头，第二位为3,4,5,7,8，总长度为11位")
+                            document.getElementById("userTel").innerText = "手机号必须以1开头，第二位为3,4,5,7,8，总长度为11位";
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
-                     }
                 }
             }
         }
@@ -65,20 +65,20 @@
             var passWordStrTwo = $("#inputPassword2").val();
             var userStr = $("#userRealName").val();
             var telStr = $("#userTel").val();
-        var errArrays = new Array();
-        errArrays[0] = '用户已存在，请更换账号';
-        errArrays[1] = '注册成功';
-        $.post("/user/register",{userName:userNameStr,userPassword:passWordStr,
-            userRealName:userStr,userTel:telStr}, function(data) {
-            var jsonObj = JSON.parse(data)
-            var index =jsonObj.code;
-            if (jsonObj.code == 1) {
-                alert(errArrays[index])
-                window.location.href="/qian_login.htm";
-            } else {
-                alert(errArrays[index]);
-            }
-        });}
+            var errArrays = new Array();
+            errArrays[0] = '用户已存在，请更换账号';
+            errArrays[1] = '注册成功';
+            $.post("/user/register",{userName:userNameStr,userPassword:passWordStr,
+                userRealName:userStr,userTel:telStr}, function(data) {
+                var jsonObj = JSON.parse(data)
+                var index =jsonObj.code;
+                if (jsonObj.code == 1) {
+                    alert(errArrays[index])
+                    window.location.href="/qian_login.htm";
+                } else {
+                    alert(errArrays[index]);
+                }
+            });}
     }
 </script>
 
@@ -112,34 +112,34 @@
 
     <div style="width:1100px;height:600px" >
         <form class="form-horizontal">
-            <div class="form-group col-lg-5" style="margin-top: 20px;height: 70px; width:500px; margin-left: 400px;">
+            <div class="form-group col-lg-5" style="margin-top: 20px;height: 70px; width:700px; margin-left: 400px;">
                 <label for="userName" class="col-sm-2 control-label" style="margin-top: 20px">用户名</label>
                 <div class="col-sm-10" style="margin-top: 20px">
                     <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名大于8位且字母数字搭配">
                 </div>
             </div>
-            <div class="form-group col-lg-5"style="height: 70px;width:500px; margin-left: 400px;">
+            <div class="form-group col-lg-5"style="height: 70px;width:700px; margin-left: 400px;">
                 <label for="userPassword" class="col-sm-2 control-label"style="margin-top: 20px">密码</label>
                 <div class="col-sm-10"style="margin-top: 20px">
                     <input type="text" class="form-control" id="userPassword"name="userPassword" placeholder="密码必须大于8位">
                 </div>
             </div>
-            <div class="form-group col-lg-5"style="height:70px;width:500px; margin-left: 400px;">
+            <div class="form-group col-lg-5"style="height:70px;width:700px; margin-left: 400px;">
                 <label for="inputPassword2" class="col-sm-2 control-label"style="margin-top: 20px" >确认密码</label>
                 <div class="col-sm-10"style="margin-top: 20px">
                     <input type="text" class="form-control" id="inputPassword2" name="inputPassword2" placeholder="确认密码">
                 </div>
             </div>
-            <div class="form-group col-lg-5"style="height: 70px;width:500px; margin-left: 400px;">
+            <div class="form-group col-lg-5"style="height: 70px;width:700px; margin-left: 400px;">
                 <label for="userRealName" class="col-sm-2 control-label"style="margin-top: 20px">昵称</label>
                 <div class="col-sm-10"style="margin-top: 20px">
                     <input type="text" class="form-control" id="userRealName" name="userRealName" placeholder="昵称为2-4汉字">
                 </div>
             </div>
-            <div class="form-group col-lg-5"style="height: 70px; width:500px; margin-left: 400px;">
+            <div class="form-group col-lg-5"style="height: 70px; width:700px; margin-left: 400px;">
                 <label for="userTel" class="col-sm-2 control-label"style="margin-top: 20px">电话号码</label>
                 <div class="col-sm-10"style="margin-top: 20px">
-                    <input type="text" class="form-control" id="userTel" name="userTel" placeholder="手机号必须以1开头，第二位为3,4,5,7,8，总长度为11位">
+                    <input type="text" class="form-control" id="userTel" name="userTel" placeholder="输入正确的手机号码">
                 </div>
             </div>
             <div class="form-group" style="margin-top: 30px;">

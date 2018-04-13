@@ -15,6 +15,5 @@ public interface IUserDao {
     /*
     * 前端用户注册接口
     * */
-    UserDTO setUserDto()throws Exception;
-
+    Integer setUserDto(UserDTO userDTO)throws Exception;
 }
