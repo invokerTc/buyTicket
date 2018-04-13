@@ -76,4 +76,9 @@ public class AreaService implements IAreaService {
         logger.debug("pageInfo"+pageInfo);
         return pageInfo;
     }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] areaId) throws Exception {
+        return areaDAO.deleteBatchAreas(areaId);
+    }
 }

@@ -60,4 +60,10 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
         List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAny", anyInfo);
         return list;
     }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] areaId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxin.area.dto.AreaMapper.batchDeleteAreas", areaId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
 }
