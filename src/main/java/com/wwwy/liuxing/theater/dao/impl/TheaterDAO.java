@@ -9,13 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2018/4/12.
- */
 @Repository
 public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
-
-    @Override
     @Autowired
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);
@@ -32,3 +27,4 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
         return list;
     }
 }
+
