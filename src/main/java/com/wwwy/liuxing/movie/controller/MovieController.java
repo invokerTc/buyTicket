@@ -22,6 +22,12 @@ public class MovieController {
     @Autowired
     private IMovieService movieService;
 
+    /**
+     * 首页获取所有的电影列表
+     * @param cityName
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("getAllMovie")
     public String getAllMovieByCityName(String cityName, ModelMap modelMap){
         logger.info("进入MovieController 的 /movie/getAllMovie  方法");
@@ -33,6 +39,14 @@ public class MovieController {
         }
         return "qian_films_list";
     }
+
+    /**
+     * 点击首页一个电影获取该电影的信息
+     * @param cityId
+     * @param movieId
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/getOneMovieInfo")
     public String getOneMovieById(String cityId,String movieId,ModelMap modelMap){
         logger.info("进入MovieController 的 /movie/getOneMovieInfo  方法");
