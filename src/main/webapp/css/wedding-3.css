@@ -2213,8 +2213,8 @@ body .path .cur {
 }
 
 .ma_page {
-    padding: 557px 441px;
-    position: absolute;
+    padding: 25px 441px;
+    position: relative;
     text-align: center
 }
 
