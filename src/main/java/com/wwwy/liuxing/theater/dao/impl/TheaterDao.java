@@ -14,6 +14,8 @@ import java.util.List;
  */
 @Repository
 public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
+
+    @Override
     @Autowired
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);
