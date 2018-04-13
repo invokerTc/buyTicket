@@ -19,4 +19,22 @@
         <result property="moviePreparation" column="movie_preparation" javaType="java.lang.String"/>
     </resultMap>
 
+    <!--根据城市名查询所有电影id,电影名，电影图片，电影评分-->
+    <select id="queryAllMovieByCityName" resultMap="MovieResultMap">
+        select distinct movie.movie_id, movie.movie_name, movie.movie_img, movie.movie_score from tb_movie movie
+        join tb_city city
+        join tb_area area
+        join tb_area_theater area_th
+        join tb_theater th
+        join tb_hall hall
+        join tb_hall_movie hall_movie
+        on city.city_id = area.fk_city_id
+        and area.area_id = area_th.fk_area_id
+        and area_th.fk_theater_id = th.theater_id
+        and th.theater_id = hall.fk_theater_id
+        and hall.hall_id = hall_movie.fk_hall_id
+        and hall_movie.fk_movie_id = movie.movie_id
+        where city.city_name=#{cityName}
+        order by movie.movie_score desc;
+    </select>
 </mapper>
