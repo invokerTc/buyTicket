@@ -54,4 +54,12 @@ public interface IAreaService {
      * @throws Exception
      */
     PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page)throws Exception;
+
+    /**
+     * 批量删除地区信息
+     * @param areaId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatchAreas(int[] areaId)throws Exception;
 }

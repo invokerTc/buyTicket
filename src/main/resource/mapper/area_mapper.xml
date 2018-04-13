@@ -50,4 +50,12 @@
         OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
+    <!--批量删除-->
+    <delete id="batchDeleteAreas" parameterType="int">
+        delete from tb_area where area_id in
+        <foreach item="areaId" collection="array" open="(" separator="," close=")">
+            #{areaId}
+        </foreach>
+    </delete>
+
 </mapper>

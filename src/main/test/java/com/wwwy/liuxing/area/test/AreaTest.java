@@ -4,13 +4,16 @@ import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dao.IAreaDAO;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import sun.reflect.generics.reflectiveObjects.LazyReflectiveObjectGenerator;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,7 +66,7 @@ public class AreaTest {
     @Test
     public void testInsertArea(){
         AreaDTO areaDTO = new AreaDTO();
-        areaDTO.setAreaName("nihao");
+        areaDTO.setAreaName("nih");
         areaDTO.setFkCityId(1);
         Boolean aBoolean = null;
         try {
@@ -135,6 +138,31 @@ public class AreaTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testDeleteBatchAreas(){
+        int[] arrys={20,21};
+        try {
+            Boolean aBoolean = areaDAO.deleteBatchAreas(arrys);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test(){
+        String ids="1,2,3,4,5";
+        String[] idStr= StringUtils.split(ids,",");
+        for (String STR :
+                idStr) {
+            logger.debug(STR);
+        }
+        logger.debug(".......idStr"+idStr.toString());
+        int[] areaIds = Arrays.stream(idStr).mapToInt(Integer::valueOf).toArray();
+        logger.debug(".........areaIds"+areaIds.toString());
+        logger.debug(areaIds.length);
     }
 
 }

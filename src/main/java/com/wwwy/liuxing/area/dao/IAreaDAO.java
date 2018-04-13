@@ -52,4 +52,12 @@ public interface IAreaDAO {
      * @throws Exception
      */
     List<AreaDTO> queryAreaByAny(String anyInfo)throws Exception;
+
+    /**
+     * 批量删除地区信息
+     * @param areaId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatchAreas(int[] areaId)throws Exception;
 }

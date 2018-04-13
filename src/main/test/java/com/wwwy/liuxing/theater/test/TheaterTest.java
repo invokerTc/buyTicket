@@ -1,5 +1,7 @@
 package com.wwwy.liuxing.theater.test;
 
+import com.wwwy.liuxing.hall.dto.HallDTO;
+import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
 import org.apache.log4j.Logger;
@@ -19,6 +21,8 @@ import java.util.List;
 public class TheaterTest {
     private static final Logger logger = Logger.getLogger(TheaterTest.class);
     @Autowired
+    private ITheaterDAO theaterDAO;
+    @Autowired
     private ITheaterService theaterService;
     @Test
     public void testCase1(){
@@ -33,4 +37,31 @@ public class TheaterTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 测试 dao层的List<TheaterDTO> queryLowestPriceTheaterList(Integer cityId,Integer movieId) throws Exception;
+     */
+    @Test
+    public void testDaoQueryLowestPriceTheaterList(){
+        try {
+            List<TheaterDTO> theaterDTOs = theaterDAO.queryLowestPriceTheaterList(1, 1);
+            for(TheaterDTO th:theaterDTOs){
+                logger.info(th.getTheaterName()+"\t"+th.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testServiceQueryLowestPriceTheaterList(){
+        try {
+            List<TheaterDTO> theaterDTOList = theaterService.queryLowestPriceTheaterList("1", "1");
+            for (TheaterDTO th:theaterDTOList) {
+                logger.info(th.getTheaterId()+"\t"+th.getTheaterName()+"\t"+th.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
