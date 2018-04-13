@@ -27,6 +27,15 @@ body{
 	box-sizing: border-box;
 }
 
+.form_find{
+	position: relative;
+	padding: 0 0 1px 500px;
+
+}
+.form_find input{
+	margin: 20px 0 -10px 0;
+}
+
 #head-logo{
 	width:350px;
 	margin: 10px auto;
@@ -50,7 +59,7 @@ a:link {
 }     
 /* 已访问的链接 */
 a:visited {
-	color: blck;
+	color: black;
 }  
 /* 当有鼠标悬停在链接上 */
 a:hover {
@@ -65,7 +74,7 @@ a:active {
 
 .water-table{
 	border-collapse: collapse;
-	margin: 50px auto;
+	margin: 25px auto;
 }
 
 .water-table .water-table-head{

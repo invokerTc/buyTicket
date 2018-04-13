@@ -40,7 +40,10 @@
 <body>
 
     <div>
-
+            <form action="/area/anyInfo?page=1" method="post" class="form_find">
+            <input type="text" name="anyInfo" style="height: 40px">
+                <input type="submit" value="find" style="font-size: 20px">
+            </form>
         <table border="1" width="60%" style="line-height: 40px" class="water-table">
             <thead class="water-table-content" style="font-size:16px;font-weight: bolder">
             <td>地区id</td>
@@ -61,7 +64,7 @@
     </div>
 
     <div class="ma_page">
-        <p>一共${page.pages}页</p>
+        <p>当前页${page.pageNum}一共${page.pages}页</p>
         <a href="/area/all?page=${page.firstPage}">首页</a>
         <a href="/area/all?page=${page.nextPage}">下一页</a>
         <a href="/area/all?page=${page.prePage}">上一页</a>

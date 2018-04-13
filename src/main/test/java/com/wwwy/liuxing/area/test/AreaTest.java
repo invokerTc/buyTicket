@@ -32,7 +32,7 @@ public class AreaTest {
     public void testQueryAllAreaByDAO(){
         List<AreaDTO> list = null;
         try {
-            list = areaDAO.queryAllArea();
+            list = areaDAO.queryAllArea(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class AreaTest {
     public void testQueryAllAreaByService(){
        PageInfo<AreaDTO> list = null;
        try {
-           list = areaService.queryAllArea(1);
+           list = areaService.queryAllArea(1,1);
        } catch (Exception e) {
            e.printStackTrace();
        }
@@ -104,6 +104,34 @@ public class AreaTest {
         try {
             AreaDTO areaDTO = areaDAO.queryAreaById(1);
             logger.debug(areaDTO.getAreaName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @Test
+    public void testQueryByAny(){
+        try {
+            List<AreaDTO> list = areaDAO.queryAreaByAny("1");
+            logger.debug(list.size());
+            for (AreaDTO area :
+                    list) {
+                logger.debug(area.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByAnyService(){
+        try {
+            PageInfo<AreaDTO> areaDTOPageInfo = areaService.queryAreaByAny("蔡甸区", null);
+            List<AreaDTO> list = areaDTOPageInfo.getList();
+            for (AreaDTO area :
+                    list) {
+                logger.debug(area.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

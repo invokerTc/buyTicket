@@ -28,7 +28,7 @@ public class AreaService implements IAreaService {
     private static final Logger logger = Logger.getLogger(AreaService.class);
 
     @Override
-    public PageInfo<AreaDTO> queryAllArea(Integer page)throws Exception {
+    public PageInfo<AreaDTO> queryAllArea(Integer cityId,Integer page)throws Exception {
         logger.debug("currentPage::::"+page);
         int start=SysConfig.BeforeConfig.PAGE_START;
         if(null==page || page<start){
@@ -36,7 +36,7 @@ public class AreaService implements IAreaService {
         }
 
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
-        List<AreaDTO> areaDTOList = areaDAO.queryAllArea();
+        List<AreaDTO> areaDTOList = areaDAO.queryAllArea(cityId);
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
         logger.debug("pageInfo"+pageInfo);
         return pageInfo;
@@ -60,5 +60,20 @@ public class AreaService implements IAreaService {
     @Override
     public Boolean updateArea(AreaDTO areaDTO)throws Exception {
         return areaDAO.updateArea(areaDTO);
+    }
+
+    @Override
+    public PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page) throws Exception {
+        logger.debug("currentPage::::"+page);
+        int start=SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
+        }
+
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<AreaDTO> areaDTOList = areaDAO.queryAreaByAny(anyInfo);
+        PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
+        logger.debug("pageInfo"+pageInfo);
+        return pageInfo;
     }
 }

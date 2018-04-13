@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
 import com.wwwy.liuxing.system.SysConfig;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,7 @@ public class AreaController {
     @Autowired
     private IAreaService areaService;
 
+    private static final Logger logger = Logger.getLogger(AreaController.class);
     /**
      * 查询所有的地区并分页
      * @param request
@@ -36,7 +38,7 @@ public class AreaController {
         String pageStr = request.getParameter("page");
         Integer page=Integer.parseInt(pageStr);
         try {
-            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(page);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(SysConfig.BeforeConfig.PAGE_START,page);
             List<AreaDTO> list = pageInfo.getList();
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaDTOsList",list);
@@ -111,5 +113,23 @@ public class AreaController {
             e.printStackTrace();
         }
         return "fail";
+    }
+
+    @RequestMapping("/anyInfo")
+    public String queryAreaByAny(HttpServletRequest request,ModelMap modelMap){
+        String anyInfo = request.getParameter("anyInfo");
+        logger.debug("anyInfo"+anyInfo);
+        String page = request.getParameter("page");
+        List<AreaDTO> areaDTOList=null;
+        try {
+            PageInfo<AreaDTO> pageInfo = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
+            areaDTOList=pageInfo.getList();
+            modelMap.addAttribute("page",pageInfo);
+            modelMap.addAttribute("areaDTOsList",areaDTOList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelMap.addAttribute("areaDTOsList",null);
+        }
+        return "hou_area_list";
     }
 }

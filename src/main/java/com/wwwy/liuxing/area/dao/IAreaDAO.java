@@ -15,7 +15,7 @@ public interface IAreaDAO {
      * 查询所有的地区，返回一个list集合
      * @return
      */
-    List<AreaDTO> queryAllArea()throws Exception;
+    List<AreaDTO> queryAllArea(Integer cityId)throws Exception;
 
     /**
      * 根据id查询某一个地区的信息
@@ -46,4 +46,10 @@ public interface IAreaDAO {
      */
     Boolean updateArea(AreaDTO areaDTO)throws Exception;
 
+    /**
+     * 根据任何信息查找地区信息
+     * @return
+     * @throws Exception
+     */
+    List<AreaDTO> queryAreaByAny(String anyInfo)throws Exception;
 }
