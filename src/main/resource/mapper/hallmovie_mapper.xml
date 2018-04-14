@@ -14,7 +14,7 @@
 
     <!--##根据城市、影院、电影获取该电影院该电影的最低价格-->
     <select id="queryLowestMoviePriceList" resultMap="HallMovieResultMap">
-        select  min(hm.movie_price) from tb_city c
+        select  hm.movie_price from tb_city c
         join tb_area area
         join tb_area_theater area_th
         join tb_theater th
@@ -29,6 +29,7 @@
         and hm.fk_movie_id = m.movie_id
         where c.city_id=#{cityId}
         and m.movie_id=#{movieId}
-        and th.theater_id=#{theaterId};
+        and th.theater_id=#{theaterId}
+        order by hm.movie_price asc limit 1;
     </select>
 </mapper>
