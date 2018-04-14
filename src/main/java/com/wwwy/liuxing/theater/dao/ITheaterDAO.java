@@ -21,13 +21,15 @@ public interface ITheaterDAO {
      */
     List<TheaterDTO> queryLowestPriceTheaterList(Integer cityId,Integer movieId) throws Exception;
 
+
+
     /**
      * 查询所有的影院，返回一个list集合
-     * @param areaId
+     * @param areaName
      * @return
      * @throws Exception
      */
-    List<TheaterDTO> queryAllTheater(Integer areaId)throws Exception;
+    List<TheaterDTO> queryAllTheater(String areaName)throws Exception;
 
     /**
      * 根据id查询某一个影院的信息

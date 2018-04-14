@@ -49,8 +49,8 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
     }
 
     @Override
-    public List<TheaterDTO> queryAllTheater(Integer areaId) throws Exception {
-        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAllTheater", areaId);
+    public List<TheaterDTO> queryAllTheater(String areaName) throws Exception {
+        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAllTheater", areaName);
         return list;
     }
 

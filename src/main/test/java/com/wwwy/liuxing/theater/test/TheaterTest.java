@@ -97,7 +97,7 @@ public class TheaterTest {
     @Test
     public void testQueryAllTheaterByAreaId(){
         try {
-            List<TheaterDTO> list = theaterDAO.queryAllTheater(2);
+            List<TheaterDTO> list = theaterDAO.queryAllTheater("蔡甸区");
             for (TheaterDTO theater :
                     list) {
                 logger.debug(theater.toString());

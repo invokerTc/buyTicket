@@ -47,7 +47,7 @@
     <select id="queryAllTheater" resultMap="TheaterResultMap">
         SELECT t.theater_id,t.theater_name,t.theater_address,t.theater_phone,t.theater_longitude,t.theater_latitude
         FROM tb_theater t JOIN tb_area_theater ta JOIN tb_area a on (t.theater_id=ta.fk_theater_id AND ta.fk_area_id=a.area_id)
-        WHERE a.area_id=#{areaId}
+        WHERE a.area_name=#{areaName}
     </select>
 
     <select id="queryAreaById" resultMap="TheaterResultMap">

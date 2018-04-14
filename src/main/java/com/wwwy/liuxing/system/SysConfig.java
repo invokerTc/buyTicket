@@ -18,5 +18,7 @@ public class SysConfig {
         public static final String WHILEEXCEPTION="ex";
         public static final Integer PAGE_START=1;
         public static final Integer PAGE_SIZE=10;
+        public static final Integer ZERO_NUMBLE=0;
+        public static final Integer MAP_SIZE=50;
     }
 }

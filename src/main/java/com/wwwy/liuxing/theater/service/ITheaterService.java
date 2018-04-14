@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.theater.service;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
@@ -32,14 +33,15 @@ public interface ITheaterService {
     Map<TheaterDTO,HallMovieDTO> queryLowestTheaterAndPrice(String cityId, String movieId)throws Exception;
 
     /**
-     * 查询所有的影院，返回一个list集合
-     * @param theaterId
+     * 查询所有的影院，并分页
+     * @param areaName
+     * @param currentPage
      * @return
      * @throws Exception
      */
-    List<TheaterDTO> queryAllTheater(Integer areaId)throws Exception;
+    PageInfo<TheaterDTO> queryAllTheater(String areaName,Integer currentPage)throws Exception;
 
-    /**
+      /**
      * 根据id查询某一个影院的信息
      * @param theaterId
      * @return

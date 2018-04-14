@@ -5,13 +5,17 @@ import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dao.IAreaDAO;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
+import com.wwwy.liuxing.city.dto.CityDTO;
+import com.wwwy.liuxing.city.service.ICityService;
 import com.wwwy.liuxing.system.SysConfig;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -25,21 +29,46 @@ public class AreaService implements IAreaService {
     @Autowired
     private IAreaDAO areaDAO;
 
+
     private static final Logger logger = Logger.getLogger(AreaService.class);
 
     @Override
-    public PageInfo<AreaDTO> queryAllArea(Integer cityId,Integer page)throws Exception {
+    public List<AreaDTO> queryAllArea(Integer cityId) throws Exception {
+        return areaDAO.queryAll(cityId);
+    }
+
+    /**
+     * 将地区对应的城市名当做key值，value值为将地区集合封装过后的PageInfo
+     * @param cityId
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Map<String,PageInfo<AreaDTO>> queryAllArea(Integer cityId, Integer page)throws Exception {
         logger.debug("currentPage::::"+page);
         int start=SysConfig.BeforeConfig.PAGE_START;
         if(null==page || page<start){
             page=start;
         }
-
+//        开始分页，初始位置，每页大小
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
-        List<AreaDTO> areaDTOList = areaDAO.queryAllArea(cityId);
+        Map<String, List<AreaDTO>> map = areaDAO.queryAllArea(cityId);
+        String cityName =null;
+        for (String key : map.keySet()) {
+            cityName=key;
+            if(null!=cityName){
+                break;
+            }
+        }
+        logger.debug("cityName====="+cityName);
+        List<AreaDTO> areaDTOList = map.get(cityName);
+//        将需要分页的集合进行封装
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
+        HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>();
+        hashMap.put(cityName,pageInfo);
         logger.debug("pageInfo"+pageInfo);
-        return pageInfo;
+        return hashMap;
     }
 
     @Override
