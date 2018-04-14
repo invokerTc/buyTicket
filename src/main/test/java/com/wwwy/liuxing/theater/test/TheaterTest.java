@@ -1,6 +1,8 @@
 package com.wwwy.liuxing.theater.test;
 
 import com.wwwy.liuxing.hall.dto.HallDTO;
+import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
+import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
@@ -12,6 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2018/4/12.
@@ -20,6 +24,8 @@ import java.util.List;
 @ContextConfiguration("classpath:spring-core.xml")
 public class TheaterTest {
     private static final Logger logger = Logger.getLogger(TheaterTest.class);
+    @Autowired
+    private IHallMovieDao hallMovieDao;
     @Autowired
     private ITheaterDAO theaterDAO;
     @Autowired
@@ -52,12 +58,36 @@ public class TheaterTest {
             e.printStackTrace();
         }
     }
+
+    /**
+     * /**
+     * 测试 service 层的List<TheaterDTO> queryLowestPriceTheaterList(Integer cityId,Integer movieId) throws Exception;
+     */
     @Test
     public void testServiceQueryLowestPriceTheaterList(){
         try {
             List<TheaterDTO> theaterDTOList = theaterService.queryLowestPriceTheaterList("1", "1");
             for (TheaterDTO th:theaterDTOList) {
                 logger.info(th.getTheaterId()+"\t"+th.getTheaterName()+"\t"+th.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 测试 service   根据城市和电影获取放映该电影的电影院名、影院地址、最低价格
+     * Map<TheaterDTO,HallMovieDTO> queryLowestTheaterAndPrice(String cityId, String movieId)throws Exception
+     */
+    @Test
+    public void testServiceQueryLowestTheaterAndPrice(){
+        try {
+            Map<TheaterDTO, HallMovieDTO> map = theaterService.queryLowestTheaterAndPrice("1", "1");
+            Set<TheaterDTO> set = map.keySet();
+            for (TheaterDTO theater:set) {
+                HallMovieDTO hallMovieDTO = hallMovieDao.getLowestMoviePrice(1, theater.getTheaterId(), 1);
+                logger.info(theater.getTheaterId()+"\t"+theater.getTheaterName()
+                        +"\t"+"\t"+theater.getTheaterAddress()+"\t"+hallMovieDTO.getMoviePrice());
             }
         } catch (Exception e) {
             e.printStackTrace();
