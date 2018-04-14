@@ -1,9 +1,11 @@
 package com.wwwy.liuxing.theater.service;
 
 import com.wwwy.liuxing.area.dto.AreaDTO;
+import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/4/12.
@@ -19,6 +21,15 @@ public interface ITheaterService {
      * @throws Exception
      */
     List<TheaterDTO> queryLowestPriceTheaterList(String cityId,String movieId) throws Exception;
+
+    /**
+     * 根据城市和电影获取放映该电影的电影院名、影院地址、最低价格
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    Map<TheaterDTO,HallMovieDTO> queryLowestTheaterAndPrice(String cityId, String movieId)throws Exception;
 
     /**
      * 查询所有的影院，返回一个list集合
