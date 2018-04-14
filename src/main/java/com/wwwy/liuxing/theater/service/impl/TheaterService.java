@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.theater.service.impl;
 
+import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
@@ -33,5 +34,40 @@ public class TheaterService implements ITheaterService {
         int movieid = Integer.parseInt(movieId);
         List<TheaterDTO> theaterDTOList = theaterDAO.queryLowestPriceTheaterList(cityid, movieid);
         return theaterDTOList;
+    }
+
+    @Override
+    public List<TheaterDTO> queryAllTheater(Integer areaId) throws Exception {
+        return theaterDAO.queryAllTheater(areaId);
+    }
+
+    @Override
+    public TheaterDTO queryTheaterById(Integer theaterId) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean insertTheater(TheaterDTO theaterDTO) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteTheater(Integer theaterId) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean updateTheater(TheaterDTO theaterDTO) throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<AreaDTO> queryTheaterByAny(String anyInfo) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteBatchTheater(int[] TheaterId) throws Exception {
+        return null;
     }
 }

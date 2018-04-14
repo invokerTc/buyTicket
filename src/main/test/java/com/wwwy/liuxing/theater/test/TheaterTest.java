@@ -64,4 +64,18 @@ public class TheaterTest {
         }
     }
 
+    @Test
+    public void testQueryAllTheaterByAreaId(){
+        try {
+            List<TheaterDTO> list = theaterDAO.queryAllTheater(2);
+            for (TheaterDTO theater :
+                    list) {
+                logger.debug(theater.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
