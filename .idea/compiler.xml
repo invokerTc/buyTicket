@@ -25,8 +25,8 @@
         <module name="buying_ticket" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="buying_ticket" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="buying_ticket" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
