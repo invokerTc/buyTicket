@@ -23,7 +23,8 @@ To change this template use File | Settings | File Templates.
     <link rel="dns-prefetch" href="//analytics.meituan.com"/>
     <link rel="dns-prefetch" href="//report.meituan.com"/>
     <link rel="dns-prefetch" href="//frep.meituan.com"/>
-
+    <link href="css/self-define.css" rel="stylesheet"/>
+    <script src="js/self-define.js" type="text/javascript"></script>
 
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -36,7 +37,7 @@ To change this template use File | Settings | File Templates.
     <meta name="format-detection" content="email=no"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <script>
         cid = "c_2yzd0xp5";
@@ -837,79 +838,102 @@ To change this template use File | Settings | File Templates.
             </div>
 
         </div>
-
-        <div class="side">
-            <div class="movie-info clearfix">
-                <div class="poster">
-                    <img src="http://p0.meituan.net/movie/a547dd7f6851d7ced67ec1b6c8b7f3b2447754.jpg@115w_158h_1e_1c">
+        <div id="temple" style="width: 380px;height: 900px;float: right">
+            <div class="side">
+                <div class="movie-info clearfix">
+                    <div class="poster">
+                        <img src="http://p0.meituan.net/movie/a547dd7f6851d7ced67ec1b6c8b7f3b2447754.jpg@115w_158h_1e_1c">
+                    </div>
+                    <div class="content">
+                        <p class="name text-ellipsis">红海行动</p>
+                        <div class="info-item">
+                            <span>类型 :</span>
+                            <span class="value">动作,冒险,科幻</span>
+                        </div>
+                        <div class="info-item">
+                            <span>时长 :</span>
+                            <span class="value">140分钟</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="content">
-                    <p class="name text-ellipsis">红海行动</p>
+
+                <div class="show-info">
                     <div class="info-item">
-                        <span>类型 :</span>
-                        <span class="value">动作,冒险,科幻</span>
+                        <span>影院 :</span>
+                        <span class="value text-ellipsis">江夏高德影院</span>
                     </div>
                     <div class="info-item">
-                        <span>时长 :</span>
-                        <span class="value">140分钟</span>
+                        <span>影厅 :</span>
+                        <span class="value text-ellipsis">一号厅</span>
+                    </div>
+                    <div class="info-item">
+                        <span>版本 :</span>
+                        <span class="value text-ellipsis">原版3D</span>
+                    </div>
+                    <div class="info-item">
+                        <span>场次 :</span>
+                        <span class="value text-ellipsis screen">今天 4月9 21:30</span>
+                    </div>
+                    <div class="info-item">
+                        <span>票价 :</span>
+                        <span class="value text-ellipsis">￥28/张</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="show-info">
-                <div class="info-item">
-                    <span>影院 :</span>
-                    <span class="value text-ellipsis">江夏高德影院</span>
-                </div>
-                <div class="info-item">
-                    <span>影厅 :</span>
-                    <span class="value text-ellipsis">一号厅</span>
-                </div>
-                <div class="info-item">
-                    <span>版本 :</span>
-                    <span class="value text-ellipsis">原版3D</span>
-                </div>
-                <div class="info-item">
-                    <span>场次 :</span>
-                    <span class="value text-ellipsis screen">今天 4月9 21:30</span>
-                </div>
-                <div class="info-item">
-                    <span>票价 :</span>
-                    <span class="value text-ellipsis">￥28/张</span>
-                </div>
-            </div>
+                <div class="ticket-info">
+                    <div class="no-ticket">
+                        <p class="buy-limit">座位：一次最多选6个座位</p>
+                        <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
+                    </div>
+                    <div class="has-ticket" style="display:none">
+                        <span class="text">座位：</span>
+                        <div class="ticket-container" data-limit="6"></div>
+                    </div>
 
-            <div class="ticket-info">
-                <div class="no-ticket">
-                    <p class="buy-limit">座位：一次最多选6个座位</p>
-                    <p class="no-selected">请<span>点击左侧</span>座位图选择座位</p>
-                </div>
-                <div class="has-ticket" style="display:none">
-                    <span class="text">座位：</span>
-                    <div class="ticket-container" data-limit="6"></div>
+                    <div class="total-price">
+                        <span>总价 :</span>
+                        <span class="price">0</span>
+                    </div>
                 </div>
 
-                <div class="total-price">
-                    <span>总价 :</span>
-                    <span class="price">0</span>
-                </div>
-            </div>
-
-            <div class="confirm-order">
-                <form class="login-form">
-                            <input type="text" class="input-phone" id="telephone" placeholder="输入手机号"></td>
+                <!--<div class="confirm-order">
+                    <form class="login-form">
+                        <input type="text" class="input-phone" id="telephone" placeholder="输入手机号"></td>
                         <div class="captcha" style="display:none">
                             <input type="text" class="input-captcha" placeholder="验证码">
                             <img class="captcha-pic"
                                  src="http://www.meituan.com/account/appcaptcha?uuid=1A6E888B4A4B29B16FBA1299108DBE9C0D6DFFE4F46E2C5C35AAB50DBCF05D06&captchaHash=1523274893830">
                             <span class="change-captcha">看不清楚？换一张</span>
                         </div>
-                                <div class="code-inputer">
-                                    <input type="text" class="input-code" placeholder="填写验证码">
-                                    <span class="send-code disable">获取验证码</span>
-                                </div>
+                        <div class="code-inputer">
+                            <input type="text" class="input-code" placeholder="填写验证码">
+                            <span class="send-code disable">获取验证码</span>
+                        </div>
+                    </form>
+                    <div class="confirm-btn disable" data-act="confirm-click">确认选座</div>
+                </div>-->
+            </div>
+            <div id="ticketsubmit" style="width: 380px;font-size: large;margin-top: 5px;">
+                <form>
+                    <div>
+                        <div style="font-size: 15px;">
+                            <span style="color: #4cae4c">手机号：</span><input type="text" class="input" name="telephone" id="telephone" placeholder="输入手机号"
+                                       onfocus="acquireFocus()"
+                                       onblur="checkTele()"/>
+                            <span id="teleSpan" style="font-size: small"></span>
+                        </div>
+
+                        <div style="font-size: 15px;margin-top: 3px">
+                            <div><span style="font-size: 15px;color: #4cae4c">验证码：<input type="text" class="input" placeholder="输入验证码" name="inputCode"
+                                            id="inputCode"/></span>
+                                <input type="button" id="codeButton" name="getCode" value="获取验证码" onclick="getcode()"
+                                       disabled="disabled"/></div>
+                        </div>
+                        <div style="font-size: 15px;margin: 20px auto;text-align: center">
+                            <input type="button" value="提交订单" onclick="codeLogin()"/>
+                        </div>
+                    </div>
                 </form>
-                <div class="confirm-btn disable" data-act="confirm-click">确认选座</div>
             </div>
         </div>
     </div>
