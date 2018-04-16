@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.theater.dao.impl;
 
+import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +13,8 @@ import java.util.List;
 
 @Repository
 public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
+
+    @Override
     @Autowired
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);
@@ -43,6 +46,42 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
         map.put("movieId",movieId);
         List<TheaterDTO> theaterList = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryLowestPriceTheaterList", map);
         return theaterList;
+    }
+
+    @Override
+    public List<TheaterDTO> queryAllTheater(Integer areaId) throws Exception {
+        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAllTheater", areaId);
+        return list;
+    }
+
+    @Override
+    public TheaterDTO queryTheaterById(Integer theaterId) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean insertTheater(TheaterDTO theaterDTO) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteTheater(Integer theaterId) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean updateTheater(TheaterDTO theaterDTO) throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<AreaDTO> queryTheaterByAny(String anyInfo) throws Exception {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteBatchTheater(int[] TheaterId) throws Exception {
+        return null;
     }
 }
 
