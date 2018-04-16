@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.theater.dao.impl;
 
 import com.wwwy.liuxing.area.dto.AreaDTO;
+import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -56,17 +57,20 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
 
     @Override
     public TheaterDTO queryTheaterById(Integer theaterId) throws Exception {
-        return null;
+        TheaterDTO o = getSqlSession().selectOne("com.wwwy.liuxing.theater.dto.TheaterMapper.queryTheaterById", theaterId);
+        return o;
     }
 
     @Override
     public Boolean insertTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        int insert = getSqlSession().insert("com.wwwy.liuxing.theater.dto.TheaterMapper.insertTheater", theaterDTO);
+        return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override
     public Boolean deleteTheater(Integer theaterId) throws Exception {
-        return null;
+        int delete = getSqlSession().delete("com.wwwy.liuxing.theater.dto.TheaterMapper.deleteTheater", theaterId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override

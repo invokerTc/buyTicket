@@ -55,8 +55,8 @@
     </update>
 
     <select id="queryAny" resultMap="AreaResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE
-        area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
+        WHERE area_id LIKE concat(concat('%',#{anyInfo}),'%')
         OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 

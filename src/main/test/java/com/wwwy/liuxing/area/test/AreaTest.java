@@ -117,11 +117,15 @@ public class AreaTest {
     @Test
     public void testQueryByAny(){
         try {
-            List<AreaDTO> list = areaDAO.queryAreaByAny("1");
-            logger.debug(list.size());
-            for (AreaDTO area :
-                    list) {
-                logger.debug(area.toString());
+            Map<String, List<AreaDTO>> map = areaDAO.queryAreaByAny("1");
+            logger.debug(map.size());
+            for (List<AreaDTO> area :
+                    map.values()) {
+                for (AreaDTO ar :
+                        area) {
+                    logger.debug(ar.toString());
+                }
+                logger.debug(area.size());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,10 +135,9 @@ public class AreaTest {
     @Test
     public void testQueryByAnyService(){
         try {
-            PageInfo<AreaDTO> areaDTOPageInfo = areaService.queryAreaByAny("蔡甸区", null);
-            List<AreaDTO> list = areaDTOPageInfo.getList();
-            for (AreaDTO area :
-                    list) {
+            Map<String, PageInfo<AreaDTO>> map = areaService.queryAreaByAny("蔡甸区", null);
+            for (PageInfo area :
+                    map.values()) {
                 logger.debug(area.toString());
             }
         } catch (Exception e) {

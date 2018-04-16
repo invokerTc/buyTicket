@@ -82,17 +82,17 @@ public class TheaterService implements ITheaterService {
 
     @Override
     public TheaterDTO queryTheaterById(Integer theaterId) throws Exception {
-        return null;
+        return theaterDAO.queryTheaterById(theaterId);
     }
 
     @Override
     public Boolean insertTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        return theaterDAO.insertTheater(theaterDTO);
     }
 
     @Override
     public Boolean deleteTheater(Integer theaterId) throws Exception {
-        return null;
+        return theaterDAO.deleteTheater(theaterId);
     }
 
     @Override

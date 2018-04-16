@@ -108,4 +108,31 @@ public class TheaterTest {
 
     }
 
+    @Test
+    public void testInsertTheater(){
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterName("lala");
+        theaterDTO.setTheaterAddress("lala");
+        theaterDTO.setTheaterPhone("0123");
+        theaterDTO.setTheaterLatitude("123");
+        theaterDTO.setTheaterLongitude("223");
+        Boolean aBoolean = null;
+        try {
+            aBoolean = theaterDAO.insertTheater(theaterDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.debug(aBoolean);
+    }
+
+    @Test
+    public void testDeleteTheater(){
+        try {
+            Boolean aBoolean = theaterDAO.deleteTheater(47);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

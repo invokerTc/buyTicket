@@ -20,5 +20,6 @@ public class SysConfig {
         public static final Integer PAGE_SIZE=10;
         public static final Integer ZERO_NUMBLE=0;
         public static final Integer MAP_SIZE=50;
+        public static final String PAGE_STR="1";
     }
 }

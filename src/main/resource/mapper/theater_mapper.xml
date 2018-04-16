@@ -50,16 +50,17 @@
         WHERE a.area_name=#{areaName}
     </select>
 
-    <select id="queryAreaById" resultMap="TheaterResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
+    <select id="queryTheaterById" resultMap="TheaterResultMap">
+        SELECT theater_id,theater_name,theater_address,theater_phone,theater_longitude,theater_latitude FROM tb_theater WHERE theater_id=#{theaterId}
     </select>
 
-    <insert id="insertArea">
-        INSERT INTO tb_area(area_name,fk_city_id)VALUES (#{areaName},#{fkCityId})
+    <insert id="insertTheater">
+        INSERT INTO tb_theater(theater_name,theater_address,theater_phone,theater_longitude,theater_latitude)VALUES
+         (#{theaterName},#{theaterAddress},#{theaterPhone},#{theaterLongitude},#{theaterLatitude})
     </insert>
 
-    <delete id="deleteArea">
-        DELETE FROM tb_area WHERE area_id=#{areaId}
+    <delete id="deleteTheater">
+        DELETE FROM tb_theater WHERE theater_id=#{theaterId}
     </delete>
 
     <update id="updateArea">

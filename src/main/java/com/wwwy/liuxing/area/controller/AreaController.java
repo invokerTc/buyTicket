@@ -157,17 +157,27 @@ public class AreaController {
         String anyInfo = request.getParameter("anyInfo");
         logger.debug("anyInfo" + anyInfo);
         String page = request.getParameter("page");
-        List<AreaDTO> areaDTOList = null;
         try {
-            PageInfo<AreaDTO> pageInfo = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
-            areaDTOList = pageInfo.getList();
+            Map<String, PageInfo<AreaDTO>> map = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
+            String cityName = null;
+            for (String key : map.keySet()) {
+                cityName = key;
+                if (null != cityName) {
+                    break;
+                }
+            }
+            PageInfo<AreaDTO> pageInfo = map.get(cityName);
+            List<AreaDTO> list = pageInfo.getList();
+            modelMap.addAttribute("cityName", cityName);
             modelMap.addAttribute("page", pageInfo);
-            modelMap.addAttribute("areaDTOsList", areaDTOList);
+            modelMap.addAttribute("areaDTOsList", list);
+            return "hou_area_list";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("areaDTOsList", null);
+            return "error404";
         }
-        return "hou_area_list";
+
     }
 
     @RequestMapping("/deleteBatch")

@@ -6,6 +6,7 @@ import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.area.service.IAreaService;
 import com.wwwy.liuxing.city.dto.CityDTO;
 import com.wwwy.liuxing.city.service.ICityService;
+import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -66,16 +68,67 @@ public class TheaterController {
         String pageStr = request.getParameter("page");
         String areaName = request.getParameter("areaName");
         logger.debug("areaId======"+areaName);
+        if(null==pageStr){
+            pageStr= SysConfig.BeforeConfig.PAGE_STR;
+        }
         Integer page = Integer.parseInt(pageStr);
         try {
             PageInfo<TheaterDTO> pageInfo = theaterService.queryAllTheater(areaName, page);
             List<TheaterDTO> list = pageInfo.getList();
             modelMap.addAttribute("page",pageInfo);
             modelMap.addAttribute("theaterList",list);
+            return "hou_theater_list";
         } catch (Exception e) {
             e.printStackTrace();
             logger.debug(e);
+            return "error404";
         }
-        return "hou_theater_list";
+
+    }
+
+    /**
+     * 新增了一个影院
+     * @param request
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/insert")
+    @ResponseBody
+    public String insertTheater(HttpServletRequest request){
+        String theaterName = request.getParameter("theaterName");
+        String theaterAddress = request.getParameter("theaterAddress");
+        String theaterPhone = request.getParameter("theaterPhone");
+        String theaterLongitude = request.getParameter("theaterLongitude");
+        String theaterLatitude = request.getParameter("theaterLatitude");
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterName(theaterName);
+        theaterDTO.setTheaterAddress(theaterAddress);
+        theaterDTO.setTheaterPhone(theaterPhone);
+        theaterDTO.setTheaterLongitude(theaterLongitude);
+        theaterDTO.setTheaterLatitude(theaterLatitude);
+        try {
+            Boolean aBoolean = theaterService.insertTheater(theaterDTO);
+            if(aBoolean){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            return "fail";
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String deleteTheaterById(HttpServletRequest request){
+        String theaterId = request.getParameter("theaterId");
+        try {
+            Boolean aBoolean = theaterService.deleteTheater(Integer.parseInt(theaterId));
+            if(aBoolean){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
     }
 }

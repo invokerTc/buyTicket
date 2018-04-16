@@ -69,9 +69,13 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     }
 
     @Override
-    public List<AreaDTO> queryAreaByAny(String anyInfo) throws Exception {
+    public Map<String,List<AreaDTO>> queryAreaByAny(String anyInfo) throws Exception {
         List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAny", anyInfo);
-        return list;
+        CityDTO cityDTO = list.get(SysConfig.BeforeConfig.ZERO_NUMBLE).getCityDTO();
+        Map<String,List<AreaDTO>> map = new HashMap<>(SysConfig.BeforeConfig.MAP_SIZE);
+        logger.debug("cityName"+cityDTO.getCityName());
+        map.put(cityDTO.getCityName(),list);
+        return map;
     }
 
     @Override

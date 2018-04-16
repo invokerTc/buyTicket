@@ -6,6 +6,7 @@
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
+        <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
                 /admin/login=anon
@@ -27,6 +28,13 @@
                 /hou_main_page.html=anon
                 /hou_area_add.html=anon
                 /user/register=anon
+                /hou_theater_list.html=anon
+                /theater/**=anon
+                /hou_before_theater_.html=anon
+                /hou_theater_add.html=anon
+                /plugins/**=anon
+                /areaTheater/**=anon
+                /hou_areaTheater_list.html=anon
                 <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
                 /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
             </value>

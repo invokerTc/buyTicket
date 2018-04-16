@@ -92,18 +92,23 @@ public class AreaService implements IAreaService {
     }
 
     @Override
-    public PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page) throws Exception {
+    public Map<String,PageInfo<AreaDTO>> queryAreaByAny(String anyInfo,Integer page) throws Exception {
         logger.debug("currentPage::::"+page);
         int start=SysConfig.BeforeConfig.PAGE_START;
         if(null==page || page<start){
             page=start;
         }
-
-        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
-        List<AreaDTO> areaDTOList = areaDAO.queryAreaByAny(anyInfo);
-        PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
-        logger.debug("pageInfo"+pageInfo);
-        return pageInfo;
+        Map<String, List<AreaDTO>> map = areaDAO.queryAreaByAny(anyInfo);
+        String cityName=null;
+        HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>(SysConfig.BeforeConfig.MAP_SIZE);
+        for (Map.Entry entry : map.entrySet()) {
+            cityName= entry.getKey().toString();
+            logger.debug("cityName====="+cityName);
+            List<AreaDTO> areaDTOList= (List) entry.getValue();
+            PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
+            hashMap.put(cityName,pageInfo);
+        }
+        return hashMap;
     }
 
     @Override

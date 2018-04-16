@@ -64,7 +64,7 @@ public interface IAreaService {
      * @return
      * @throws Exception
      */
-    PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page)throws Exception;
+    Map<String,PageInfo<AreaDTO>> queryAreaByAny(String anyInfo,Integer page)throws Exception;
 
     /**
      * 批量删除地区信息
