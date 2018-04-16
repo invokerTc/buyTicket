@@ -34,9 +34,9 @@ public class AreaService implements IAreaService {
         if(null==page || page<start){
             page=start;
         }
-
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<AreaDTO> areaDTOList = areaDAO.queryAllArea(cityId);
+        logger.info(areaDTOList);
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
         logger.debug("pageInfo"+pageInfo);
         return pageInfo;

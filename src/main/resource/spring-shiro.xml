@@ -8,6 +8,12 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="filterChainDefinitions">
             <value>
+                /user/anyInfo=anon
+                /user/update=anon
+                /pre_updete_userinfo.html=anon
+                /user/preupdate=anon
+                /hou_userlist.html=anon
+                /user/list=anon
                 /admin/login=anon
                 /qian_login.htm=anon
                 /user/login=anon
