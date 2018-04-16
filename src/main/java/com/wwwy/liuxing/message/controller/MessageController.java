@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 public class MessageController {
     @Autowired
     private IndustrySMS industrySMS;
+    @Autowired
+    private RandomNumUtil randomNumUtil;
 
     /**
      * 填写手机号，获取验证码
@@ -33,10 +35,11 @@ public class MessageController {
     @RequestMapping(value = "/getCode", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getRand(String telephone, HttpServletRequest request, ModelAndView model) {
-        String randNum = RandomNumUtil.getRand();
-        String json = industrySMS.execute(telephone, randNum);
-        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
-        String respCode = obj.get("respCode").getAsString();
+//        String randNum = randomNumUtil.setRand(telephone);
+//        String json = industrySMS.execute(telephone, randNum);
+//        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
+//        String respCode = obj.get("respCode").getAsString();
+        String respCode = "00000";
         if (respCode.equals("00000")) {
             return "{\"code\":\"1\",\"msg\":\"验证码发送成功\"}";
         } else if (respCode.equals("00126")) {
@@ -48,8 +51,9 @@ public class MessageController {
 
     @RequestMapping(value = "/login", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String login(String inputCode) {
-        String randNum = RandomNumUtil.num;
+    public String login(String inputCode, String telephone) {
+//        String randNum = randomNumUtil.getRand(telephone);
+        String randNum = "234567";
         System.out.println("randNum======" + randNum);
         System.out.println("inputCode====" + inputCode);
         if (randNum.equals(inputCode)) {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -24,10 +25,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/area")
 public class AreaController {
-
     @Autowired
     private IAreaService areaService;
-
     private static final Logger logger = Logger.getLogger(AreaController.class);
     /**
      * 查询所有的地区并分页
@@ -159,7 +158,7 @@ public class AreaController {
     public String deleteBatchAreas(HttpServletRequest request,ModelMap modelMap){
         String ids = request.getParameter("ids");
         logger.debug("::::::ids"+ids);
-        String[] idStr=StringUtils.split(ids,",");
+        String[] idStr= StringUtils.split(ids,",");
         logger.debug(".......idStr"+idStr);
         int[] areaIds = Arrays.stream(idStr).mapToInt(Integer::valueOf).toArray();
         logger.debug(".........areaIds"+areaIds.toString());

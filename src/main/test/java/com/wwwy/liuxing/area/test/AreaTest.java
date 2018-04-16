@@ -36,7 +36,7 @@ public class AreaTest {
     public void testQueryAllAreaByDAO(){
         List<AreaDTO> list = null;
         try {
-            Map<String, List<AreaDTO>> map = areaDAO.queryAllArea(1);
+            Map<String, List<AreaDTO>> map = (Map<String, List<AreaDTO>>) areaDAO.queryAllArea(1);
             for (List<AreaDTO> area :
                     map.values()) {
                 for (AreaDTO ar :
@@ -55,7 +55,7 @@ public class AreaTest {
     public void testQueryAllAreaByService(){
        PageInfo<AreaDTO> list = null;
        try {
-           Map<String, PageInfo<AreaDTO>> map = areaService.queryAllArea(1, 1);
+           Map<String, PageInfo<AreaDTO>> map = (Map<String, PageInfo<AreaDTO>>) areaService.queryAllArea(1, 1);
            for (PageInfo area :
                    map.values()) {
                logger.debug(area.toString());
