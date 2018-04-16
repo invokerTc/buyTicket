@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.area.service;
 
+
 import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 
@@ -64,7 +65,7 @@ public interface IAreaService {
      * @return
      * @throws Exception
      */
-    Map<String,PageInfo<AreaDTO>> queryAreaByAny(String anyInfo,Integer page)throws Exception;
+    PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page)throws Exception;
 
     /**
      * 批量删除地区信息

@@ -37,6 +37,21 @@
         where city.city_name=#{cityName}
         order by movie.movie_score desc;
     </select>
+    <!--根据影片类型，影片国家，上映时间的一个或多个条件动态查询符合条件的电影-->
+    <select id="selectMovieByCondition" resultMap="MovieResultMap">
+        SELECT movie_name FROM tb_movie
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <if test="movieCountry !=null">
+                movie_country=#{movieCountry}
+            </if>
+            <if test="movieDate !=null">
+                AND movie_date=#{movieDate}
+            </if>
+            <if test="movieType !=null">
+                AND movie_type=#{movieType}
+            </if>
+        </trim>
+    </select>
 
     <!--根据城市和电影名来查找电影详情-->
     <select id="getOneMovieByCityIdAnDMovieId" resultMap="MovieResultMap">

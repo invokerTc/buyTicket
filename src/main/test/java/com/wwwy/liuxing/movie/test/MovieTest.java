@@ -54,6 +54,19 @@ public class MovieTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testGetMovieByCondition(){
+        try {
+            List<MovieDTO> movieDTOs = movieDao.getMoviesByCondition("动作,冒险,科幻", "",null);
+            for (MovieDTO movie:movieDTOs) {
+                if (logger.isDebugEnabled()){
+                    logger.debug(movie.getMovieName());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      *测试MovieDao的  getMovieByCityIdAndMovieId(Integer cityId, Integer movieId)
      */
