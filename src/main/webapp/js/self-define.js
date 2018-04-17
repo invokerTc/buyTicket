@@ -1,16 +1,22 @@
 maxtime = 4*60+59 //半个小时，按秒计算，自己调整!
 function getcode() {
     var tele = $("#telephone").val();
-    $("#codeButton").attr("disabled", true);
-    timer = setInterval("CountDown()", 1000);
-    $.post("/message/getCode", {telephone: tele}, function (data) {
-     var result = JSON.parse(data);
-     if (result.code == 1) {
-     alert(result.msg);
-     } else if (result.code == 0) {
-     alert(result.msg);
-     }
-     });
+    var selectSets = $(".ticket");
+    if(selectSets.length!=0){
+        $("#codeButton").attr("disabled", true);
+        timer = setInterval("CountDown()", 1000);
+        $.post("/message/getCode", {telephone: tele}, function (data) {
+            var result = JSON.parse(data);
+            if (result.code == 1) {
+                alert(result.msg);
+            } else if (result.code == 0) {
+                alert(result.msg);
+            }
+        });
+    }else {
+        alert("请先选择座位");
+    }
+    
 }
 function CountDown() {
     if (maxtime >= 0) {
@@ -30,10 +36,10 @@ function CountDown() {
 function codeLogin() {
     var code = $("#inputCode").val();
     var tele = $("#telephone").val();
+    var filmName = $("#filmName").text();
     var regex = /^[0-9]{6}$/
     if (code.match(regex)) {
         alert("验证成功");
-        var filmName = $("#filmName").text();
         var watchingTime = $("#watchingTime").text();
         var theaterName = $("#theaterName").text();
         var hallName = $("#hallName").text();
@@ -49,10 +55,11 @@ function codeLogin() {
         var sumPrice = $("#sumPrice").text();
         alert(filmName+"---"+watchingTime+"---"+theaterName+"----"+hallName+"----"+sumPrice+"----"+sets);
         $.post("/message/login",
-            {inputCode: code, telephone: tele,movieName:filmName,watchingTime:watchingTime,theaterName:theaterName,hallName:hallName,sumPrice:sumPrice,sets:sets},
+            {inputCode: code, telephone: tele,movieName:filmName,watchingTime:watchingTime,cinemaName:theaterName,hallName:hallName,totalPrice:sumPrice,selectedSets:sets},
             function (data) {
             if (data == "订单提交成功") {
-                window.location.href = "/success.html"
+                alert(tele+"========="+filmName);
+                window.location.href = '/cart/showBooking?tele='+tele+'&movieName='+filmName;
             }
             if (data == "订单提交失败") {
                 alert(data);

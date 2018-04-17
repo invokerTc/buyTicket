@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2018/4/16.
  */
-public class Cart implements Serializable{
+public class CartDTO implements Serializable{
     public static final long serialVersionUID =1L;
     private Integer cartId;
-    private String bookingNum;
+    private String selectedSets;
     private String movieName;
     private String movieVersion;
     private String watchingTime;
@@ -18,20 +18,20 @@ public class Cart implements Serializable{
     private Integer totalPrice;
     private String tele;
 
+    public String getSelectedSets() {
+        return selectedSets;
+    }
+
+    public void setSelectedSets(String selectedSets) {
+        this.selectedSets = selectedSets;
+    }
+
     public Integer getCartId() {
         return cartId;
     }
 
     public void setCartId(Integer cartId) {
         this.cartId = cartId;
-    }
-
-    public String getBookingNum() {
-        return bookingNum;
-    }
-
-    public void setBookingNum(String bookingNum) {
-        this.bookingNum = bookingNum;
     }
 
     public String getMovieName() {
@@ -101,27 +101,30 @@ public class Cart implements Serializable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cart)) return false;
+        if (!(o instanceof CartDTO)) return false;
 
-        Cart cart = (Cart) o;
+        CartDTO cartDTO = (CartDTO) o;
 
-        if (cartId != null ? !cartId.equals(cart.cartId) : cart.cartId != null) return false;
-        if (bookingNum != null ? !bookingNum.equals(cart.bookingNum) : cart.bookingNum != null) return false;
-        if (movieName != null ? !movieName.equals(cart.movieName) : cart.movieName != null) return false;
-        if (movieVersion != null ? !movieVersion.equals(cart.movieVersion) : cart.movieVersion != null) return false;
-        if (watchingTime != null ? !watchingTime.equals(cart.watchingTime) : cart.watchingTime != null) return false;
-        if (movieImg != null ? !movieImg.equals(cart.movieImg) : cart.movieImg != null) return false;
-        if (cinemaName != null ? !cinemaName.equals(cart.cinemaName) : cart.cinemaName != null) return false;
-        if (hallName != null ? !hallName.equals(cart.hallName) : cart.hallName != null) return false;
-        if (totalPrice != null ? !totalPrice.equals(cart.totalPrice) : cart.totalPrice != null) return false;
-        return tele != null ? tele.equals(cart.tele) : cart.tele == null;
+        if (cartId != null ? !cartId.equals(cartDTO.cartId) : cartDTO.cartId != null) return false;
+        if (selectedSets != null ? !selectedSets.equals(cartDTO.selectedSets) : cartDTO.selectedSets != null)
+            return false;
+        if (movieName != null ? !movieName.equals(cartDTO.movieName) : cartDTO.movieName != null) return false;
+        if (movieVersion != null ? !movieVersion.equals(cartDTO.movieVersion) : cartDTO.movieVersion != null)
+            return false;
+        if (watchingTime != null ? !watchingTime.equals(cartDTO.watchingTime) : cartDTO.watchingTime != null)
+            return false;
+        if (movieImg != null ? !movieImg.equals(cartDTO.movieImg) : cartDTO.movieImg != null) return false;
+        if (cinemaName != null ? !cinemaName.equals(cartDTO.cinemaName) : cartDTO.cinemaName != null) return false;
+        if (hallName != null ? !hallName.equals(cartDTO.hallName) : cartDTO.hallName != null) return false;
+        if (totalPrice != null ? !totalPrice.equals(cartDTO.totalPrice) : cartDTO.totalPrice != null) return false;
+        return tele != null ? tele.equals(cartDTO.tele) : cartDTO.tele == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = cartId != null ? cartId.hashCode() : 0;
-        result = 31 * result + (bookingNum != null ? bookingNum.hashCode() : 0);
+        result = 31 * result + (selectedSets != null ? selectedSets.hashCode() : 0);
         result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
         result = 31 * result + (movieVersion != null ? movieVersion.hashCode() : 0);
         result = 31 * result + (watchingTime != null ? watchingTime.hashCode() : 0);
@@ -133,3 +136,4 @@ public class Cart implements Serializable{
         return result;
     }
 }
+

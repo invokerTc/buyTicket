@@ -92,8 +92,6 @@
     </style>
 </head>
 <body>
-
-
 <div class="header">
     <div class="header-inner">
         <a href="/" class="logo" data-act="icon-click"></a>
@@ -208,17 +206,18 @@
         </thead>
         <tbody>
         <tr>
-            <td class="movie-name">《头号玩家》</td>
-            <td class="showtime">今天 4月16日 16:25</td>
-            <td class="cinema-name">紫星影城</td>
+            <td class="movie-name">${cart.movieName}</td>
+            <td class="showtime">${cart.watchingTime}</td>
+            <td class="cinema-name">${cart.cinemaName}</td>
             <td>
-                <span class="hall">派拉蒙厅</span>
+                <span class="hall">${cart.hallName}</span>
                 <div class="seats">
                     <div>
-                        <span class=""><i>5</i>排<i>4</i>座</span>
+                        <#list setList as set>
+                        <span class="">${set}</span>
+                        </#list>
                     </div>
-                    <div>
-                    </div>
+
                 </div>
             </td>
         </tr>
@@ -229,7 +228,7 @@
     <div class="right">
         <div class="price-wrapper">
             <span>实际支付 :</span>
-            <span class="price">33</span>
+            <span class="price">${cart.totalPrice}</span>
         </div>
         <!--<div>
             <div class="pay-btn" data-order-id="3079995456" data-act="pay-click" data-bid="b_u30afks6">确认支付</div>

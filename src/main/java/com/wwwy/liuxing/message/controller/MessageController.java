@@ -3,8 +3,11 @@ package com.wwwy.liuxing.message.controller;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import com.wwwy.liuxing.cart.dto.CartDTO;
+import com.wwwy.liuxing.cart.service.ICartService;
 import com.wwwy.liuxing.message.httpApiDemo.IndustrySMS;
 import com.wwwy.liuxing.message.util.RandomNumUtil;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/message")
 public class MessageController {
+    private Logger logger = Logger.getLogger(MessageController.class);
     @Autowired
     private IndustrySMS industrySMS;
     @Autowired
     private RandomNumUtil randomNumUtil;
+    @Autowired
+    private ICartService cartService;
 
     /**
      * 填写手机号，获取验证码
@@ -51,11 +57,16 @@ public class MessageController {
 
     @RequestMapping(value = "/login", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String login(String inputCode, String telephone) {
+    public String login(String inputCode, String telephone, CartDTO cartDTO) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----start");
+        }
 //        String randNum = randomNumUtil.getRand(telephone);
+        cartService.saveBookingCart(telephone, cartDTO);
         String randNum = "234567";
-        System.out.println("randNum======" + randNum);
-        System.out.println("inputCode====" + inputCode);
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----end");
+        }
         if (randNum.equals(inputCode)) {
             return "订单提交成功";
         } else {

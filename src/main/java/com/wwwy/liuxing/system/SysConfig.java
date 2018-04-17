@@ -20,5 +20,6 @@ public class SysConfig {
         public static final Integer PAGE_SIZE=10;
         public static final long CODE_SAVE_TIME=5;
         public static final String PREFIX_MESSAGE="message";
+        public static final String PREFIX_BOOKING="booking";
     }
 }
