@@ -21,6 +21,7 @@ public class RandomNumUtil {
 
     /**
      * 生成随机短信验证码，并以手机为key存入缓存
+     *
      * @param phoneNum
      * @return
      */
@@ -30,17 +31,18 @@ public class RandomNumUtil {
             String index = random.nextInt(10) + "";
             num += index;
         }
-        movieCache.saveValueWithTime(SysConfig.BeforeConfig.PREFIX_MESSAGE+phoneNum, num, SysConfig.BeforeConfig.CODE_SAVE_TIME, TimeUnit.MINUTES);
+        movieCache.saveValueWithTime(SysConfig.BeforeConfig.PREFIX_MESSAGE + phoneNum, num, SysConfig.BeforeConfig.CODE_SAVE_TIME, TimeUnit.MINUTES);
         return num;
     }
 
     /**
      * 以手机号查询缓存对应的value
+     *
      * @param phoneNum
      * @return
      */
     public String getRand(String phoneNum) {
-        String value = movieCache.getValue(SysConfig.BeforeConfig.PREFIX_MESSAGE+phoneNum);
+        String value = movieCache.getValue(SysConfig.BeforeConfig.PREFIX_MESSAGE + phoneNum);
         return value;
     }
 }
