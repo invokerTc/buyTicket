@@ -14,5 +14,16 @@
     </collection>
     </resultMap>
 
+    <select id="queryCityById" resultMap="CityResultMap">
+        SELECT city_id,city_name FROM TB_CITY WHERE city_id=#{cityId}
+    </select>
+
+    <select id="queryAllCity" resultMap="CityResultMap">
+        SELECT city_id,city_name FROM TB_CITY
+    </select>
+
+    <select id="queryCityByName" resultMap="CityResultMap">
+        SELECT city_id,city_name FROM TB_CITY WHERE city_name=#{cityName}
+    </select>
 
 </mapper>

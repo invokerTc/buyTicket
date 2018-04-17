@@ -112,7 +112,6 @@
             </div>
 
         </div>
-        <shiro:hasAnyRoles name="组长,部门经理">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
@@ -124,14 +123,13 @@
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="" target="content" >影院列表</a></li>
-                        <li class="list-group-item"><a href="" target="content" >影院新增</a></li>
+                        <li class="list-group-item"><a href="hou_before_theater_.html" target="content" >影院列表</a></li>
+                        <li class="list-group-item"><a href="hou_theater_add.html" target="content" >影院新增</a></li>
                        
                     </ul>
                 </div>
             </div>
         </div>
-        </shiro:hasAnyRoles>
          <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingFour">
                 <h4 class="panel-title">
@@ -190,11 +188,28 @@
             <div class="panel-heading" role="tab" id="headingSeven">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        历史管理
+                        关联管理
                     </a>
                 </h4>
             </div>
             <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="" target="content" >城市地区关联管理</a></li>
+                        <li class="list-group-item"><a href="/areaTheater/all" target="content" >地区影院关联管理</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEight">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        历史管理
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
                 <div class="panel-body">
                     <ul class="list-group">
                         <li class="list-group-item"><a href="" target="content" >地区操作历史</a></li>

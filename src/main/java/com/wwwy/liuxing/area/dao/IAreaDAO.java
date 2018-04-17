@@ -3,6 +3,7 @@ package com.wwwy.liuxing.area.dao;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -12,10 +13,20 @@ import java.util.List;
 public interface IAreaDAO {
 
     /**
-     * 查询所有的地区，返回一个list集合
+     * 根据城市id查询到地区
+     * @param cityId
      * @return
+     * @throws Exception
      */
-    List<AreaDTO> queryAllArea(Integer cityId)throws Exception;
+    List<AreaDTO> queryAll(Integer cityId) throws Exception;
+
+    /**
+     * 查询所有的地区，返回一个map集合,key值为对应的城市名，value是对应的地区的集合
+     * @param cityId
+     * @return
+     * @throws Exception
+     */
+    Map<String,List<AreaDTO>> queryAllArea(Integer cityId)throws Exception;
 
     /**
      * 根据id查询某一个地区的信息
@@ -51,7 +62,7 @@ public interface IAreaDAO {
      * @return
      * @throws Exception
      */
-    List<AreaDTO> queryAreaByAny(String anyInfo)throws Exception;
+    Map<String,List<AreaDTO>> queryAreaByAny(String anyInfo)throws Exception;
 
     /**
      * 批量删除地区信息

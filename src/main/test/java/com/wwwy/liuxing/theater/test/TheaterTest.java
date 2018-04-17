@@ -120,10 +120,11 @@ public class TheaterTest {
         }
     }
 
+
     @Test
     public void testQueryAllTheaterByAreaId(){
         try {
-            List<TheaterDTO> list = theaterDAO.queryAllTheater(2);
+            List<TheaterDTO> list = theaterDAO.queryAllTheater("江岸区");
             for (TheaterDTO theater :
                     list) {
                 logger.debug(theater.toString());
@@ -132,6 +133,70 @@ public class TheaterTest {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testInsertTheater(){
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterName("lala");
+        theaterDTO.setTheaterAddress("lala");
+        theaterDTO.setTheaterPhone("0123");
+        theaterDTO.setTheaterLatitude("123");
+        theaterDTO.setTheaterLongitude("223");
+        Boolean aBoolean = null;
+        try {
+            aBoolean = theaterDAO.insertTheater(theaterDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.debug(aBoolean);
+    }
+
+    @Test
+    public void testDeleteTheater(){
+        try {
+            Boolean aBoolean = theaterDAO.deleteTheater(47);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testUpdate(){
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterId(42);
+        theaterDTO.setTheaterName("武汉魔影国际");
+        try {
+            Boolean aBoolean = theaterDAO.updateTheater(theaterDTO);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByAnyInfo(){
+        try {
+            List<TheaterDTO> list = theaterDAO.queryTheaterByAny("影院");
+            for (TheaterDTO theater :
+                    list) {
+                logger.debug(theater.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDeleteBatch(){
+        int theaters[]={46};
+        try {
+            Boolean aBoolean = theaterDAO.deleteBatchTheater(theaters);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

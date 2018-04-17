@@ -1,5 +1,7 @@
 package com.wwwy.liuxing.theater.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
@@ -51,14 +53,15 @@ public interface ITheaterService {
     List<HallMovieDTO> queryLowestPrice(String cityId,String movieId) throws Exception;
 
     /**
-     * 查询所有的影院，返回一个list集合
-     * @param theaterId
+     * 查询所有的影院，并分页
+     * @param areaName
+     * @param currentPage
      * @return
      * @throws Exception
      */
-    List<TheaterDTO> queryAllTheater(Integer areaId)throws Exception;
+    PageInfo<TheaterDTO> queryAllTheater(String areaName,Integer currentPage)throws Exception;
 
-    /**
+      /**
      * 根据id查询某一个影院的信息
      * @param theaterId
      * @return
@@ -96,13 +99,13 @@ public interface ITheaterService {
      * @return
      * @throws Exception
      */
-    List<AreaDTO> queryTheaterByAny(String anyInfo)throws Exception;
+    PageInfo<TheaterDTO> queryTheaterByAny(String anyInfo, Integer page)throws Exception;
 
     /**
      * 批量删除影院信息
-     * @param TheaterId
+     * @param theaterId
      * @return
      * @throws Exception
      */
-    Boolean deleteBatchTheater(int[] TheaterId)throws Exception;
+    Boolean deleteBatchTheater(int[] theaterId)throws Exception;
 }

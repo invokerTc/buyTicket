@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.theater.dao.impl;
 
 import com.wwwy.liuxing.area.dto.AreaDTO;
+import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -49,39 +50,45 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
     }
 
     @Override
-    public List<TheaterDTO> queryAllTheater(Integer areaId) throws Exception {
-        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAllTheater", areaId);
+    public List<TheaterDTO> queryAllTheater(String areaName) throws Exception {
+        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAllTheater", areaName);
         return list;
     }
 
     @Override
     public TheaterDTO queryTheaterById(Integer theaterId) throws Exception {
-        return null;
+        TheaterDTO o = getSqlSession().selectOne("com.wwwy.liuxing.theater.dto.TheaterMapper.queryTheaterById", theaterId);
+        return o;
     }
 
     @Override
     public Boolean insertTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        int insert = getSqlSession().insert("com.wwwy.liuxing.theater.dto.TheaterMapper.insertTheater", theaterDTO);
+        return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override
     public Boolean deleteTheater(Integer theaterId) throws Exception {
-        return null;
+        int delete = getSqlSession().delete("com.wwwy.liuxing.theater.dto.TheaterMapper.deleteTheater", theaterId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override
     public Boolean updateTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        int update = getSqlSession().update("com.wwwy.liuxing.theater.dto.TheaterMapper.updateTheater", theaterDTO);
+        return update< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override
-    public List<AreaDTO> queryTheaterByAny(String anyInfo) throws Exception {
-        return null;
+    public List<TheaterDTO> queryTheaterByAny(String anyInfo) throws Exception {
+        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAny", anyInfo);
+        return list;
     }
 
     @Override
-    public Boolean deleteBatchTheater(int[] TheaterId) throws Exception {
-        return null;
+    public Boolean deleteBatchTheater(int[] theaterId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.theater.dto.TheaterMapper.batchDeleteAreas", theaterId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 }
 
