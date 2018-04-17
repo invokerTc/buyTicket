@@ -17,7 +17,7 @@ public interface IMovieService {
      */
     List<MovieDTO> getAllMovieByCityName(String cityName) throws Exception;
     /**
-     * 根据城市和电影获取放映该电影的电影院名和影院地址 （影院最低价格 用另一个sql在hallmovie_mapper.xml中查询每个放映该电影的最低价格）
+     * 根据城市和电影获取放映该电影详情
      * @param cityId
      * @param movieId
      * @return

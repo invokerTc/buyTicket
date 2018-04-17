@@ -61,7 +61,7 @@ public class MovieTest {
     public void testDaoGetMovieByCityIdAndMovieId(){
         try {
             MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(1, 1);
-            logger.info(movieDTO.getMovieName());
+            logger.info(movieDTO.getMovieName()+"\t"+movieDTO.getMovieCountry()+"\t"+movieDTO.getMovieTime()+"\t"+movieDTO.getMovieDate()+"\t"+movieDTO.getMovieType());
         } catch (Exception e) {
             e.printStackTrace();
         }

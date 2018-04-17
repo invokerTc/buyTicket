@@ -49,6 +49,19 @@ public class TheaterDTO implements Serializable {
      */
     private List<HallDTO> hallDTOList;
 
+    public Integer getLowestPrice() {
+        return lowestPrice;
+    }
+
+    public void setLowestPrice(Integer lowestPrice) {
+        this.lowestPrice = lowestPrice;
+    }
+
+    /**
+     * 解决页面每个电影刚在影院的最低价格，而设置的属性
+     */
+    private Integer lowestPrice;
+
     public TheaterDTO() {
     }
 

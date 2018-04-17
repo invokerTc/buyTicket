@@ -31,6 +31,25 @@ public interface ITheaterService {
      */
     Map<TheaterDTO,HallMovieDTO> queryLowestTheaterAndPrice(String cityId, String movieId)throws Exception;
 
+
+    /**
+     * 根据城市和电影获取放映该电影的电影院名、影院地址、
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    List<TheaterDTO> queryLowestPriceTheater(String cityId,String movieId)throws Exception;
+
+    /**
+     * 根据城市和电影获取放映该电影的电影院最低价格
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    List<HallMovieDTO> queryLowestPrice(String cityId,String movieId) throws Exception;
+
     /**
      * 查询所有的影院，返回一个list集合
      * @param theaterId
