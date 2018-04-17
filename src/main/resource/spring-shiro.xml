@@ -40,6 +40,7 @@
                 /plugins/**=anon
                 /areaTheater/**=anon
                 /hou_areaTheater_list.html=anon
+                /hou_area_theater_add.html=anon
                 <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
                 /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
             </value>

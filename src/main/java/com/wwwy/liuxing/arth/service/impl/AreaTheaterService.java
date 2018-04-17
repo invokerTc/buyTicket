@@ -48,4 +48,44 @@ public class AreaTheaterService implements IAreaTheaterService{
         PageInfo<AreaTheaterDTO> pageInfo=new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public AreaTheaterDTO queryById(Integer id) throws Exception {
+        return areaTheaterDAO.queryById(id);
+    }
+
+
+    @Override
+    public Boolean insertAreaTheater(AreaTheaterDTO areaTheaterDTO) throws Exception {
+        return areaTheaterDAO.insertAreaTheater(areaTheaterDTO);
+    }
+
+    @Override
+    public Boolean deleteAreaTheater(Integer id) throws Exception {
+        return areaTheaterDAO.deleteAreaTheater(id);
+    }
+
+    @Override
+    public Boolean updateAreaTheater(AreaTheaterDTO areaTheaterDTO) throws Exception {
+        return areaTheaterDAO.updateAreaTheater(areaTheaterDTO);
+    }
+
+    @Override
+    public PageInfo<AreaTheaterDTO> queryAreaTheaterByAny(String anyInfo,Integer page) throws Exception {
+        logger.debug("currentPage::::"+page);
+        int start= SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
+        }
+//        开始分页，初始位置，每页大小
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<AreaTheaterDTO> list = areaTheaterDAO.queryAreaTheaterByAny(anyInfo);
+        PageInfo<AreaTheaterDTO> pageInfo=new PageInfo<>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] areaId) throws Exception {
+        return areaTheaterDAO.deleteBatchAreas(areaId) ;
+    }
 }

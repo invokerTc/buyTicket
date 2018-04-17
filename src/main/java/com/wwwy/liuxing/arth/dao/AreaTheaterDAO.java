@@ -34,4 +34,40 @@ public class AreaTheaterDAO extends SqlSessionDaoSupport implements IAreaTheater
         List<AreaTheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.queryAll");
         return list;
     }
+
+    @Override
+    public AreaTheaterDTO queryById(Integer id) throws Exception {
+        AreaTheaterDTO o = getSqlSession().selectOne("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.queryAreaTheaterById", id);
+        return o;
+    }
+
+    @Override
+    public Boolean insertAreaTheater(AreaTheaterDTO areaTheaterDTO) throws Exception {
+        int insert = getSqlSession().insert("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.insertAreaTheater", areaTheaterDTO);
+        return insert<SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean deleteAreaTheater(Integer id) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.deleteAreaTheater", id);
+        return delete<SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean updateAreaTheater(AreaTheaterDTO areaTheaterDTO) throws Exception {
+        int update = getSqlSession().update("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.updateAreaTheater", areaTheaterDTO);
+        return update<SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public List<AreaTheaterDTO> queryAreaTheaterByAny(String anyInfo) throws Exception {
+        List<AreaTheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.queryAny", anyInfo);
+        return list;
+    }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] areaId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxin.arth.dto.AreaTheaterMapper.batchDeleteAreaTheater", areaId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
 }

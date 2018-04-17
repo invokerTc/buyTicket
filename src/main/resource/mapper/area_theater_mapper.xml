@@ -16,38 +16,39 @@
 
 
 
-    <select id="queryAreaById" resultMap="AreaTheaterResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
+    <select id="queryAreaTheaterById" resultMap="AreaTheaterResultMap">
+        SELECT ar_th_id,fk_area_id,fk_theater_id FROM tb_area_theater WHERE ar_th_id=#{arThId}
     </select>
 
-    <insert id="insertArea">
-        INSERT INTO tb_area(area_name,fk_city_id)VALUES (#{areaName},#{fkCityId})
+    <insert id="insertAreaTheater">
+        INSERT INTO tb_area_theater(fk_area_id,fk_theater_id)VALUES (#{fkArId},#{fkThId})
     </insert>
 
-    <delete id="deleteArea">
-        DELETE FROM tb_area WHERE area_id=#{areaId}
+    <delete id="deleteAreaTheater">
+        DELETE FROM tb_area_theater WHERE ar_th_id=#{arThId}
     </delete>
 
-    <update id="updateArea">
-        UPDATE tb_area
+    <update id="updateAreaTheater">
+        UPDATE tb_area_theater
         <trim prefix="set" suffixOverrides=",">
-            <if test="areaName!=null">area_name=#{areaName},</if>
-            <if test="fkCityId!=null">fk_city_id=#{fkCityId},</if>
+            <if test="fkArId!=null">fk_area_id=#{fkArId},</if>
+            <if test="fkThId!=null">fk_theater_id=#{fkThId},</if>
         </trim>
-        WHERE area_id=#{areaId}
+        WHERE ar_th_id=#{arThId}
     </update>
 
     <select id="queryAny" resultMap="AreaTheaterResultMap">
-        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
-        WHERE area_id LIKE concat(concat('%',#{anyInfo}),'%')
-        OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
+        SELECT ar_th_id,fk_area_id,fk_theater_id FROM tb_area_theater
+        WHERE ar_th_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR fk_area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR fk_theater_id LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
     <!--批量删除-->
-    <delete id="batchDeleteAreas" parameterType="int">
-        delete from tb_area where area_id in
-        <foreach item="areaId" collection="array" open="(" separator="," close=")">
-            #{areaId}
+    <delete id="batchDeleteAreaTheater" parameterType="int">
+        delete from tb_area_theater where ar_th_id in
+        <foreach item="arThId" collection="array" open="(" separator="," close=")">
+            #{arThId}
         </foreach>
     </delete>
 

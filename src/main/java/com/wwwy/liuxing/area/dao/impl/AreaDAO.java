@@ -22,6 +22,7 @@ import java.util.Map;
 public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
 
     @Autowired
+    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);
     }

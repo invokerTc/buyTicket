@@ -20,4 +20,49 @@ public interface IAreaTheaterDAO {
      * @throws Exception
      */
     List<AreaTheaterDTO> queryAllArea()throws Exception;
+
+    /**
+     * 根据id查询对应的信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    AreaTheaterDTO queryById(Integer id)throws Exception;
+
+    /**
+     * 插入新的信息
+     * @param areaTheaterDTO
+     * @return
+     */
+    Boolean insertAreaTheater(AreaTheaterDTO areaTheaterDTO)throws Exception;
+
+    /**
+     * 根据地区id删除对应的信息
+     * @param areaId
+     * @return
+     */
+    Boolean deleteAreaTheater(Integer areaId)throws Exception;
+
+    /**
+     * 根据地区id修改对应的信息
+     * @param areaTheaterDTO
+     * @return
+     */
+    Boolean updateAreaTheater(AreaTheaterDTO areaTheaterDTO)throws Exception;
+
+    /**
+     * 根据任何信息查找地区信息
+     * @param anyInfo
+     * @return
+     * @throws Exception
+     */
+    List<AreaTheaterDTO>  queryAreaTheaterByAny(String anyInfo)throws Exception;
+
+    /**
+     * 批量删除地区信息
+     * @param areaId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatchAreas(int[] areaId)throws Exception;
 }
