@@ -97,16 +97,25 @@ public class TheaterService implements ITheaterService {
 
     @Override
     public Boolean updateTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        return theaterDAO.updateTheater(theaterDTO);
     }
 
     @Override
-    public List<AreaDTO> queryTheaterByAny(String anyInfo) throws Exception {
-        return null;
+    public PageInfo<TheaterDTO> queryTheaterByAny(String anyInfo,Integer page) throws Exception {
+        logger.debug("currentPage::::"+page);
+        int start= SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
+        }
+//        开始分页，初始位置，每页大小
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<TheaterDTO> list = theaterDAO.queryTheaterByAny(anyInfo);
+        PageInfo<TheaterDTO> pageInfo = new PageInfo<TheaterDTO>(list);
+        return pageInfo;
     }
 
     @Override
-    public Boolean deleteBatchTheater(int[] TheaterId) throws Exception {
-        return null;
+    public Boolean deleteBatchTheater(int[] theaterId) throws Exception {
+        return theaterDAO.deleteBatchTheater(theaterId);
     }
 }

@@ -75,17 +75,20 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
 
     @Override
     public Boolean updateTheater(TheaterDTO theaterDTO) throws Exception {
-        return null;
+        int update = getSqlSession().update("com.wwwy.liuxing.theater.dto.TheaterMapper.updateTheater", theaterDTO);
+        return update< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
     @Override
-    public List<AreaDTO> queryTheaterByAny(String anyInfo) throws Exception {
-        return null;
+    public List<TheaterDTO> queryTheaterByAny(String anyInfo) throws Exception {
+        List<TheaterDTO> list = getSqlSession().selectList("com.wwwy.liuxing.theater.dto.TheaterMapper.queryAny", anyInfo);
+        return list;
     }
 
     @Override
-    public Boolean deleteBatchTheater(int[] TheaterId) throws Exception {
-        return null;
+    public Boolean deleteBatchTheater(int[] theaterId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.theater.dto.TheaterMapper.batchDeleteAreas", theaterId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 }
 

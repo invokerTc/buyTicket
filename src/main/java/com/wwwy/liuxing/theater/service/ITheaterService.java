@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.theater.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
@@ -79,13 +80,13 @@ public interface ITheaterService {
      * @return
      * @throws Exception
      */
-    List<AreaDTO> queryTheaterByAny(String anyInfo)throws Exception;
+    PageInfo<TheaterDTO> queryTheaterByAny(String anyInfo, Integer page)throws Exception;
 
     /**
      * 批量删除影院信息
-     * @param TheaterId
+     * @param theaterId
      * @return
      * @throws Exception
      */
-    Boolean deleteBatchTheater(int[] TheaterId)throws Exception;
+    Boolean deleteBatchTheater(int[] theaterId)throws Exception;
 }

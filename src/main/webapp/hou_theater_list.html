@@ -28,14 +28,14 @@
                             alert("删除成功");
                             window.location.href='hou_before_theater_.html';
                         }else {
-                            alert("删除失败");
+                            alert("删除失败,请先删除关联表");
                         }
                     });
         }
     }
 
     function doUpdate(id){
-        window.location.href='/area/preUpdate?id='+id;
+        window.location.href='/theater/preUpdate?id='+id;
     }
 
     function checkAll(item){
@@ -70,14 +70,14 @@
             return;
         }
         // 提交请求
-        $.post("/area/deleteBatch",
+        $.post("/theater/deleteBatch",
                 {ids:ids},
                 function (data) {
                     if(data=="success"){
                         alert("删除成功");
-                        window.location.href='/area/all?page='+1;
+                        window.location.href='/theater/all?page='+1;
                     }else {
-                        alert("删除失败");
+                        alert("删除失败,请先删除关联表");
                         return;
                     }
                 });
@@ -123,7 +123,7 @@
         </el-form>
         <input type="button" id="result" value="查询" onclick="findAll()"/>
     </div>-->
-    <form action="/area/anyInfo?page=1" method="post" class="form_find">
+    <form action="/theater/anyInfo?page=1" method="post" class="form_find">
 
         <input type="text" name="anyInfo" style="height: 40px">
         <input type="submit" value="find" style="font-size: 20px;background-color: #00BCD4">

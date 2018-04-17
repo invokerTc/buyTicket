@@ -69,13 +69,13 @@ public interface ITheaterDAO {
      * @return
      * @throws Exception
      */
-    List<AreaDTO> queryTheaterByAny(String anyInfo)throws Exception;
+    List<TheaterDTO> queryTheaterByAny(String anyInfo)throws Exception;
 
     /**
      * 批量删除影院信息
-     * @param TheaterId
+     * @param theaterId
      * @return
      * @throws Exception
      */
-    Boolean deleteBatchTheater(int[] TheaterId)throws Exception;
+    Boolean deleteBatchTheater(int[] theaterId)throws Exception;
 }
