@@ -1,7 +1,12 @@
 package com.wwwy.liuxing.hall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.service.IHallService;
+import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
+import com.wwwy.liuxing.hallmovie.service.IHallMovieService;
+import com.wwwy.liuxing.movie.dto.MovieDTO;
+import com.wwwy.liuxing.movie.service.IMovieService;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
 import org.apache.log4j.Logger;
@@ -25,6 +30,10 @@ public class HallController {
     @Autowired
     private IHallService hallService;
     @Autowired
+    private IMovieService movieService;
+    @Autowired
+    private IHallMovieService hallMovieService;
+    @Autowired
     private  ITheaterService theaterService;
 
     @RequestMapping("/getHall")
@@ -44,7 +53,11 @@ public class HallController {
         logger.info("这是 /getMovieHall 方法");
         try {
             TheaterDTO theaterDTO = theaterService.queryTheaterById(Integer.parseInt(theaterId));
+            MovieDTO movieDTO = movieService.getMovieByCityIdAndMovieId(cityId, movieId);
+            List<HallMovieDTO> hallMovieList = hallMovieService.queryPlayingHallMovie(cityId, theaterId, movieId);
             modelMap.put("theaterDTO",theaterDTO);
+            modelMap.put("movieDTO",movieDTO);
+            modelMap.put("hallMovieList",hallMovieList);
         } catch (Exception e) {
             e.printStackTrace();
         }

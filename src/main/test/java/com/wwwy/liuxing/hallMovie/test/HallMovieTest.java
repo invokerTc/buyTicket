@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by wanghao on 2018/4/14.
  * 测试HallMovie dao 层
@@ -32,5 +36,35 @@ public class HallMovieTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 测试String转换成date格式
+     */
+    @Test
+    public void testQueryPlayingHallMovie(){
+        try {
+            List<HallMovieDTO> list = hallMovieDao.queryPlayingHallMovie(1, 1, 1);
+            for (HallMovieDTO hm:list) {
+                String movieRuntime = hm.getMovieRuntime();
+//                logger.info(movieRuntime);
+                String time = movieRuntime+":00";
+                logger.info(time);
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                Date time1 = sdf.parse(time);
+                logger.info(time1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Test
+    public void testDate(){
+        String time = "2018-4-18 18:11:23";
+        String time2= "2018-4-18 14:11:23";
+        Date date = new Date(time);
+        Date date1 = new Date(time2);
+
     }
 }

@@ -55,7 +55,7 @@
 
     <!--根据城市和电影名来查找电影详情-->
     <select id="getOneMovieByCityIdAnDMovieId" resultMap="MovieResultMap">
-        select distinct m.movie_id,m.movie_name,m.movie_type,m.movie_country,
+        select distinct m.movie_id,m.movie_star,m.movie_name,m.movie_type,m.movie_country,
         m.movie_time,m.movie_score,m.movie_img,m.movie_date
         from tb_movie m
         join tb_city c
