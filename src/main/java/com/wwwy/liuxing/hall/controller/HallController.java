@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.hall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.service.IHallService;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;

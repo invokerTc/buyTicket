@@ -47,9 +47,28 @@ public class HallMovieDao extends SqlSessionDaoSupport implements IHallMovieDao 
     }
 
     @Override
+    public HallMovieDTO queryById(Integer id) throws Exception {
+        HallMovieDTO o = getSqlSession().selectOne("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryById", id);
+        return o;
+    }
+
+    @Override
     public Boolean insert(HallMovieDTO hallMovieDTO) throws Exception {
         int insert = getSqlSession().insert("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.insert", hallMovieDTO);
         return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
+
+    @Override
+    public Boolean delete(Integer id) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.delete", id);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean update(HallMovieDTO hallMovieDTO) throws Exception {
+        int update = getSqlSession().update("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.update", hallMovieDTO);
+        return update< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
 
 }

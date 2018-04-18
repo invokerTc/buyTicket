@@ -55,7 +55,22 @@ public class HallMovieService implements IHallMovieService {
     }
 
     @Override
+    public HallMovieDTO queryById(Integer id) throws Exception {
+        return hallMovieDao.queryById(id);
+    }
+
+    @Override
     public Boolean insert(HallMovieDTO hallMovieDTO) throws Exception {
         return hallMovieDao.insert(hallMovieDTO);
+    }
+
+    @Override
+    public Boolean delete(Integer id) throws Exception {
+        return hallMovieDao.delete(id);
+    }
+
+    @Override
+    public Boolean update(HallMovieDTO hallMovieDTO) throws Exception {
+        return hallMovieDao.update(hallMovieDTO);
     }
 }

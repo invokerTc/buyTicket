@@ -69,4 +69,61 @@ public class HallMovieController {
         }
         return "fail";
     }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public String delete(HttpServletRequest request){
+        String id = request.getParameter("id");
+        try {
+            Boolean delete = hallMovieService.delete(Integer.parseInt(id));
+            if(delete){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
+    @RequestMapping("/preUpdate")
+    public String preUpdate(HttpServletRequest request,ModelMap modelMap){
+        String id = request.getParameter("id");
+        try {
+            HallMovieDTO hallMovieDTO = hallMovieService.queryById(Integer.parseInt(id));
+            modelMap.addAttribute("hallMovieDTO",hallMovieDTO);
+            return "hou_hall_movie_update";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error404";
+        }
+
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(HttpServletRequest request){
+        String id = request.getParameter("id");
+        String hallId = request.getParameter("hallId");
+        String movieId = request.getParameter("movieId");
+        String movieRuntime = request.getParameter("movieRuntime");
+        String moviePrice = request.getParameter("moviePrice");
+        String movieVersion = request.getParameter("movieVersion");
+        HallMovieDTO hallMovieDTO = new HallMovieDTO();
+        hallMovieDTO.setHaMoId(Integer.parseInt(id));
+        hallMovieDTO.setFkHallId(Integer.parseInt(hallId));
+        hallMovieDTO.setFkMovieId(Integer.parseInt(movieId));
+        hallMovieDTO.setMovieRuntime(movieRuntime);
+        hallMovieDTO.setMoviePrice(Integer.parseInt(moviePrice));
+        hallMovieDTO.setMovieVersion(movieVersion);
+        try {
+            Boolean update = hallMovieService.update(hallMovieDTO);
+            if(update){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
 }

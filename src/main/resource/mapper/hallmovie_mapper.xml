@@ -38,8 +38,29 @@
         SELECT ha_mo_id,fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version FROM tb_hall_movie
     </select>
 
+    <select id="queryById" resultMap="HallMovieResultMap">
+        SELECT ha_mo_id,fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version FROM tb_hall_movie WHERE ha_mo_id=#{haMoId}
+    </select>
+
     <insert id="insert">
          INSERT INTO tb_hall_movie(fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version)VALUES
         (#{fkHallId},#{fkMovieId},#{movieRuntime},#{moviePrice},#{movieVersion})
     </insert>
+
+    <delete id="delete">
+        DELETE FROM tb_hall_movie WHERE ha_mo_id=#{haMoId}
+    </delete>
+
+    <update id="update">
+        UPDATE tb_hall_movie
+        <trim prefix="set" suffixOverrides=",">
+            <if test="fkHallId!=null">fk_hall_id=#{fkHallId},</if>
+            <if test="fkMovieId!=null">fk_movie_id=#{fkMovieId},</if>
+            <if test="movieRuntime!=null">movie_runtime=#{movieRuntime},</if>
+            <if test="moviePrice!=null">movie_price=#{moviePrice},</if>
+            <if test="movieVersion!=null">movie_version=#{movieVersion},</if>
+        </trim>
+        WHERE ha_mo_id=#{haMoId}
+    </update>
+
 </mapper>

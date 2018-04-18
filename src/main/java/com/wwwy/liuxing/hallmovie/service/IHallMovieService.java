@@ -23,9 +23,33 @@ public interface IHallMovieService {
     PageInfo<HallMovieDTO> queryAll(Integer page)throws Exception;
 
     /**
+     * 根据id查询对象
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallMovieDTO queryById(Integer id)throws Exception;
+
+    /**
      * 插入一条新的信息
      * @return
      * @throws Exception
      */
     Boolean insert(HallMovieDTO hallMovieDTO)throws Exception;
+
+    /**
+     * 根据id删除对应信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Boolean delete(Integer id)throws Exception;
+
+    /**
+     * 修改相应的信息
+     * @param hallMovieDTO
+     * @return
+     * @throws Exception
+     */
+    Boolean update(HallMovieDTO hallMovieDTO)throws Exception;
 }
