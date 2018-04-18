@@ -135,7 +135,7 @@ public class AreaTheaterController {
             List<AreaTheaterDTO> list = pageInfo.getList();
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaTheaterDTOList",list);
-            return "hou_areaTheater_list";
+            return "hou_arae_theater_any_list";
         } catch (Exception e) {
             e.printStackTrace();
             return "error404";

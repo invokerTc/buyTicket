@@ -45,6 +45,13 @@ public class AreaTheaterService implements IAreaTheaterService{
 //        开始分页，初始位置，每页大小
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<AreaTheaterDTO> list = areaTheaterDAO.queryAllArea();
+        for (AreaTheaterDTO at :
+                list) {
+            AreaDTO areaDTO = areaDAO.queryAreaById(at.getFkArId());
+            at.setAreaName(areaDTO.getAreaName());
+            TheaterDTO theaterDTO = theaterDAO.queryTheaterById(at.getFkThId());
+            at.setTheaterName(theaterDTO.getTheaterName());
+        }
         PageInfo<AreaTheaterDTO> pageInfo=new PageInfo<>(list);
         return pageInfo;
     }
@@ -80,6 +87,14 @@ public class AreaTheaterService implements IAreaTheaterService{
 //        开始分页，初始位置，每页大小
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<AreaTheaterDTO> list = areaTheaterDAO.queryAreaTheaterByAny(anyInfo);
+        for (AreaTheaterDTO at :
+                list) {
+            AreaDTO areaDTO = areaDAO.queryAreaById(at.getFkArId());
+            logger.debug(areaDTO.getAreaName());
+            at.setAreaName(areaDTO.getAreaName());
+            TheaterDTO theaterDTO = theaterDAO.queryTheaterById(at.getFkThId());
+            at.setTheaterName(theaterDTO.getTheaterName());
+        }
         PageInfo<AreaTheaterDTO> pageInfo=new PageInfo<>(list);
         return pageInfo;
     }

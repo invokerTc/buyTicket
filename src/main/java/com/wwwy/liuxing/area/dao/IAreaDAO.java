@@ -26,7 +26,7 @@ public interface IAreaDAO {
      * @return
      * @throws Exception
      */
-    Map<String,List<AreaDTO>> queryAllArea(Integer cityId)throws Exception;
+    List<AreaDTO> queryAllArea(Integer cityId)throws Exception;
 
     /**
      * 根据id查询某一个地区的信息
@@ -62,7 +62,7 @@ public interface IAreaDAO {
      * @return
      * @throws Exception
      */
-    Map<String,List<AreaDTO>> queryAreaByAny(String anyInfo)throws Exception;
+    List<AreaDTO> queryAreaByAny(String anyInfo)throws Exception;
 
     /**
      * 批量删除地区信息

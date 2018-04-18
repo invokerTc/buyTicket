@@ -2,6 +2,7 @@ package com.wwwy.liuxing.hallmovie.dao.impl;
 
 import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
+import com.wwwy.liuxing.system.SysConfig;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,42 @@ public class HallMovieDao extends SqlSessionDaoSupport implements IHallMovieDao 
         List<HallMovieDTO> hallMovieList = getSqlSession().selectList("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryPlayingHallMovie", map);
         return hallMovieList;
     }
+
+    @Override
+    public HallMovieDTO queryById(Integer id) throws Exception {
+        HallMovieDTO o = getSqlSession().selectOne("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryById", id);
+        return o;
+    }
+
+    @Override
+    public Boolean insert(HallMovieDTO hallMovieDTO) throws Exception {
+        int insert = getSqlSession().insert("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.insert", hallMovieDTO);
+        return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean delete(Integer id) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.delete", id);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean update(HallMovieDTO hallMovieDTO) throws Exception {
+        int update = getSqlSession().update("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.update", hallMovieDTO);
+        return update< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public List<HallMovieDTO> queryByAny(String anyInfo) throws Exception {
+        List<HallMovieDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryAny", anyInfo);
+        return list;
+    }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] haMoId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.batchDeleteHallMovie", haMoId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
 
 }

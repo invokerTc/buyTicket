@@ -43,7 +43,7 @@
     </select>
 
     <select id="queryHallById" resultMap="HallResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
+        SELECT hall_id,hall_name,fk_theater_id FROM tb_hall WHERE hall_id=#{hallId}
     </select>
 
     <insert id="insertHall">

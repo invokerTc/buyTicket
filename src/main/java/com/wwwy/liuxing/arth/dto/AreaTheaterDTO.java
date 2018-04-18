@@ -17,6 +17,26 @@ public class AreaTheaterDTO implements Serializable {
 
     private Integer fkThId;
 
+    private String areaName;
+
+    private String theaterName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getTheaterName() {
+        return theaterName;
+    }
+
+    public void setTheaterName(String theaterName) {
+        this.theaterName = theaterName;
+    }
+
     public AreaTheaterDTO() {
     }
 
@@ -32,6 +52,8 @@ public class AreaTheaterDTO implements Serializable {
                 "arThId=" + arThId +
                 ", fkArId=" + fkArId +
                 ", fkThId=" + fkThId +
+                ", areaName='" + areaName + '\'' +
+                ", theaterName='" + theaterName + '\'' +
                 '}';
     }
 
@@ -52,7 +74,10 @@ public class AreaTheaterDTO implements Serializable {
         if (fkArId != null ? !fkArId.equals(that.fkArId) : that.fkArId != null) {
             return false;
         }
-        return fkThId != null ? fkThId.equals(that.fkThId) : that.fkThId == null;
+        if (fkThId != null ? !fkThId.equals(that.fkThId) : that.fkThId != null) {
+            return false;
+        }
+        return areaName != null ? areaName.equals(that.areaName) : that.areaName == null && (theaterName != null ? theaterName.equals(that.theaterName) : that.theaterName == null);
 
     }
 
@@ -61,6 +86,8 @@ public class AreaTheaterDTO implements Serializable {
         int result = arThId != null ? arThId.hashCode() : 0;
         result = 31 * result + (fkArId != null ? fkArId.hashCode() : 0);
         result = 31 * result + (fkThId != null ? fkThId.hashCode() : 0);
+        result = 31 * result + (areaName != null ? areaName.hashCode() : 0);
+        result = 31 * result + (theaterName != null ? theaterName.hashCode() : 0);
         return result;
     }
 

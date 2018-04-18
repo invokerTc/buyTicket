@@ -111,11 +111,11 @@
         </thead>
         <#list areaTheaterDTOList as arTh>
             <tr class="water-table-content">
-            <td style="font-size: medium">${arTh.arThId}</td>
-            <td align="center">
-                <input type="checkbox" name="hisChk" id="dg1_RowCheck1" value="${arTh.arThId}">
-            </td>
-            <td style="font-size: medium">${arTh.fkArId}</td>
+                <td style="font-size: medium">${arTh.arThId}</td>
+                <td align="center">
+                    <input type="checkbox" name="hisChk" id="dg1_RowCheck1" value="${arTh.arThId}">
+                </td>
+                <td style="font-size: medium">${arTh.fkArId}</td>
                 <td style="font-size: medium">${arTh.areaName}</td>
                 <td style="font-size: medium">${arTh.fkThId}</td>
                 <td style="font-size: medium">${arTh.theaterName}</td>
@@ -130,10 +130,10 @@
 
 <div class="ma_page">
     <p style="font-size: 14px">当前页${page.pageNum}&nbsp;&nbsp;&nbsp;一共${page.pages}页</p>
-    <a href="/areaTheater/all?page=${page.firstPage}">首页</a>
-    <a href="/areaTheater/all?page=${page.nextPage}">下一页</a>
-    <a href="/areaTheater/all?page=${page.prePage}">上一页</a>
-    <a href="/areaTheater/all?page=${page.lastPage}">末页</a>
+    <a href="/areaTheater/anyInfo?page=${page.firstPage}">首页</a>
+    <a href="/areaTheater/anyInfo?page=${page.nextPage}">下一页</a>
+    <a href="/areaTheater/anyInfo?page=${page.prePage}">上一页</a>
+    <a href="/areaTheater/anyInfo?page=${page.lastPage}">末页</a>
 </div>
 
 

@@ -33,4 +33,53 @@ public interface IHallMovieService {
      * @throws Exception
      */
     List<HallMovieDTO> queryPlayingHallMovie(String cityId, String theaterId, String movieId) throws Exception;
+
+    /**
+     * 根据id查询对象
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallMovieDTO queryById(Integer id)throws Exception;
+
+    /**
+     * 插入一条新的信息
+     * @return
+     * @throws Exception
+     */
+    Boolean insert(HallMovieDTO hallMovieDTO)throws Exception;
+
+    /**
+     * 根据id删除对应信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Boolean delete(Integer id)throws Exception;
+
+    /**
+     * 修改相应的信息
+     * @param hallMovieDTO
+     * @return
+     * @throws Exception
+     */
+    Boolean update(HallMovieDTO hallMovieDTO)throws Exception;
+
+
+    /**
+     * 根据任意信息查询
+     * @param anyInfo
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    PageInfo<HallMovieDTO> queryByAny(String anyInfo,Integer page)throws Exception;
+
+    /**
+     * 批量删除影厅信息
+     * @param haMoId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatch(int[] haMoId)throws Exception;
 }

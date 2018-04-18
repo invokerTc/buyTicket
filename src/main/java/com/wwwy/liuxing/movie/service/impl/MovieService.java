@@ -47,6 +47,11 @@ public class MovieService implements IMovieService{
         return movieDTO;
     }
 
+    @Override
+    public MovieDTO queryMovieById(Integer id) throws Exception {
+        return movieDao.queryMovieById(id);
+    }
+
     /**
      * 根据传入的条件动态查询符合的一个或多个条件的电影集合
      *

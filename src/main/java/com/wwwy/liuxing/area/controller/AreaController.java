@@ -43,24 +43,14 @@ public class AreaController {
         String pageStr = request.getParameter("page");
         Integer page = Integer.parseInt(pageStr);
         try {
-            Map<String, PageInfo<AreaDTO>> map = areaService.queryAllArea(SysConfig.BeforeConfig.PAGE_START, page);
-            String cityName = null;
-            for (String key : map.keySet()) {
-                cityName = key;
-                if (null != cityName) {
-                    break;
-                }
-            }
-            logger.debug("cityName" + cityName);
-            PageInfo<AreaDTO> pageInfo = map.get(cityName);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAllArea(SysConfig.BeforeConfig.PAGE_START, page);
             List<AreaDTO> list = pageInfo.getList();
-            modelMap.addAttribute("cityName", cityName);
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaDTOsList", list);
             return "hou_area_list";
         } catch (Exception e) {
             e.printStackTrace();
-            return "hou_area_list";
+            return "error404";
         }
     }
 
@@ -158,20 +148,11 @@ public class AreaController {
         logger.debug("anyInfo" + anyInfo);
         String page = request.getParameter("page");
         try {
-            Map<String, PageInfo<AreaDTO>> map = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
-            String cityName = null;
-            for (String key : map.keySet()) {
-                cityName = key;
-                if (null != cityName) {
-                    break;
-                }
-            }
-            PageInfo<AreaDTO> pageInfo = map.get(cityName);
+            PageInfo<AreaDTO> pageInfo = areaService.queryAreaByAny(anyInfo, Integer.parseInt(page));
             List<AreaDTO> list = pageInfo.getList();
-            modelMap.addAttribute("cityName", cityName);
             modelMap.addAttribute("page", pageInfo);
             modelMap.addAttribute("areaDTOsList", list);
-            return "hou_area_list";
+            return "hou_area_any_list";
         } catch (Exception e) {
             e.printStackTrace();
             modelMap.addAttribute("areaDTOsList", null);
@@ -182,7 +163,7 @@ public class AreaController {
 
     @RequestMapping("/deleteBatch")
     @ResponseBody
-    public String deleteBatchAreas(HttpServletRequest request, ModelMap modelMap) {
+    public String deleteBatchAreas(HttpServletRequest request) {
         String ids = request.getParameter("ids");
         logger.debug("::::::ids" + ids);
         String[] idStr = StringUtils.split(ids, ",");

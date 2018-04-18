@@ -30,6 +30,7 @@ public class AreaDTO implements Serializable {
      */
     private Integer fkCityId;
 
+    private String cityName;
     /**
      * 地区对应的影院的集合
      */
@@ -39,6 +40,14 @@ public class AreaDTO implements Serializable {
      * 地区对应城市的对象
      */
     private CityDTO cityDTO;
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 
     public CityDTO getCityDTO() {
         return cityDTO;
@@ -51,11 +60,10 @@ public class AreaDTO implements Serializable {
     public AreaDTO() {
     }
 
-    public AreaDTO(Integer areaId, String areaName, Integer fkCityId, List<TheaterDTO> theaterDTOList) {
+    public AreaDTO(Integer areaId, String areaName, Integer fkCityId) {
         this.areaId = areaId;
         this.areaName = areaName;
         this.fkCityId = fkCityId;
-        this.theaterDTOList = theaterDTOList;
     }
 
     @Override
@@ -64,7 +72,9 @@ public class AreaDTO implements Serializable {
                 "areaId=" + areaId +
                 ", areaName='" + areaName + '\'' +
                 ", fkCityId=" + fkCityId +
+                ", cityName='" + cityName + '\'' +
                 ", theaterDTOList=" + theaterDTOList +
+                ", cityDTO=" + cityDTO +
                 '}';
     }
 
@@ -85,7 +95,13 @@ public class AreaDTO implements Serializable {
         if (areaName != null ? !areaName.equals(areaDTO.areaName) : areaDTO.areaName != null) {
             return false;
         }
-        return fkCityId != null ? fkCityId.equals(areaDTO.fkCityId) : areaDTO.fkCityId == null && (theaterDTOList != null ? theaterDTOList.equals(areaDTO.theaterDTOList) : areaDTO.theaterDTOList == null);
+        if (fkCityId != null ? !fkCityId.equals(areaDTO.fkCityId) : areaDTO.fkCityId != null) {
+            return false;
+        }
+        if (cityName != null ? !cityName.equals(areaDTO.cityName) : areaDTO.cityName != null) {
+            return false;
+        }
+        return theaterDTOList != null ? theaterDTOList.equals(areaDTO.theaterDTOList) : areaDTO.theaterDTOList == null && (cityDTO != null ? cityDTO.equals(areaDTO.cityDTO) : areaDTO.cityDTO == null);
 
     }
 
@@ -94,7 +110,9 @@ public class AreaDTO implements Serializable {
         int result = areaId != null ? areaId.hashCode() : 0;
         result = 31 * result + (areaName != null ? areaName.hashCode() : 0);
         result = 31 * result + (fkCityId != null ? fkCityId.hashCode() : 0);
+        result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
         result = 31 * result + (theaterDTOList != null ? theaterDTOList.hashCode() : 0);
+        result = 31 * result + (cityDTO != null ? cityDTO.hashCode() : 0);
         return result;
     }
 

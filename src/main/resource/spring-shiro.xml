@@ -7,7 +7,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
-        <property name="filterChainDefinitions">
+        <!--<property name="filterChainDefinitions">
             <value>
                 /movie/preupdate=anon
                 /movie/delete=anon
@@ -35,8 +35,8 @@
                 /message/getCode=anon
                 /message/login=anon
                 /success.html=anon
-                /login.jsp=anon<!--不需要做任何过滤的-->
-                /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
+                /login.jsp=anon&lt;!&ndash;不需要做任何过滤的&ndash;&gt;
+                /qian_liuxing_cinema_hall_seat.html=anon&lt;!&ndash;不需要做任何过滤的&ndash;&gt;
                 /qian_one_movie_info.html=anon
                 /hall/getMovieHall=anon
                 /qian_pick_movie.html=anon
@@ -62,10 +62,14 @@
                 /hou_hall_list.html=anon
                 /hall/**=anon
                 /hou_hall_add.html=anon
-                <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
-                /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
+                /hallMovie/**=anon
+                /hou_hall_movie_list.html=anon
+                /hou_hall_movie_add.html=anon
+                /hou_hall_movie_update.html=anon
+                &lt;!&ndash;/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;&ndash;&gt;
+                /**=user&lt;!&ndash;user需要登录或者获取rememberme的缓存信息也能进入系统&ndash;&gt;
             </value>
-        </property>
+        </property>-->
 
 
     </bean>

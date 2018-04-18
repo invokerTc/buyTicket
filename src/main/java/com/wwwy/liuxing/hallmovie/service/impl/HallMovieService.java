@@ -8,8 +8,11 @@ import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.hallmovie.service.IHallMovieService;
 import com.wwwy.liuxing.movie.dao.IMovieDao;
+import com.wwwy.liuxing.movie.dto.MovieDTO;
+import com.wwwy.liuxing.movie.service.IMovieService;
 import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +25,14 @@ import java.util.List;
  */
 @Service
 public class HallMovieService implements IHallMovieService {
-    
+
+    private static final Logger logger = Logger.getLogger(HallMovieService.class);
+
     @Autowired
     private IHallMovieDao hallMovieDao;
 
     @Autowired
-    private IMovieDao movieDAO;
+    private IMovieService movieService;
 
     @Autowired
     private IHallDao hallDAO;
@@ -43,7 +48,10 @@ public class HallMovieService implements IHallMovieService {
         List<HallMovieDTO> list = hallMovieDao.queryAll();
         for (HallMovieDTO hm :
                 list) {
-            
+            HallDTO hallDTO = hallDAO.queryHallById(hm.getFkHallId());
+            hm.setHallName(hallDTO.getHallName());
+            MovieDTO movieDTO = movieService.queryMovieById(hm.getFkMovieId());
+            hm.setMovieName(movieDTO.getMovieName());
         }
         PageInfo<HallMovieDTO> pageInfo = new PageInfo<HallMovieDTO>(list);
         return pageInfo;
@@ -64,5 +72,51 @@ public class HallMovieService implements IHallMovieService {
         int movieid = Integer.parseInt(movieId);
         List<HallMovieDTO> list = hallMovieDao.queryPlayingHallMovie(cityid, theaterid, movieid);
         return list;
+    }
+
+    @Override
+    public HallMovieDTO queryById(Integer id) throws Exception {
+        return hallMovieDao.queryById(id);
+    }
+
+    @Override
+    public Boolean insert(HallMovieDTO hallMovieDTO) throws Exception {
+        return hallMovieDao.insert(hallMovieDTO);
+    }
+
+    @Override
+    public Boolean delete(Integer id) throws Exception {
+        return hallMovieDao.delete(id);
+    }
+
+    @Override
+    public Boolean update(HallMovieDTO hallMovieDTO) throws Exception {
+        return hallMovieDao.update(hallMovieDTO);
+    }
+
+    @Override
+    public PageInfo<HallMovieDTO> queryByAny(String anyInfo, Integer page) throws Exception {
+        int start= SysConfig.BeforeConfig.PAGE_START;
+        if(null==page || page<start){
+            page=start;
+        }
+//        开始分页，初始位置，每页大小
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<HallMovieDTO> list= hallMovieDao.queryByAny(anyInfo);
+        for (HallMovieDTO hm :
+                list) {
+            HallDTO hallDTO = hallDAO.queryHallById(hm.getFkHallId());
+            hm.setHallName(hallDTO.getHallName());
+            logger.debug(hallDTO.getHallName());
+            MovieDTO movieDTO = movieService.queryMovieById(hm.getFkMovieId());
+            hm.setMovieName(movieDTO.getMovieName());
+        }
+        PageInfo<HallMovieDTO> pageInfo = new PageInfo<HallMovieDTO>(list);
+        return pageInfo;
+    }
+
+    @Override
+    public Boolean deleteBatch(int[] haMoId) throws Exception {
+        return hallMovieDao.deleteBatchAreas(haMoId);
     }
 }
