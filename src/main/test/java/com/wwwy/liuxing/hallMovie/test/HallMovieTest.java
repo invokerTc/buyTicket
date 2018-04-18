@@ -2,6 +2,7 @@ package com.wwwy.liuxing.hallMovie.test;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.service.IHallMovieService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,8 @@ public class HallMovieTest {
     private static final Logger logger = Logger.getLogger(HallMovieTest.class);
     @Autowired
     private IHallMovieDao hallMovieDao;
+    @Autowired
+    private IHallMovieService hallMovieService;
 
     /**
      * 测试 
@@ -143,5 +146,16 @@ public class HallMovieTest {
         Date date = new Date(time);
         Date date1 = new Date(time2);
 
+    }
+    @Test
+    public void testQueryPlayingHallMovie2(){
+        try {
+            List<HallMovieDTO> list = hallMovieService.queryPlayingHallMovie("1", "1", "1");
+            for(HallMovieDTO hallMovieDTO:list){
+                logger.info(hallMovieDTO.getHallName()+"\t"+hallMovieDTO.getMoviePrice());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

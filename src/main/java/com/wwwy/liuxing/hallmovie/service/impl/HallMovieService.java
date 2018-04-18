@@ -71,6 +71,10 @@ public class HallMovieService implements IHallMovieService {
         int theaterid = Integer.parseInt(theaterId);
         int movieid = Integer.parseInt(movieId);
         List<HallMovieDTO> list = hallMovieDao.queryPlayingHallMovie(cityid, theaterid, movieid);
+        for(HallMovieDTO hallMovieDTO:list){
+            HallDTO hallDTO = hallDAO.queryHallById(hallMovieDTO.getFkHallId());
+            hallMovieDTO.setHallName(hallDTO.getHallName());
+        }
         return list;
     }
 
