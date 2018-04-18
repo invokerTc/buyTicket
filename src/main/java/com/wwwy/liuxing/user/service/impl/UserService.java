@@ -56,9 +56,9 @@ public class UserService implements IUserService{
         if (page==null||page<pageStart){
             page=pageStart;
         }
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<UserDTO> userInfo = userDao.getUserInfo();
         logger.info("................."+userInfo);
-        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         PageInfo<UserDTO> userDTOPageInfo = new PageInfo<UserDTO>(userInfo);
         return userDTOPageInfo;
     }
@@ -94,10 +94,10 @@ public class UserService implements IUserService{
         if (page==null||page<start){
             page=start;
         }
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         List<UserDTO> userDTOList = userDao.criteriaQueryUser(anyInfo);
         logger.info(anyInfo);
         logger.info(userDTOList);
-        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
         PageInfo<UserDTO> userDTOPageInfo = new PageInfo<>(userDTOList);
         logger.info(userDTOPageInfo);
         return userDTOPageInfo;

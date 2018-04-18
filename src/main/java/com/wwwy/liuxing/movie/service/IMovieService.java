@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.movie.service;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 
 import java.util.List;
@@ -37,4 +38,36 @@ public interface IMovieService {
      * @throws Exception
      */
     MovieDTO getMovieByCityIdAndMovieId(String cityId,String movieId) throws Exception;
+
+    /*
+    * 后台增加电影信息
+    * */
+    boolean insertMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 后台查询电影所有信息
+    * */
+    PageInfo<MovieDTO> getAllMovieInfo(Integer page)throws Exception;
+
+    /*
+    * 后台更改电影信息
+    * */
+    boolean updateMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 后台通过ID获取电影信息
+    * */
+    MovieDTO getMovieInfoById(Integer movieId)throws Exception;
+
+
+    /*
+    * 通过ID删除电影信息
+    * */
+    boolean deleteMovieInfoById(Integer movieId)throws Exception;
+
+    /*
+    * 条件查询电影信息
+    * */
+    PageInfo<MovieDTO> criteriaQueryMovie(Integer page,String anyInfo)throws Exception;
+
 }

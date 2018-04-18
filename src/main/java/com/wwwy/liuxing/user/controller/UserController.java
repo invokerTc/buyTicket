@@ -79,20 +79,16 @@ public class UserController {
     * 所有用户的信息
     * */
     @RequestMapping("/list")
-    public String userInfo(HttpServletRequest request, ModelMap modelMap) {
-        String page = request.getParameter("page");
-        int parseInt = Integer.parseInt(page);
-        PageInfo<UserDTO> pageInfo =null;
-        List<UserDTO> userInfoList =null;
+    public String userInfo(Integer page, ModelMap modelMap) {
         try {
-           pageInfo = userService.getUserInfo(parseInt);
-            userInfoList = pageInfo.getList();
+            PageInfo<UserDTO> pageInfo  = userService.getUserInfo(page);
+            List<UserDTO> userInfoList = pageInfo.getList();
+            modelMap.addAttribute("pageInfo",pageInfo);
+            modelMap.addAttribute("userInfoList",userInfoList);
             logger.info(userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        modelMap.addAttribute("pageInfo",pageInfo);
-        modelMap.addAttribute("userInfoList",userInfoList);
         return "hou_userlist";
     }
 
@@ -102,20 +98,23 @@ public class UserController {
     * */
     @RequestMapping("/update")
     public String updateUserInfo(UserDTO userDTO,ModelMap modelMap,HttpServletRequest request){
+        PageInfo<UserDTO> PageInfo =null;
+        List<UserDTO> userInfoList1=null;
         try {
             boolean b = userService.updateUserInfo(userDTO);
             logger.info(b);
             if (b){
                 String page = request.getParameter("page");
-                Integer i = Integer.parseInt(page);
-                PageInfo<UserDTO> userInfoList = userService.getUserInfo(i);
-                modelMap.addAttribute("userInfoList",userInfoList);
-                return "hou_userlist";
+                int parseInt = Integer.parseInt(page);
+                PageInfo = userService.getUserInfo(parseInt);
+               userInfoList1 = PageInfo.getList();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        modelMap.addAttribute("pageInfo",PageInfo);
+        modelMap.addAttribute("userInfoList",userInfoList1);
+        return "hou_userlist";
     }
 
     /*
@@ -124,9 +123,9 @@ public class UserController {
     @RequestMapping("/preupdate")
     public String getUserInfoById(Integer userId,ModelMap model){
         try {
-            UserDTO userInfolist = userService.getUserInfoById(userId);
-            logger.info(userInfolist);
-            model.addAttribute("userInfolist",userInfolist);
+            UserDTO userInfoList = userService.getUserInfoById(userId);
+            logger.info(userInfoList);
+            model.addAttribute("userInfoList",userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,14 +139,14 @@ public class UserController {
     public String criteriaQueryUser(String anyInfo,Integer page,Model modelMap){
         try {
             PageInfo<UserDTO> pageInfo = userService.criteriaQueryUser(anyInfo, page);
-            List<UserDTO> userInfolist = pageInfo.getList();
+            List<UserDTO> userInfoList = pageInfo.getList();
             modelMap.addAttribute("pageInfo",pageInfo);
             logger.info(pageInfo);
-            modelMap.addAttribute("userInfolist",userInfolist);
-            logger.info("================"+userInfolist);
+            modelMap.addAttribute("userInfoList",userInfoList);
+            logger.info("================"+userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
-            modelMap.addAttribute("userInfolist",null);
+            modelMap.addAttribute("userInfoList",null);
         }
         return "hou_userlist";
     }
