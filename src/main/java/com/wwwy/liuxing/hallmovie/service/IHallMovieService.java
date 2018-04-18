@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  * @author W1665
@@ -21,6 +23,16 @@ public interface IHallMovieService {
      * @throws Exception
      */
     PageInfo<HallMovieDTO> queryAll(Integer page)throws Exception;
+
+    /**
+     * 查询某个影厅放映某个电影的场次
+     * @param cityId
+     * @param theaterId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    List<HallMovieDTO> queryPlayingHallMovie(String cityId, String theaterId, String movieId) throws Exception;
 
     /**
      * 根据id查询对象

@@ -27,6 +27,16 @@ public interface IHallMovieDao {
     List<HallMovieDTO> queryAll()throws Exception;
 
     /**
+     * 查询某个影厅放映某个电影的场次
+     * @param cityId
+     * @param theaterId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    List<HallMovieDTO> queryPlayingHallMovie(Integer cityId,Integer theaterId,Integer movieId)throws Exception;
+
+    /**
      * 根据id查询对象
      * @param id
      * @return

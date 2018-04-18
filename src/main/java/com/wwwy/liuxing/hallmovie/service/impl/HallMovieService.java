@@ -27,7 +27,7 @@ import java.util.List;
 public class HallMovieService implements IHallMovieService {
 
     private static final Logger logger = Logger.getLogger(HallMovieService.class);
-    
+
     @Autowired
     private IHallMovieDao hallMovieDao;
 
@@ -55,6 +55,23 @@ public class HallMovieService implements IHallMovieService {
         }
         PageInfo<HallMovieDTO> pageInfo = new PageInfo<HallMovieDTO>(list);
         return pageInfo;
+    }
+
+    /**
+     * 查询某个影厅放映某个电影的场次
+     * @param cityId
+     * @param theaterId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<HallMovieDTO> queryPlayingHallMovie(String cityId, String theaterId, String movieId) throws Exception {
+        int cityid = Integer.parseInt(cityId);
+        int theaterid = Integer.parseInt(theaterId);
+        int movieid = Integer.parseInt(movieId);
+        List<HallMovieDTO> list = hallMovieDao.queryPlayingHallMovie(cityid, theaterid, movieid);
+        return list;
     }
 
     @Override

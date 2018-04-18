@@ -168,24 +168,24 @@
       <div class="show-list active" data-index="0">
             <div class="movie-info">
                   <div>
-                    <h3 class="movie-name">狂暴巨兽</h3>
+                    <h3 class="movie-name">${movieDTO.movieName}</h3>
 
-                        <span class="score sc">9.0</span>
+                        <span class="score sc">${movieDTO.movieScore}</span>
 
                   </div>
 
                     <div class="movie-desc">
                       <div>
                         <span class="key">时长 :</span>
-                        <span class="value">108分钟</span>
+                        <span class="value">${movieDTO.movieTime}</span>
                       </div>
                       <div>
                         <span class="key">类型 :</span>
-                        <span class="value"> 动作 </span>
+                        <span class="value">${movieDTO.movieType}</span>
                       </div>
                       <div>
                         <span class="key">主演 :</span>
-                        <span class="value"> 道恩·强森,娜奥米·哈里斯</span>
+                        <span class="value"> ${movieDTO.movieStar}</span>
                       </div>
                     </div>
             </div>
@@ -220,86 +220,65 @@
                 </thead>
 
             <tbody>
-              <tr class="">
-                      <td>
-                        <span class="begin-time">14:35</span>
-                        <br />
-                        <span class="end-time">16:23散场</span>
-                      </td>
-                      <td>
-                        <span class="lang">英语3D</span>
-                      </td>
-                      <td>
-                        <span class="hall">派拉蒙厅</span>
-                      </td>
-                      <td>
-                        <span class="sell-price"><span class="stonefont">&#xe14f;&#xe14f;</span></span>
-                      </td>
-                      <td>
-                        <a href="/xseats/201804180123417?movieId=341624&cinemaId=13580"
-                          class="buy-btn normal"
-                          data-tip=""
-                          data-act="show-click"
-                          data-bid="b_gvh3l8gg"
-                          data-val="{movie_id: 341624, cinema_id:13580}"
-                        >选座购票</a>
-                      </td>
-              </tr>
 
+                <#list hallMovieList as hallMovie>
 
-              <tr class="even">
-                <td>
-                  <span class="begin-time">18:30</span>
-                  <br />
-                  <span class="end-time">20:18散场</span>
-                </td>
-                <td>
-                  <span class="lang">英语3D</span>
-                </td>
-                <td>
-                  <span class="hall">派拉蒙厅</span>
-                </td>
-                <td>
-                  <span class="sell-price"><span class="stonefont">&#xe14f;&#xe14f;</span></span>
-                </td>
-                <td>
-                  <a href="/xseats/201804180123416?movieId=341624&cinemaId=13580"
-                    class="buy-btn normal"
-                    data-tip=""
-                    data-act="show-click"
-                    data-bid="b_gvh3l8gg"
-                    data-val="{movie_id: 341624, cinema_id:13580}"
-                  >选座购票</a>
-                </td>
-              </tr>
+                    <tr class="">
+                        <td>
+                            <span class="begin-time">${hallMovie.movieRuntime}</span>
+                            <br />
+                            <span class="end-time">16:23散场</span>
+                        </td>
+                        <td>
+                            <span class="lang">${hallMovie.movieVersion}</span>
+                        </td>
+                        <td>
+                            <span class="hall">派拉蒙厅</span>
+                        </td>
+                        <td>
+                            <span class="sell-price"><span class="stonefont">&#xe14f;&#xe14f;</span></span>
+                        </td>
+                        <td>
+                            <a href="/xseats/201804180123417?movieId=341624&cinemaId=13580"
+                               class="buy-btn normal"
+                               data-tip=""
+                               data-act="show-click"
+                               data-bid="b_gvh3l8gg"
+                               data-val="{movie_id: 341624, cinema_id:13580}"
+                            >选座购票</a>
+                        </td>
+                    </tr>
+
+                </#list>
 
 
 
-              <tr class="">
-                <td>
-                  <span class="begin-time">20:25</span>
-                  <br />
-                  <span class="end-time">22:13散场</span>
-                </td>
-                <td>
-                  <span class="lang">英语3D</span>
-                </td>
-                <td>
-                  <span class="hall">派拉蒙厅</span>
-                </td>
-                <td>
-                  <span class="sell-price"><span class="stonefont">&#xe14f;&#xe14f;</span></span>
-                </td>
-                <td>
-                  <a href="/xseats/201804180123415?movieId=341624&cinemaId=13580"
-                    class="buy-btn normal"
-                    data-tip=""
-                    data-act="show-click"
-                    data-bid="b_gvh3l8gg"
-                    data-val="{movie_id: 341624, cinema_id:13580}"
-                  >选座购票</a>
-                </td>
-              </tr>
+                          <!--<tr class="even">-->
+                            <!--<td>-->
+                              <!--<span class="begin-time">18:30</span>-->
+                              <!--<br />-->
+                              <!--<span class="end-time">20:18散场</span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                              <!--<span class="lang">英语3D</span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                              <!--<span class="hall">派拉蒙厅</span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                              <!--<span class="sell-price"><span class="stonefont">&#xe14f;&#xe14f;</span></span>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                              <!--<a href="/xseats/201804180123416?movieId=341624&cinemaId=13580"-->
+                                <!--class="buy-btn normal"-->
+                                <!--data-tip=""-->
+                                <!--data-act="show-click"-->
+                                <!--data-bid="b_gvh3l8gg"-->
+                                <!--data-val="{movie_id: 341624, cinema_id:13580}"-->
+                              <!--&gt;选座购票</a>-->
+                            <!--</td>-->
+                          <!--</tr>-->
+
             </tbody>
           </table>
 

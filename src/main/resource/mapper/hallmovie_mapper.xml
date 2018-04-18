@@ -38,6 +38,25 @@
         SELECT ha_mo_id,fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version FROM tb_hall_movie
     </select>
 
+    <select id="queryPlayingHallMovie" resultMap="HallMovieResultMap">
+        select hm.fk_hall_id,hm.movie_price,hm.movie_runtime,hm.movie_version from tb_city c
+        join tb_area area
+        join tb_area_theater area_th
+        join tb_theater th
+        join tb_hall h
+        join tb_hall_movie hm
+        join tb_movie m
+        on c.city_id = area.fk_city_id
+        and area.area_id = area_th.fk_area_id
+        and area_th.fk_theater_id = th.theater_id
+        and th.theater_id = h.fk_theater_id
+        and h.hall_id = hm.fk_hall_id
+        and hm.fk_movie_id = m.movie_id
+        where c.city_id=#{cityId}
+        and th.theater_id=#{theaterId}
+        and m.movie_id=#{movieId} ;
+    </select>
+
     <select id="queryById" resultMap="HallMovieResultMap">
         SELECT ha_mo_id,fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version FROM tb_hall_movie WHERE ha_mo_id=#{haMoId}
     </select>
