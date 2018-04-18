@@ -1,4 +1,4 @@
-package com.wwwy.liuxing.hallmovie.dto.dao;
+package com.wwwy.liuxing.hallmovie.dao.impl;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 

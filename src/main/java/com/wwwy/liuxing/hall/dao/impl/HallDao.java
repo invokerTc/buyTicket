@@ -2,12 +2,14 @@ package com.wwwy.liuxing.hall.dao.impl;
 
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.dao.IHallDao;
+import com.wwwy.liuxing.system.SysConfig;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by wanghao on 2018/4/12.
@@ -35,4 +37,24 @@ public class HallDao extends SqlSessionDaoSupport implements IHallDao {
         HallDTO hall = getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryHallInfoByHallId", map);
         return hall;
     }
+
+    @Override
+    public List<HallDTO> queryAllHall() throws Exception {
+        List<HallDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hall.dto.HallMapper.queryAll");
+        return list;
+    }
+
+    @Override
+    public Boolean insertHall(HallDTO hallDTO) throws Exception {
+        int insert = getSqlSession().insert("com.wwwy.liuxing.hall.dto.HallMapper.insertHall", hallDTO);
+        return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+    @Override
+    public Boolean deleteHall(Integer hallId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.hall.dto.HallMapper.deleteHall", hallId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
+
 }

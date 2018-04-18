@@ -1,8 +1,7 @@
 package com.wwwy.liuxing.theater.test;
 
-import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.dao.impl.IHallMovieDao;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
@@ -94,10 +93,37 @@ public class TheaterTest {
         }
     }
 
+    /**
+     * 获取最低价格的影院
+     */
+    @Test
+    public void testQueryLowestPriceTheater(){
+        try {
+            List<TheaterDTO> theaterList = theaterService.queryLowestPriceTheater("1", "1");
+            for (TheaterDTO theater:theaterList) {
+                logger.info(theater.getTheaterId()+"\t"+theater.getTheaterName()+"\t"+theater.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testQueryLowestPrice(){
+        try {
+            List<HallMovieDTO> hallMovieList = theaterService.queryLowestPrice("1", "1");
+            for (HallMovieDTO hallmovie:hallMovieList) {
+                logger.info(hallmovie.getMoviePrice());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Test
     public void testQueryAllTheaterByAreaId(){
         try {
-            List<TheaterDTO> list = theaterDAO.queryAllTheater(2);
+            List<TheaterDTO> list = theaterDAO.queryAllTheater("江岸区");
             for (TheaterDTO theater :
                     list) {
                 logger.debug(theater.toString());
@@ -106,6 +132,80 @@ public class TheaterTest {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    public void testInsertTheater(){
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterName("lala");
+        theaterDTO.setTheaterAddress("lala");
+        theaterDTO.setTheaterPhone("0123");
+        theaterDTO.setTheaterLatitude("123");
+        theaterDTO.setTheaterLongitude("223");
+        Boolean aBoolean = null;
+        try {
+            aBoolean = theaterDAO.insertTheater(theaterDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        logger.debug(aBoolean);
+    }
+
+    @Test
+    public void testDeleteTheater(){
+        try {
+            Boolean aBoolean = theaterDAO.deleteTheater(47);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testUpdate(){
+        TheaterDTO theaterDTO = new TheaterDTO();
+        theaterDTO.setTheaterId(42);
+        theaterDTO.setTheaterName("武汉魔影国际");
+        try {
+            Boolean aBoolean = theaterDAO.updateTheater(theaterDTO);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByAnyInfo(){
+        try {
+            List<TheaterDTO> list = theaterDAO.queryTheaterByAny("影院");
+            for (TheaterDTO theater :
+                    list) {
+                logger.debug(theater.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDeleteBatch(){
+        int theaters[]={46};
+        try {
+            Boolean aBoolean = theaterDAO.deleteBatchTheater(theaters);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByName(){
+        try {
+            TheaterDTO theaterDTO = theaterDAO.queryTheaterByName("武汉恒大影城");
+            logger.debug(theaterDTO.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

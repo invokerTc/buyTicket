@@ -8,6 +8,11 @@
         <result property="areaName" column="area_name" javaType="java.lang.String"/>
         <result property="fkCityId" column="fk_city_id" javaType="java.lang.Integer"/>
 
+        <association property="cityDTO" javaType="com.wwwy.liuxing.city.dto.CityDTO">
+            <id property="cityId" column="city_id" javaType="java.lang.Integer"/>
+            <result property="cityName" column="city_name" javaType="java.lang.String"/>
+        </association>
+
         <collection property="theaterDTOList" ofType="com.wwwy.liuxing.theater.dto.TheaterDTO">
             <id property="theaterId" column="theater_id" javaType="java.lang.Integer"/>
             <result property="theaterName" column="theater_name" javaType="java.lang.String"/>
@@ -17,11 +22,16 @@
             <result property="theaterLatitude" column="theater_latitude" javaType="java.lang.String"/>
         </collection>
 
+
+
     </resultMap>
 
     <select id="queryAllArea" resultMap="AreaResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE fk_city_id=#{fkCityId}
+        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
+        WHERE a.fk_city_id=#{fkCityId}
     </select>
+
+
 
     <select id="queryAreaById" resultMap="AreaResultMap">
         SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
@@ -45,8 +55,8 @@
     </update>
 
     <select id="queryAny" resultMap="AreaResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE
-        area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
+        WHERE area_id LIKE concat(concat('%',#{anyInfo}),'%')
         OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
