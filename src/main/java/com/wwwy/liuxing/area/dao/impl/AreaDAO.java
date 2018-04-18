@@ -28,6 +28,12 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     }
 
 
+    /**
+     * 根据城市查询所有地区
+     * @param cityId
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<AreaDTO> queryAll(Integer cityId) throws Exception {
         List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAllArea",cityId);

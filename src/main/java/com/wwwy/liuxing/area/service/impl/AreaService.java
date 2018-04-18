@@ -115,4 +115,10 @@ public class AreaService implements IAreaService {
     public Boolean deleteBatchAreas(int[] areaId) throws Exception {
         return areaDAO.deleteBatchAreas(areaId);
     }
+
+    @Override
+    public List<AreaDTO> queryAllArea(Integer cityId) throws Exception {
+        List<AreaDTO> areaList = areaDAO.queryAllArea(cityId);
+        return areaList;
+    }
 }

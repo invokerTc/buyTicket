@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +65,43 @@ public class TheaterService implements ITheaterService {
         }
         return map;
     }
+
+    /**
+     * 根据城市和电影获取放映该电影的电影院名、影院地址、最低价格(必须每次实时从数据库刷新数据，不能放缓存也不能取缓存)
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<TheaterDTO> queryLowestPriceTheater(String cityId, String movieId) throws Exception {
+        int cityid = Integer.parseInt(cityId);
+        int movieid = Integer.parseInt(movieId);
+        List<TheaterDTO> theaterList = theaterDAO.queryLowestPriceTheaterList(cityid, movieid);
+        for (TheaterDTO theater:theaterList) {
+            HallMovieDTO hallMovieDTO = hallMovieDao.getLowestMoviePrice(Integer.parseInt(cityId), theater.getTheaterId(), Integer.parseInt(movieId));
+            theater.setLowestPrice(hallMovieDTO.getMoviePrice());
+        }
+        return theaterList;
+    }
+
+    /**
+     * 根据城市和电影获取放映该电影的最低价格
+     * @param cityId
+     * @param movieId
+     * @return
+     * @throws Exception
+     */
+    public List<HallMovieDTO> queryLowestPrice(String cityId,String movieId) throws Exception{
+        ArrayList<HallMovieDTO> hallMovieList = new ArrayList<>(10);
+        List<TheaterDTO> theaterList = queryLowestPriceTheater(cityId, movieId);
+        for (TheaterDTO theater:theaterList) {
+            HallMovieDTO hallMovieDTO = hallMovieDao.getLowestMoviePrice(Integer.parseInt(cityId), theater.getTheaterId(), Integer.parseInt(movieId));
+            hallMovieList.add(hallMovieDTO);
+        }
+        return hallMovieList;
+    }
+
 
     @Override
     public PageInfo<TheaterDTO> queryAllTheater(String areaName, Integer page) throws Exception {

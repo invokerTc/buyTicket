@@ -93,6 +93,32 @@ public class TheaterTest {
         }
     }
 
+    /**
+     * 获取最低价格的影院
+     */
+    @Test
+    public void testQueryLowestPriceTheater(){
+        try {
+            List<TheaterDTO> theaterList = theaterService.queryLowestPriceTheater("1", "1");
+            for (TheaterDTO theater:theaterList) {
+                logger.info(theater.getTheaterId()+"\t"+theater.getTheaterName()+"\t"+theater.getTheaterAddress());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testQueryLowestPrice(){
+        try {
+            List<HallMovieDTO> hallMovieList = theaterService.queryLowestPrice("1", "1");
+            for (HallMovieDTO hallmovie:hallMovieList) {
+                logger.info(hallmovie.getMoviePrice());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Test
     public void testQueryAllTheaterByAreaId(){
