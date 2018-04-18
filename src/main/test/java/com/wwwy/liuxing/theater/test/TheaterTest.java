@@ -1,8 +1,7 @@
 package com.wwwy.liuxing.theater.test;
 
-import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
@@ -194,6 +193,16 @@ public class TheaterTest {
         try {
             Boolean aBoolean = theaterDAO.deleteBatchTheater(theaters);
             logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByName(){
+        try {
+            TheaterDTO theaterDTO = theaterDAO.queryTheaterByName("武汉恒大影城");
+            logger.debug(theaterDTO.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

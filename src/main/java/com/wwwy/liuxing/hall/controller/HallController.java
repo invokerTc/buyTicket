@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by wanghao on 2018/4/12.
@@ -46,4 +50,44 @@ public class HallController {
         }
         return "qian_pick_movie";
     }
+
+    @RequestMapping("/all")
+    public String queryAllHall(HttpServletRequest request,ModelMap modelMap){
+        String page = request.getParameter("page");
+        try {
+            PageInfo<HallDTO> pageInfo = hallService.queryAllHall(Integer.parseInt(page));
+            List<HallDTO> list = pageInfo.getList();
+            modelMap.addAttribute("page",pageInfo);
+            modelMap.addAttribute("hallList",list);
+            return "hou_hall_list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error404";
+        }
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public String insertHall(HttpServletRequest request){
+        String hallName = request.getParameter("hallName");
+        String theaterName = request.getParameter("theaterName");
+        String hallCoordinateX = request.getParameter("hallCoordinateX");
+        String hallCoordinateY = request.getParameter("hallCoordinateY");
+        try {
+            TheaterDTO theaterDTO = theaterService.queryTheaterByName(theaterName);
+            HallDTO hallDTO = new HallDTO();
+            hallDTO.setHallName(hallName);
+            hallDTO.setFkTheaterId(theaterDTO.getTheaterId());
+            hallDTO.setHallCoordinateX(Integer.parseInt(hallCoordinateX));
+            hallDTO.setHallCoordinateY(Integer.parseInt(hallCoordinateY));
+            Boolean aBoolean = hallService.insertHall(hallDTO);
+            if (aBoolean){
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+
 }

@@ -78,4 +78,14 @@ public interface ITheaterDAO {
      * @throws Exception
      */
     Boolean deleteBatchTheater(int[] theaterId)throws Exception;
+
+    /**
+     * 根据名字查询影院
+     * @param theaterName
+     * @return
+     * @throws Exception
+     */
+    TheaterDTO queryTheaterByName(String theaterName)throws Exception;
+
+
 }

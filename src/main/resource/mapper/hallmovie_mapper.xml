@@ -32,4 +32,9 @@
         and th.theater_id=#{theaterId}
         order by hm.movie_price asc limit 1;
     </select>
+
+
+    <select id="queryAll" resultMap="HallMovieResultMap">
+        SELECT ha_mo_id,fk_hall_id,fk_movie_id,movie_runtime,movie_price,movie_version FROM tb_hall_movie
+    </select>
 </mapper>

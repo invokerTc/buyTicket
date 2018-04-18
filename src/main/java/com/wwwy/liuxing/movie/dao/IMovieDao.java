@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.movie.dao;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 import org.springframework.stereotype.Repository;
 
@@ -39,4 +40,34 @@ public interface IMovieDao {
      * @throws Exception
      */
     MovieDTO getMovieByCityIdAndMovieId(Integer cityId,Integer movieId) throws Exception;
+
+     /*
+     * 查询所有电影信息
+     * */
+    List<MovieDTO> getMovieInfo()throws Exception;
+
+    /*
+    * 增加电影信息
+    * */
+    Integer insertMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 修改电影信息
+    * */
+    Integer upadetaMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 通过电影ID获取电影信息
+    * */
+    MovieDTO getMovieInfoById(Integer moiveId)throws Exception;
+
+    /*
+    * 通过ID删除电影信息
+    * */
+    Integer deleteMovieInfoById(Integer moiveId)throws Exception;
+
+    /*
+    *条件查询电影信息
+    * */
+    List<MovieDTO> criteriaQueryMovie(String anyInfo)throws Exception;
 }

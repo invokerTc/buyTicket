@@ -1,13 +1,14 @@
-package com.wwwy.liuxing.hallmovie.dto.dao.impl;
+package com.wwwy.liuxing.hallmovie.dao.impl;
 
+import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by wanghao on 2018/4/14.
@@ -36,6 +37,12 @@ public class HallMovieDao extends SqlSessionDaoSupport implements IHallMovieDao 
         map.put("movieId",movieId);
         HallMovieDTO hallMovieDTO = getSqlSession().selectOne("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryLowestMoviePriceList", map);
         return hallMovieDTO;
+    }
+
+    @Override
+    public List<HallMovieDTO> queryAll() throws Exception {
+        List<HallMovieDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryAll");
+        return list;
     }
 
 }

@@ -1,6 +1,8 @@
-package com.wwwy.liuxing.hallmovie.dto.dao;
+package com.wwwy.liuxing.hallmovie.dao;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
+
+import java.util.List;
 
 /**
  * Created by wanghao on 2018/4/14.
@@ -16,4 +18,11 @@ public interface IHallMovieDao {
      * @throws Exception
      */
     HallMovieDTO getLowestMoviePrice(Integer cityId,Integer theaterId,Integer movieId)throws Exception;
+
+    /**
+     * 查询所有的影厅影片关联信息
+     * @return
+     * @throws Exception
+     */
+    List<HallMovieDTO> queryAll()throws Exception;
 }

@@ -2,9 +2,8 @@ package com.wwwy.liuxing.theater.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.wwwy.liuxing.area.dto.AreaDTO;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
@@ -155,5 +154,10 @@ public class TheaterService implements ITheaterService {
     @Override
     public Boolean deleteBatchTheater(int[] theaterId) throws Exception {
         return theaterDAO.deleteBatchTheater(theaterId);
+    }
+
+    @Override
+    public TheaterDTO queryTheaterByName(String theaterName) throws Exception {
+        return theaterDAO.queryTheaterByName(theaterName);
     }
 }

@@ -41,16 +41,11 @@ public class HallMovieDTO implements Serializable {
      */
     private String movieVersion;
 
-    public HallMovieDTO() {
-    }
+    private String movieName;
 
-    public HallMovieDTO(Integer haMoId, Integer fkHallId, Integer fkMovieId, String movieRuntime, Integer moviePrice, String movieVersion) {
-        this.haMoId = haMoId;
-        this.fkHallId = fkHallId;
-        this.fkMovieId = fkMovieId;
-        this.movieRuntime = movieRuntime;
-        this.moviePrice = moviePrice;
-        this.movieVersion = movieVersion;
+    private String hallName;
+
+    public HallMovieDTO() {
     }
 
     @Override
@@ -62,6 +57,8 @@ public class HallMovieDTO implements Serializable {
                 ", movieRuntime='" + movieRuntime + '\'' +
                 ", moviePrice=" + moviePrice +
                 ", movieVersion='" + movieVersion + '\'' +
+                ", movieName='" + movieName + '\'' +
+                ", hallName='" + hallName + '\'' +
                 '}';
     }
 
@@ -88,7 +85,16 @@ public class HallMovieDTO implements Serializable {
         if (movieRuntime != null ? !movieRuntime.equals(that.movieRuntime) : that.movieRuntime != null) {
             return false;
         }
-        return moviePrice != null ? moviePrice.equals(that.moviePrice) : that.moviePrice == null && (movieVersion != null ? movieVersion.equals(that.movieVersion) : that.movieVersion == null);
+        if (moviePrice != null ? !moviePrice.equals(that.moviePrice) : that.moviePrice != null) {
+            return false;
+        }
+        if (movieVersion != null ? !movieVersion.equals(that.movieVersion) : that.movieVersion != null) {
+            return false;
+        }
+        if (movieName != null ? !movieName.equals(that.movieName) : that.movieName != null) {
+            return false;
+        }
+        return hallName != null ? hallName.equals(that.hallName) : that.hallName == null;
 
     }
 
@@ -100,7 +106,36 @@ public class HallMovieDTO implements Serializable {
         result = 31 * result + (movieRuntime != null ? movieRuntime.hashCode() : 0);
         result = 31 * result + (moviePrice != null ? moviePrice.hashCode() : 0);
         result = 31 * result + (movieVersion != null ? movieVersion.hashCode() : 0);
+        result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
+        result = 31 * result + (hallName != null ? hallName.hashCode() : 0);
         return result;
+    }
+
+    public HallMovieDTO(Integer haMoId, Integer fkHallId, Integer fkMovieId, String movieRuntime, Integer moviePrice, String movieVersion, String movieName, String hallName) {
+        this.haMoId = haMoId;
+        this.fkHallId = fkHallId;
+        this.fkMovieId = fkMovieId;
+        this.movieRuntime = movieRuntime;
+        this.moviePrice = moviePrice;
+        this.movieVersion = movieVersion;
+        this.movieName = movieName;
+        this.hallName = hallName;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getHallName() {
+        return hallName;
+    }
+
+    public void setHallName(String hallName) {
+        this.hallName = hallName;
     }
 
     public Integer getHaMoId() {

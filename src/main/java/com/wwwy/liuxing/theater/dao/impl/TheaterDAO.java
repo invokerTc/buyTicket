@@ -90,5 +90,13 @@ public class TheaterDAO extends SqlSessionDaoSupport implements ITheaterDAO {
         int delete = getSqlSession().delete("com.wwwy.liuxing.theater.dto.TheaterMapper.batchDeleteAreas", theaterId);
         return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
+
+    @Override
+    public TheaterDTO queryTheaterByName(String theaterName) throws Exception {
+        TheaterDTO o = getSqlSession().selectOne("com.wwwy.liuxing.theater.dto.TheaterMapper.queryTheaterByName", theaterName);
+        return o;
+    }
+
+
 }
 

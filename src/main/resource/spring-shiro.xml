@@ -9,6 +9,22 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /movie/preupdate=anon
+                /movie/delete=anon
+                /pre_updete_movieinfo.html=anon
+                /movie/update=anon
+                /hou_movieadd.html=anon
+                /movie/insert=anon
+                /img/**=anon
+                /movie/list=anon
+                /hou_movieadd.html=anon
+                /hou_movielist.html=anon
+                /user/anyInfo=anon
+                /user/update=anon
+                /pre_updete_userinfo.html=anon
+                /user/preupdate=anon
+                /hou_userlist.html=anon
+                /user/list=anon
                 /admin/login=anon
                 /qian_login.htm=anon
                 /user/login=anon
@@ -43,6 +59,9 @@
                 /areaTheater/**=anon
                 /hou_areaTheater_list.html=anon
                 /hou_area_theater_add.html=anon
+                /hou_hall_list.html=anon
+                /hall/**=anon
+                /hou_hall_add.html=anon
                 <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
                 /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
             </value>
