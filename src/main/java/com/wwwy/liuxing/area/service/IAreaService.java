@@ -1,9 +1,8 @@
 package com.wwwy.liuxing.area.service;
 
+
 import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.area.dto.AreaDTO;
-
-import java.util.List;
 
 /**
  *地区的增删查改service接口

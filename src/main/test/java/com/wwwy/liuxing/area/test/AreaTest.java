@@ -15,6 +15,7 @@ import sun.reflect.generics.reflectiveObjects.LazyReflectiveObjectGenerator;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by W1665 on 2018/4/11.
@@ -35,32 +36,33 @@ public class AreaTest {
     public void testQueryAllAreaByDAO(){
         List<AreaDTO> list = null;
         try {
-            list = areaDAO.queryAllArea(1);
+            Map<String, List<AreaDTO>> map = areaDAO.queryAllArea(1);
+            for (List<AreaDTO> area :
+                    map.values()) {
+                for (AreaDTO ar :
+                        area) {
+                    logger.debug(ar.toString());
+                }
+                logger.debug(area.size());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.debug(list.size());
-        for (AreaDTO area :
-                list) {
-            logger.debug(area.getAreaName());
-        }
+
     }
 
    @Test
     public void testQueryAllAreaByService(){
        PageInfo<AreaDTO> list = null;
        try {
-           list = areaService.queryAllArea(1,1);
+           Map<String, PageInfo<AreaDTO>> map = areaService.queryAllArea(1, 1);
+           for (PageInfo area :
+                   map.values()) {
+               logger.debug(area.toString());
+           }
        } catch (Exception e) {
            e.printStackTrace();
        }
-       logger.debug("..............."+list.toString());
-       List<AreaDTO> list1 = list.getList();
-       for (AreaDTO area :
-               list1) {
-           logger.debug(area.getAreaName());
-       }
-
    }
 
     @Test

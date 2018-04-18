@@ -10,7 +10,6 @@ import com.wwwy.liuxing.user.utils.PassWordMd5;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,7 +17,6 @@ import java.util.List;
  * Created by Administrator on 2018/4/11.
  */
 @Service
-@Transactional
 public class UserService implements IUserService{
 
     private static final Logger logger = Logger.getLogger(UserService.class);

@@ -19,6 +19,11 @@
                 /user/login=anon
                 /index.jsp=anon
                 /hou_login.html=anon
+                /loginCode.html=anon
+                /qian_liuxing_cinema_hall_seat.bak.html=anon
+                /message/getCode=anon
+                /message/login=anon
+                /success.html=anon
                 /login.jsp=anon<!--不需要做任何过滤的-->
                 /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
                 /qian_one_movie_info.html=anon
