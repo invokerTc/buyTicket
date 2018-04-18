@@ -70,5 +70,17 @@ public class HallMovieDao extends SqlSessionDaoSupport implements IHallMovieDao 
         return update< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
+    @Override
+    public List<HallMovieDTO> queryByAny(String anyInfo) throws Exception {
+        List<HallMovieDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryAny", anyInfo);
+        return list;
+    }
+
+    @Override
+    public Boolean deleteBatchAreas(int[] haMoId) throws Exception {
+        int delete = getSqlSession().delete("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.batchDeleteHallMovie", haMoId);
+        return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
+    }
+
 
 }

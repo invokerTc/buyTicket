@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * Created by wanghao on 2018/4/14.
  * 测试HallMovie dao 层
@@ -32,5 +34,80 @@ public class HallMovieTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testQueryAll(){
+        try {
+            List<HallMovieDTO> list = hallMovieDao.queryAll();
+            for (HallMovieDTO hm:
+                 list) {
+                logger.debug(hm.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryById(){
+        try {
+            HallMovieDTO hallMovieDTO = hallMovieDao.queryById(1);
+            logger.debug(hallMovieDTO.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testInsert(){
+        HallMovieDTO hallMovieDTO = new HallMovieDTO();
+        hallMovieDTO.setFkHallId(1);
+        hallMovieDTO.setFkMovieId(2);
+        hallMovieDTO.setMovieRuntime("20:20");
+        hallMovieDTO.setMoviePrice(30);
+        hallMovieDTO.setMovieVersion("2D");
+        try {
+            Boolean insert = hallMovieDao.insert(hallMovieDTO);
+            logger.debug(insert);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDelete(){
+        try {
+            Boolean delete = hallMovieDao.delete(null);
+            logger.debug(delete);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testUpdate(){
+        HallMovieDTO hallMovieDTO = new HallMovieDTO();
+        hallMovieDTO.setHaMoId(20);
+        try {
+            Boolean update = hallMovieDao.update(hallMovieDTO);
+            logger.debug(update);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testQueryByAny(){
+        try {
+            List<HallMovieDTO> list = hallMovieDao.queryByAny("暴裂无声");
+            for (HallMovieDTO hm:
+                 list) {
+                logger.debug(hm.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

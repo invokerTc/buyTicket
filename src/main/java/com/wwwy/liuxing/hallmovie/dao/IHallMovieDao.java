@@ -56,4 +56,21 @@ public interface IHallMovieDao {
      * @throws Exception
      */
     Boolean update(HallMovieDTO hallMovieDTO)throws Exception;
+
+
+    /**
+     * 根据任意信息查询
+     * @param anyInfo
+     * @return
+     * @throws Exception
+     */
+    List<HallMovieDTO> queryByAny(String anyInfo)throws Exception;
+
+    /**
+     * 批量删除影厅信息
+     * @param haMoId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatchAreas(int[] haMoId)throws Exception;
 }

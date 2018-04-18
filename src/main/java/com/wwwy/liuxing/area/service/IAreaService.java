@@ -29,7 +29,7 @@ public interface IAreaService {
      * @return
      * @throws Exception
      */
-    Map<String,PageInfo<AreaDTO>>  queryAllArea(Integer cityId, Integer currentPage)throws Exception;
+    PageInfo<AreaDTO>  queryAllArea(Integer cityId, Integer currentPage)throws Exception;
 
     /**
      * 根据id查询某一个地区的信息
@@ -65,7 +65,7 @@ public interface IAreaService {
      * @return
      * @throws Exception
      */
-    Map<String,PageInfo<AreaDTO>> queryAreaByAny(String anyInfo,Integer page)throws Exception;
+    PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page)throws Exception;
 
     /**
      * 批量删除地区信息

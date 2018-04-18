@@ -56,8 +56,9 @@
 
     <select id="queryAny" resultMap="AreaResultMap">
         SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
-        WHERE area_id LIKE concat(concat('%',#{anyInfo}),'%')
-        OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
+        WHERE a.area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR a.area_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR ci.city_name LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
     <!--批量删除-->

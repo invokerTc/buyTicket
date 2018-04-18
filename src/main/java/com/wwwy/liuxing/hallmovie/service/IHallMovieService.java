@@ -52,4 +52,22 @@ public interface IHallMovieService {
      * @throws Exception
      */
     Boolean update(HallMovieDTO hallMovieDTO)throws Exception;
+
+
+    /**
+     * 根据任意信息查询
+     * @param anyInfo
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    PageInfo<HallMovieDTO> queryByAny(String anyInfo,Integer page)throws Exception;
+
+    /**
+     * 批量删除影厅信息
+     * @param haMoId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteBatch(int[] haMoId)throws Exception;
 }
