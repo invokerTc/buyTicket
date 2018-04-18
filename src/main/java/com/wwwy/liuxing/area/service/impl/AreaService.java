@@ -64,7 +64,6 @@ public class AreaService implements IAreaService {
         logger.debug("cityName====="+cityName);
         List<AreaDTO> areaDTOList = map.get(cityName);
 //        将需要分页的集合进行封装
-        logger.info(areaDTOList);
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
         HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>();
         hashMap.put(cityName,pageInfo);
@@ -116,5 +115,6 @@ public class AreaService implements IAreaService {
     public Boolean deleteBatchAreas(int[] areaId) throws Exception {
         return areaDAO.deleteBatchAreas(areaId);
     }
+
 
 }

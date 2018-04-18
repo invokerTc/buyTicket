@@ -1,6 +1,5 @@
 package com.wwwy.liuxing.hall.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.service.IHallService;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
@@ -25,9 +24,8 @@ public class HallController {
     private static final Logger logger = Logger.getLogger(HallController.class);
     @Autowired
     private IHallService hallService;
-
     @Autowired
-    private ITheaterService theaterService;
+    private  ITheaterService theaterService;
 
     @RequestMapping("/getHall")
     public String getHallInfo(String theaterId, String hallId, ModelMap modelMap){
@@ -40,6 +38,17 @@ public class HallController {
             e.printStackTrace();
         }
         return "qian_liuxing_cinema_hall_seat";
+    }
+    @RequestMapping("/getMovieHall")
+    public String getMovieHall(String cityId,String theaterId,String movieId,ModelMap modelMap){
+        logger.info("这是 /getMovieHall 方法");
+        try {
+            TheaterDTO theaterDTO = theaterService.queryTheaterById(Integer.parseInt(theaterId));
+            modelMap.put("theaterDTO",theaterDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "qian_pick_movie";
     }
 
     @RequestMapping("/all")

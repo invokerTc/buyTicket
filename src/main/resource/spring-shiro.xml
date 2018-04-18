@@ -38,6 +38,8 @@
                 /login.jsp=anon<!--不需要做任何过滤的-->
                 /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
                 /qian_one_movie_info.html=anon
+                /hall/getMovieHall=anon
+                /qian_pick_movie.html=anon
                 /qian_register.html=anon
                 /qian_films_list.html=anon
                 /movie/*=anon

@@ -75,5 +75,4 @@ public interface IAreaService {
      */
     Boolean deleteBatchAreas(int[] areaId)throws Exception;
 
-
 }
