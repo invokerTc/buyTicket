@@ -75,11 +75,5 @@ public interface IAreaService {
      */
     Boolean deleteBatchAreas(int[] areaId)throws Exception;
 
-    /**
-     * 根据城市查询所有地区
-     * @param cityId
-     * @return
-     * @throws Exception
-     */
-    List<AreaDTO> queryAllArea(Integer cityId) throws Exception;
+
 }

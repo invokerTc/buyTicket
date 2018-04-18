@@ -56,4 +56,9 @@ public class HallService implements IHallService {
     public Boolean insertHall(HallDTO hallDTO) throws Exception {
         return hallDao.insertHall(hallDTO);
     }
+
+    @Override
+    public Boolean deleteHall(Integer hallId) throws Exception {
+        return null;
+    }
 }
