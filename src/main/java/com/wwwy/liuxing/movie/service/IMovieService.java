@@ -39,6 +39,16 @@ public interface IMovieService {
      */
     MovieDTO getMovieByCityIdAndMovieId(String cityId,String movieId) throws Exception;
 
+
+    /**
+     * 根据id查询电影
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    MovieDTO queryMovieById(Integer id)throws Exception;
+
+
     /*
     * 后台增加电影信息
     * */

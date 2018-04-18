@@ -45,6 +45,12 @@ public class HallDao extends SqlSessionDaoSupport implements IHallDao {
     }
 
     @Override
+    public HallDTO queryHallById(Integer id) throws Exception {
+        HallDTO o = getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryHallById", id);
+        return o;
+    }
+
+    @Override
     public Boolean insertHall(HallDTO hallDTO) throws Exception {
         int insert = getSqlSession().insert("com.wwwy.liuxing.hall.dto.HallMapper.insertHall", hallDTO);
         return insert< SysConfig.BeforeConfig.PAGE_START?false:true;

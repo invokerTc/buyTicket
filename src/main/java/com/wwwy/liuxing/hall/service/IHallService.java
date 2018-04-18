@@ -22,6 +22,15 @@ public interface IHallService  {
     PageInfo<HallDTO> queryAllHall(Integer page)throws Exception;
 
     /**
+     * 根据id查询对应的厅
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallDTO queryHallById(Integer id)throws Exception;
+
+
+    /**
      * 插入一条影厅记录
      * @param hallDTO
      * @return

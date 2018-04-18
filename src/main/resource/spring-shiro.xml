@@ -60,6 +60,9 @@
                 /hou_hall_list.html=anon
                 /hall/**=anon
                 /hou_hall_add.html=anon
+                /hallMovie/**=anon
+                /hou_hall_movie_list.html=anon
+                /hou_hall_movie_add.html=anon
                 <!--/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;-->
                 /**=user<!--user需要登录或者获取rememberme的缓存信息也能进入系统-->
             </value>

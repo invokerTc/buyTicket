@@ -21,4 +21,11 @@ public interface IHallMovieService {
      * @throws Exception
      */
     PageInfo<HallMovieDTO> queryAll(Integer page)throws Exception;
+
+    /**
+     * 插入一条新的信息
+     * @return
+     * @throws Exception
+     */
+    Boolean insert(HallMovieDTO hallMovieDTO)throws Exception;
 }

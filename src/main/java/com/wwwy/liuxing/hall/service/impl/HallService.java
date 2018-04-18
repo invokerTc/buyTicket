@@ -53,6 +53,11 @@ public class HallService implements IHallService {
     }
 
     @Override
+    public HallDTO queryHallById(Integer id) throws Exception {
+        return hallDao.queryHallById(id);
+    }
+
+    @Override
     public Boolean insertHall(HallDTO hallDTO) throws Exception {
         return hallDao.insertHall(hallDTO);
     }

@@ -73,6 +73,12 @@ public class MovieDao extends SqlSessionDaoSupport implements IMovieDao {
         return movie;
     }
 
+    @Override
+    public MovieDTO queryMovieById(Integer id) throws Exception {
+        MovieDTO o = getSqlSession().selectOne("com.wwwy.liuxing.movie.dto.MovieMapper.getMovieById", id);
+        return o;
+    }
+
 
     /*
     *

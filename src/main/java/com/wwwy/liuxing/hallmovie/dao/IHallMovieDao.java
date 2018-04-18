@@ -25,4 +25,11 @@ public interface IHallMovieDao {
      * @throws Exception
      */
     List<HallMovieDTO> queryAll()throws Exception;
+
+    /**
+     * 插入一条新的信息
+     * @return
+     * @throws Exception
+     */
+    Boolean insert(HallMovieDTO hallMovieDTO)throws Exception;
 }

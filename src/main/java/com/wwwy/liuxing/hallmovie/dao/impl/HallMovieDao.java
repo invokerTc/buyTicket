@@ -2,6 +2,7 @@ package com.wwwy.liuxing.hallmovie.dao.impl;
 
 import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
+import com.wwwy.liuxing.system.SysConfig;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,12 @@ public class HallMovieDao extends SqlSessionDaoSupport implements IHallMovieDao 
     public List<HallMovieDTO> queryAll() throws Exception {
         List<HallMovieDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.queryAll");
         return list;
+    }
+
+    @Override
+    public Boolean insert(HallMovieDTO hallMovieDTO) throws Exception {
+        int insert = getSqlSession().insert("com.wwwy.liuxing.hallmovie.dto.HallMovieMapper.insert", hallMovieDTO);
+        return insert< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
 }
