@@ -36,4 +36,45 @@
         where t.theater_id=#{theaterId}
         and h.hall_id = #{hallId}
     </select>
+
+    <select id="queryAll" resultMap="HallResultMap">
+        select h.hall_id,h.hall_name,h.fk_theater_id,h.hall_coordinateX,h.hall_coordinateY
+        from tb_hall h
+    </select>
+
+    <select id="queryHallById" resultMap="HallResultMap">
+        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
+    </select>
+
+    <insert id="insertHall">
+        INSERT INTO tb_hall(hall_name,fk_theater_id,hall_coordinateX,hall_coordinateY)VALUES
+        (#{hallName},#{fkTheaterId},#{hallCoordinateX},#{hallCoordinateY})
+    </insert>
+
+    <delete id="deleteHall">
+        DELETE FROM tb_hall WHERE hall_id=#{hallId}
+    </delete>
+
+    <update id="updateArea">
+        UPDATE tb_area
+        <trim prefix="set" suffixOverrides=",">
+            <if test="areaName!=null">area_name=#{areaName},</if>
+            <if test="fkCityId!=null">fk_city_id=#{fkCityId},</if>
+        </trim>
+        WHERE area_id=#{areaId}
+    </update>
+
+    <select id="queryAny" resultMap="HallResultMap">
+        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
+        WHERE area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR area_name LIKE concat(concat('%',#{anyInfo}),'%')
+    </select>
+
+    <!--批量删除-->
+    <delete id="batchDeleteAreas" parameterType="int">
+        delete from tb_area where area_id in
+        <foreach item="areaId" collection="array" open="(" separator="," close=")">
+            #{areaId}
+        </foreach>
+    </delete>
 </mapper>

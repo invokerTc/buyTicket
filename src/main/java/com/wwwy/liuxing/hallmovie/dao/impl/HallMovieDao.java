@@ -1,7 +1,6 @@
-package com.wwwy.liuxing.hallmovie.dto.dao.impl;
+package com.wwwy.liuxing.hallmovie.dao.impl;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;

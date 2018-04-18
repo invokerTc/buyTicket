@@ -54,6 +54,10 @@
         SELECT theater_id,theater_name,theater_address,theater_phone,theater_longitude,theater_latitude FROM tb_theater WHERE theater_id=#{theaterId}
     </select>
 
+    <select id="queryTheaterByName" resultMap="TheaterResultMap">
+        SELECT theater_id,theater_name,theater_address,theater_phone,theater_longitude,theater_latitude FROM tb_theater WHERE theater_name=#{theaterName}
+    </select>
+
     <insert id="insertTheater">
         INSERT INTO tb_theater(theater_name,theater_address,theater_phone,theater_longitude,theater_latitude)VALUES
          (#{theaterName},#{theaterAddress},#{theaterPhone},#{theaterLongitude},#{theaterLatitude})

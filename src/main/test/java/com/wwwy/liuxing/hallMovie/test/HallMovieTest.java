@@ -1,7 +1,7 @@
 package com.wwwy.liuxing.hallMovie.test;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dto.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.dao.impl.IHallMovieDao;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
