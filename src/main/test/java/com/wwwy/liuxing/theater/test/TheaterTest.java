@@ -1,7 +1,7 @@
 package com.wwwy.liuxing.theater.test;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
-import com.wwwy.liuxing.hallmovie.dao.impl.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.theater.dao.ITheaterDAO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.theater.service.ITheaterService;
