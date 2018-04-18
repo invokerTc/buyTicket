@@ -64,6 +64,8 @@ public class AreaService implements IAreaService {
         logger.debug("cityName====="+cityName);
         List<AreaDTO> areaDTOList = map.get(cityName);
 //        将需要分页的集合进行封装
+        List<AreaDTO> areaDTOList = areaDAO.queryAllArea(cityId);
+        logger.info(areaDTOList);
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
         HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>();
         hashMap.put(cityName,pageInfo);

@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class MovieDTO implements Serializable {
 
-    public static final long serialVersionUID=1L;
+    public static final long serialVersionUID = 1L;
 
     /**
      * 电影ID
@@ -76,108 +76,8 @@ public class MovieDTO implements Serializable {
      */
     private String moviePreparation;
 
-    public MovieDTO() {
-    }
-
-    public MovieDTO(Integer movieId, String movieName, String movieDirector, String movieStar, String movieType, String movieCountry, String movieLanguage, String movieTime, String movieDetails, String movieDate, String movieScore, String movieImg, String moviePreparation) {
-        this.movieId = movieId;
-        this.movieName = movieName;
-        this.movieDirector = movieDirector;
-        this.movieStar = movieStar;
-        this.movieType = movieType;
-        this.movieCountry = movieCountry;
-        this.movieLanguage = movieLanguage;
-        this.movieTime = movieTime;
-        this.movieDetails = movieDetails;
-        this.movieDate = movieDate;
-        this.movieScore = movieScore;
-        this.movieImg = movieImg;
-        this.moviePreparation = moviePreparation;
-    }
-
-    @Override
-    public String toString() {
-        return "MovieDTO{" +
-                "movieId=" + movieId +
-                ", movieName='" + movieName + '\'' +
-                ", movieDirector='" + movieDirector + '\'' +
-                ", movieStar='" + movieStar + '\'' +
-                ", movieType='" + movieType + '\'' +
-                ", movieCountry='" + movieCountry + '\'' +
-                ", movieLanguage='" + movieLanguage + '\'' +
-                ", movieTime='" + movieTime + '\'' +
-                ", movieDetails='" + movieDetails + '\'' +
-                ", movieDate='" + movieDate + '\'' +
-                ", movieScore='" + movieScore + '\'' +
-                ", movieImg='" + movieImg + '\'' +
-                ", moviePreparation='" + moviePreparation + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        MovieDTO movieDTO = (MovieDTO) o;
-
-        if (movieId != null ? !movieId.equals(movieDTO.movieId) : movieDTO.movieId != null) {
-            return false;
-        }
-        if (movieName != null ? !movieName.equals(movieDTO.movieName) : movieDTO.movieName != null) {
-            return false;
-        }
-        if (movieDirector != null ? !movieDirector.equals(movieDTO.movieDirector) : movieDTO.movieDirector != null) {
-            return false;
-        }
-        if (movieStar != null ? !movieStar.equals(movieDTO.movieStar) : movieDTO.movieStar != null) {
-            return false;
-        }
-        if (movieType != null ? !movieType.equals(movieDTO.movieType) : movieDTO.movieType != null) {
-            return false;
-        }
-        if (movieCountry != null ? !movieCountry.equals(movieDTO.movieCountry) : movieDTO.movieCountry != null) {
-            return false;
-        }
-        if (movieLanguage != null ? !movieLanguage.equals(movieDTO.movieLanguage) : movieDTO.movieLanguage != null) {
-            return false;
-        }
-        if (movieTime != null ? !movieTime.equals(movieDTO.movieTime) : movieDTO.movieTime != null) {
-            return false;
-        }
-        if (movieDetails != null ? !movieDetails.equals(movieDTO.movieDetails) : movieDTO.movieDetails != null) {
-            return false;
-        }
-        if (movieDate != null ? !movieDate.equals(movieDTO.movieDate) : movieDTO.movieDate != null) {
-            return false;
-        }
-        if (movieScore != null ? !movieScore.equals(movieDTO.movieScore) : movieDTO.movieScore != null) {
-            return false;
-        }
-        return movieImg != null ? movieImg.equals(movieDTO.movieImg) : movieDTO.movieImg == null && (moviePreparation != null ? moviePreparation.equals(movieDTO.moviePreparation) : movieDTO.moviePreparation == null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = movieId != null ? movieId.hashCode() : 0;
-        result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
-        result = 31 * result + (movieDirector != null ? movieDirector.hashCode() : 0);
-        result = 31 * result + (movieStar != null ? movieStar.hashCode() : 0);
-        result = 31 * result + (movieType != null ? movieType.hashCode() : 0);
-        result = 31 * result + (movieCountry != null ? movieCountry.hashCode() : 0);
-        result = 31 * result + (movieLanguage != null ? movieLanguage.hashCode() : 0);
-        result = 31 * result + (movieTime != null ? movieTime.hashCode() : 0);
-        result = 31 * result + (movieDetails != null ? movieDetails.hashCode() : 0);
-        result = 31 * result + (movieDate != null ? movieDate.hashCode() : 0);
-        result = 31 * result + (movieScore != null ? movieScore.hashCode() : 0);
-        result = 31 * result + (movieImg != null ? movieImg.hashCode() : 0);
-        result = 31 * result + (moviePreparation != null ? moviePreparation.hashCode() : 0);
-        return result;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getMovieId() {
@@ -282,5 +182,73 @@ public class MovieDTO implements Serializable {
 
     public void setMoviePreparation(String moviePreparation) {
         this.moviePreparation = moviePreparation;
+    }
+
+    public MovieDTO() {
+        super();
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDTO{" +
+                "movieId=" + movieId +
+                ", movieName='" + movieName + '\'' +
+                ", movieDirector='" + movieDirector + '\'' +
+                ", movieStar='" + movieStar + '\'' +
+                ", movieType='" + movieType + '\'' +
+                ", movieCountry='" + movieCountry + '\'' +
+                ", movieLanguage='" + movieLanguage + '\'' +
+                ", movieTime='" + movieTime + '\'' +
+                ", movieDetails='" + movieDetails + '\'' +
+                ", movieDate='" + movieDate + '\'' +
+                ", movieScore='" + movieScore + '\'' +
+                ", movieImg='" + movieImg + '\'' +
+                ", moviePreparation='" + moviePreparation + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieDTO movieDTO = (MovieDTO) o;
+
+        if (movieId != null ? !movieId.equals(movieDTO.movieId) : movieDTO.movieId != null) return false;
+        if (movieName != null ? !movieName.equals(movieDTO.movieName) : movieDTO.movieName != null) return false;
+        if (movieDirector != null ? !movieDirector.equals(movieDTO.movieDirector) : movieDTO.movieDirector != null)
+            return false;
+        if (movieStar != null ? !movieStar.equals(movieDTO.movieStar) : movieDTO.movieStar != null) return false;
+        if (movieType != null ? !movieType.equals(movieDTO.movieType) : movieDTO.movieType != null) return false;
+        if (movieCountry != null ? !movieCountry.equals(movieDTO.movieCountry) : movieDTO.movieCountry != null)
+            return false;
+        if (movieLanguage != null ? !movieLanguage.equals(movieDTO.movieLanguage) : movieDTO.movieLanguage != null)
+            return false;
+        if (movieTime != null ? !movieTime.equals(movieDTO.movieTime) : movieDTO.movieTime != null) return false;
+        if (movieDetails != null ? !movieDetails.equals(movieDTO.movieDetails) : movieDTO.movieDetails != null)
+            return false;
+        if (movieDate != null ? !movieDate.equals(movieDTO.movieDate) : movieDTO.movieDate != null) return false;
+        if (movieScore != null ? !movieScore.equals(movieDTO.movieScore) : movieDTO.movieScore != null) return false;
+        if (movieImg != null ? !movieImg.equals(movieDTO.movieImg) : movieDTO.movieImg != null) return false;
+        return moviePreparation != null ? moviePreparation.equals(movieDTO.moviePreparation) : movieDTO.moviePreparation == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieId != null ? movieId.hashCode() : 0;
+        result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
+        result = 31 * result + (movieDirector != null ? movieDirector.hashCode() : 0);
+        result = 31 * result + (movieStar != null ? movieStar.hashCode() : 0);
+        result = 31 * result + (movieType != null ? movieType.hashCode() : 0);
+        result = 31 * result + (movieCountry != null ? movieCountry.hashCode() : 0);
+        result = 31 * result + (movieLanguage != null ? movieLanguage.hashCode() : 0);
+        result = 31 * result + (movieTime != null ? movieTime.hashCode() : 0);
+        result = 31 * result + (movieDetails != null ? movieDetails.hashCode() : 0);
+        result = 31 * result + (movieDate != null ? movieDate.hashCode() : 0);
+        result = 31 * result + (movieScore != null ? movieScore.hashCode() : 0);
+        result = 31 * result + (movieImg != null ? movieImg.hashCode() : 0);
+        result = 31 * result + (moviePreparation != null ? moviePreparation.hashCode() : 0);
+        return result;
     }
 }

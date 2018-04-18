@@ -9,6 +9,22 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /movie/preupdate=anon
+                /movie/delete=anon
+                /pre_updete_movieinfo.html=anon
+                /movie/update=anon
+                /hou_movieadd.html=anon
+                /movie/insert=anon
+                /img/**=anon
+                /movie/list=anon
+                /hou_movieadd.html=anon
+                /hou_movielist.html=anon
+                /user/anyInfo=anon
+                /user/update=anon
+                /pre_updete_userinfo.html=anon
+                /user/preupdate=anon
+                /hou_userlist.html=anon
+                /user/list=anon
                 /admin/login=anon
                 /qian_login.htm=anon
                 /user/login=anon

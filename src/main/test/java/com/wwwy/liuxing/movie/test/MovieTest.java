@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.movie.test;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.movie.dao.IMovieDao;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 import com.wwwy.liuxing.movie.service.IMovieService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -87,6 +89,128 @@ public class MovieTest {
         try {
             MovieDTO movieDTO = movieDao.getMovieByCityIdAndMovieId(1, 1);
             logger.info(movieDTO.getMovieName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    * 测试GteMovieInfo的DAO
+    * */
+    @Test
+    public void testGteMovieInfo(){
+        try {
+            List<MovieDTO> movieInfo = movieDao.getMovieInfo();
+            for (MovieDTO m:movieInfo) {
+                logger.info(m);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    * test查询所有电影信息并分页
+    * */
+    @Test
+    public void testGetAllmovieInfo(){
+        try {
+            PageInfo<MovieDTO> allMovieInfo = movieService.getAllMovieInfo(1);
+            List<MovieDTO> list = allMovieInfo.getList();
+            for (MovieDTO m:list) {
+                logger.info("==========================="+m);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /*
+    * test新增电影信息
+    * */
+   @Test
+    public void testInsert(){
+       try {
+           MovieDTO movieDTO = new MovieDTO();
+           movieDTO.setMovieName("电锯惊魂");
+           movieDTO.setMovieDirector("111111111111");
+           movieDTO.setMovieCountry("美国");
+           movieDTO.setMovieDate("111111111");
+           movieDTO.setMovieDetails("11111111111");
+           movieDTO.setMovieImg("11111111111");
+           movieDTO.setMovieLanguage("1111111111");
+           movieDTO.setMoviePreparation("11111111111");
+           movieDTO.setMovieTime("1111111111");
+           movieDTO.setMovieStar("1111111111111");
+           movieDTO.setMovieType("11111111111");
+           Integer integer = movieDao.insertMovieInfo(movieDTO);
+           logger.info(integer);
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+   }
+
+
+    /*
+    * 修改电影信息
+    * */
+    @Test
+    public void testUpdate(){
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setMovieId(11);
+        movieDTO.setMovieName("大萨达");
+        movieDTO.setMovieType("asdasd");
+        movieDTO.setMovieDirector("dsadasd");
+        movieDTO.setMoviePreparation("dsadasd");
+        movieDTO.setMovieStar("dsadsad");
+        movieDTO.setMovieDetails("dsadas");
+        movieDTO.setMovieDate("1111");
+        movieDTO.setMovieImg("dsdsdasd");
+        movieDTO.setMovieCountry("ewqeqwe");
+        try {
+            Integer integer = movieDao.upadetaMovieInfo(movieDTO);
+            logger.info("======================="+integer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+    * 通过id查询所有信息
+    * */
+    @Test
+    public void testGetMovieInfoByI(){
+        try {
+            MovieDTO movieInfoById = movieDao.getMovieInfoById(1);
+            logger.info(movieInfoById);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    * 通过ID删除电影信息
+    * */
+    @Test
+    public void testDeleteMovieInfoById(){
+        try {
+            Integer integer = movieDao.deleteMovieInfoById(11);
+            logger.info(integer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    * 条件查询
+    * */
+    @Test
+    public void testCriteriaQueryMovie(){
+        try {
+            List<MovieDTO> list = movieDao.criteriaQueryMovie("中国");
+            for (MovieDTO m:list) {
+                logger.info("=========================="+m);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
