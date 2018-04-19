@@ -21,6 +21,7 @@
 <div id="div_main">
     <h3>添加地区</h3>
     <form class="form-horizontal" id="form" action="/area/all?page=1" method="post">
+        <input type="hidden" value="${token}" name="token" id="token">
         <div class="form-group">
             <label class="col-sm-2 control-label">地区名称</label>
             <div class="col-sm-10">
@@ -36,8 +37,11 @@
 <script type="text/javascript">
     function apply() {
         var areaName=$("input[name='areaName']").val();
+        var tokens=$("#token").val();
         $.post("/area/insert",
-                {areaName:areaName},
+                {areaName:areaName,
+                    tokens:tokens
+                },
                 function(data) {
                     if (data == "success") {
                         alert("添加成功")

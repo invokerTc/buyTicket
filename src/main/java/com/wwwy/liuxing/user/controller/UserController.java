@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/4/11.
@@ -56,6 +58,15 @@ public class UserController {
             return "{\"code\":2}";
         }
         return "{\"code\":1}";
+    }
+
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "qian_register";
     }
 
     /*

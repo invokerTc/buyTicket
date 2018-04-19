@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import java.util.List;
 
@@ -88,23 +87,42 @@ public class HallController {
         }
     }
 
+    /**
+     * 防止重复提交
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "hou_hall_add";
+    }
+
     @RequestMapping("/insert")
     @ResponseBody
-    public String insertHall(HttpServletRequest request){
+    public String insertHall(HttpServletRequest request,HttpSession session){
         String hallName = request.getParameter("hallName");
         String theaterName = request.getParameter("theaterName");
         String hallCoordinateX = request.getParameter("hallCoordinateX");
         String hallCoordinateY = request.getParameter("hallCoordinateY");
+        String tokens = request.getParameter("tokens");
         try {
-            TheaterDTO theaterDTO = theaterService.queryTheaterByName(theaterName);
-            HallDTO hallDTO = new HallDTO();
-            hallDTO.setHallName(hallName);
-            hallDTO.setFkTheaterId(theaterDTO.getTheaterId());
-            hallDTO.setHallCoordinateX(Integer.parseInt(hallCoordinateX));
-            hallDTO.setHallCoordinateY(Integer.parseInt(hallCoordinateY));
-            Boolean aBoolean = hallService.insertHall(hallDTO);
-            if (aBoolean){
-                return "success";
+            Object token = session.getAttribute("token");
+            if(null!=token && token.equals(tokens)) {
+                TheaterDTO theaterDTO = theaterService.queryTheaterByName(theaterName);
+                HallDTO hallDTO = new HallDTO();
+                hallDTO.setHallName(hallName);
+                hallDTO.setFkTheaterId(theaterDTO.getTheaterId());
+                hallDTO.setHallCoordinateX(Integer.parseInt(hallCoordinateX));
+                hallDTO.setHallCoordinateY(Integer.parseInt(hallCoordinateY));
+                Boolean aBoolean = hallService.insertHall(hallDTO);
+                if (aBoolean) {
+                    return "success";
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
