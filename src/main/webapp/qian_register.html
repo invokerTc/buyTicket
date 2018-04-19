@@ -65,11 +65,13 @@
             var passWordStrTwo = $("#inputPassword2").val();
             var userStr = $("#userRealName").val();
             var telStr = $("#userTel").val();
+            var inputCode=$("#inputCode").val();
             var errArrays = new Array();
-            errArrays[0] = '用户已存在，请更换账号';
+            errArrays[0] = '手机号码已注册，请更换';
             errArrays[1] = '注册成功';
+            errArrays[2]='验证码错误'
             $.post("/user/register",{userName:userNameStr,userPassword:passWordStr,
-                userRealName:userStr,userTel:telStr}, function(data) {
+                userRealName:userStr,userTel:telStr,inputCode:inputCode}, function(data) {
                 var jsonObj = JSON.parse(data)
                 var index =jsonObj.code;
                 if (jsonObj.code == 1) {
@@ -80,7 +82,50 @@
                 }
             });}
     }
+    function getcode() {
+        var tele = $("#userTel").val();
+            $("#codeButton").attr("disabled", true);
+            timer = setInterval("CountDown()", 1000);
+            $.post("/message/getCode", {telephone: tele}, function (data) {
+                var result = JSON.parse(data);
+                if (result.code == 1) {
+                    alert(result.msg);
+                } else if (result.code == 0) {
+                    alert(result.msg);
+                }
+            });
+    }
+    function CountDown() {
+        if (maxtime >= 0) {
+            $("#codeButton").css("color","red");
+            $("#codeButton").val("重新获取(" + maxtime + ")");
+            var val = $("#codeButton").val();
+            --maxtime;
+        }
+        else {
+            $("#codeButton").val("获取验证码");
+            $("#codeButton").attr("disabled", false);
+            clearInterval(timer);
+            maxtime=4*60+59;
+        }
+    }
+    function checkTele() {
+        var tele = $("#telephone").val();
+        var patrn = /^[1]([3]|[5]|[8]){1}[0-9]{9}$/;
+        if (tele != "") {
+            if (tele.match(patrn)) {
+                $("#codeButton").attr("disabled", false);
+            } else {
+                $("#teleSpan").text("手机号格式错误");
+                $("#codeButton").attr("disabled", true);
+            }
+        } else {
+            /*$("#teleSpan").text("请输入手机号");*/
+            $("#codeButton").attr("disabled", true);
+        }
+    }
 </script>
+
 
 <!-- S GLOBAL HTML -->
 <div id="J_SiteNav" class="site-nav">
@@ -140,6 +185,15 @@
                 <label for="userTel" class="col-sm-2 control-label"style="margin-top: 20px">电话号码</label>
                 <div class="col-sm-10"style="margin-top: 20px">
                     <input type="text" class="form-control" id="userTel" name="userTel" placeholder="输入正确的手机号码">
+                </div>
+            </div>
+            <div class="form-group col-lg-5"style="height: 70px; width:700px; margin-left: 400px;">
+                <label for="inputCode" class="col-sm-2 control-label"style="margin-top: 20px">验证码</label>
+                <div class="col-sm-10"style="margin-top: 20px">
+                    <div style="width: 500px;height: 34px">
+                    <input type="text"  style="width: 195px;height:34px;float: left" id="inputCode" name="inputCode" placeholder="输入验证码">
+                    <span><input type="button" value="获取验证码" id="codeButton" name="codeButton" style="width: 80px;height:34px;float: left;margin-left: 20px" onclick="getcode()"/></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group" style="margin-top: 30px;">

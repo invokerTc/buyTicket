@@ -3,6 +3,7 @@ package com.wwwy.liuxing.hallmovie.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.hall.dao.IHallDao;
+import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.hallmovie.service.IHallMovieService;
