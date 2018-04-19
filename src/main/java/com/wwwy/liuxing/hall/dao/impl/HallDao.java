@@ -56,5 +56,25 @@ public class HallDao extends SqlSessionDaoSupport implements IHallDao {
         return delete< SysConfig.BeforeConfig.PAGE_START?false:true;
     }
 
+    @Override
+    public HallDTO getHallInfoById(Integer hallId) {
+        return getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.getHallInfoById",hallId);
+    }
+
+    @Override
+    public Integer updateHallInfo(HallDTO hallDTO) throws Exception {
+        return getSqlSession().update("com.wwwy.liuxing.hall.dto.HallMapper.updateHallInfo",hallDTO);
+    }
+
+    @Override
+    public List<HallDTO> criteriaQueryHall(String anyInfo) throws Exception {
+        return getSqlSession().selectList("com.wwwy.liuxing.hall.dto.HallMapper.criteriaQueryHall",anyInfo);
+    }
+
+    @Override
+    public Integer tchDeleteHall(int [] hallId) throws Exception {
+        return getSqlSession().delete("com.wwwy.liuxing.hall.dto.HallMapper.batchDeleteHall",hallId);
+    }
+
 
 }

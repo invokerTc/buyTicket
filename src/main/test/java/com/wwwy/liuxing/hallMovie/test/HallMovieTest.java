@@ -2,12 +2,15 @@ package com.wwwy.liuxing.hallMovie.test;
 
 import com.wwwy.liuxing.hallmovie.dto.HallMovieDTO;
 import com.wwwy.liuxing.hallmovie.dao.IHallMovieDao;
+import com.wwwy.liuxing.hallmovie.service.IHallMovieService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * Created by wanghao on 2018/4/14.

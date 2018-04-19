@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.hall.dto;
 
 import com.wwwy.liuxing.movie.dto.MovieDTO;
+import com.wwwy.liuxing.theater.dto.TheaterDTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -44,6 +45,29 @@ public class HallDTO implements Serializable {
      */
     private List<MovieDTO> movieDTOList;
 
+    /*
+    * 影院属性
+    * */
+    private List<TheaterDTO> theaterDTOList;
+
+    private String theaterName;
+
+    public String getTheaterName() {
+        return theaterName;
+    }
+
+    public void setTheaterName(String theaterName) {
+        this.theaterName = theaterName;
+    }
+
+    public List<TheaterDTO> getTheaterDTOList() {
+        return theaterDTOList;
+    }
+
+    public void setTheaterDTOList(List<TheaterDTO> theaterDTOList) {
+        this.theaterDTOList = theaterDTOList;
+    }
+
     public List<MovieDTO> getMovieDTOList() {
         return movieDTOList;
     }
@@ -71,6 +95,7 @@ public class HallDTO implements Serializable {
                 ", fkTheaterId=" + fkTheaterId +
                 ", hallCoordinateX=" + hallCoordinateX +
                 ", hallCoordinateY=" + hallCoordinateY +
+                ", theaterName='" + theaterName + '\'' +
                 '}';
     }
 
@@ -86,7 +111,13 @@ public class HallDTO implements Serializable {
         if (fkTheaterId != null ? !fkTheaterId.equals(hallDTO.fkTheaterId) : hallDTO.fkTheaterId != null) return false;
         if (hallCoordinateX != null ? !hallCoordinateX.equals(hallDTO.hallCoordinateX) : hallDTO.hallCoordinateX != null)
             return false;
-        return hallCoordinateY != null ? hallCoordinateY.equals(hallDTO.hallCoordinateY) : hallDTO.hallCoordinateY == null;
+        if (hallCoordinateY != null ? !hallCoordinateY.equals(hallDTO.hallCoordinateY) : hallDTO.hallCoordinateY != null)
+            return false;
+        if (movieDTOList != null ? !movieDTOList.equals(hallDTO.movieDTOList) : hallDTO.movieDTOList != null)
+            return false;
+        if (theaterDTOList != null ? !theaterDTOList.equals(hallDTO.theaterDTOList) : hallDTO.theaterDTOList != null)
+            return false;
+        return theaterName != null ? theaterName.equals(hallDTO.theaterName) : hallDTO.theaterName == null;
 
     }
 
@@ -97,6 +128,9 @@ public class HallDTO implements Serializable {
         result = 31 * result + (fkTheaterId != null ? fkTheaterId.hashCode() : 0);
         result = 31 * result + (hallCoordinateX != null ? hallCoordinateX.hashCode() : 0);
         result = 31 * result + (hallCoordinateY != null ? hallCoordinateY.hashCode() : 0);
+        result = 31 * result + (movieDTOList != null ? movieDTOList.hashCode() : 0);
+        result = 31 * result + (theaterDTOList != null ? theaterDTOList.hashCode() : 0);
+        result = 31 * result + (theaterName != null ? theaterName.hashCode() : 0);
         return result;
     }
 

@@ -18,23 +18,24 @@
     <![endif]-->
 </head>
 <script type="text/javascript">
-    function doDelete(id){
+    function doDelete(hallId){
         if(confirm("确认删除吗？")){
-            $.post("/area/delete",
-                    {id:id},
+            $.post("/hall/delete",
+                    {hallId:hallId},
                     function (data) {
                         if(data=="success"){
                             alert("删除成功");
-                            window.location.href='/area/all?page='+1;
+                            window.location.href='/hall/all?page='+1;
                         }else {
-                            alert("删除失败");
+                            alert("删除失败,请先删除影厅关联表");
+                            return;
                         }
                     });
         }
     }
 
     function doUpdate(id){
-        window.location.href='/area/preUpdate?id='+id;
+        window.location.href='/hall/preUpdate?hallId='+id;
     }
 
     function checkAll(item){
@@ -69,36 +70,35 @@
             return;
         }
         // 提交请求
-        $.post("/area/deleteBatch",
+        $.post("/hall/tchDelete",
                 {ids:ids},
                 function (data) {
                     if(data=="success"){
                         alert("删除成功");
-                        window.location.href='/area/all?page='+1;
+                        window.location.href='/hall/all?page='+1;
                     }else {
-                        alert("删除失败");
+                        alert("删除失败,请先删除影厅关联表");
                         return;
                     }
                 });
-
     }
 </script>
 <body>
 
 <div>
-    <form action="/area/anyInfo?page=1" method="post" class="form_find">
+    <form action="/hall/anyInfo?page=1" method="post" class="form_find">
         <input type="text" name="anyInfo" style="height: 40px">
         <input type="submit" value="find" style="font-size: 20px;background-color: #00BCD4">
         <input type="button" name="allDelBtn" style="font-size: 20px;margin: 20px 0 -10px 150px;color: #2d98f3;background-color: tomato" value="删除" onclick="deleteSelectAll()"/>
     </form>
-    <table border="1" width="60%" style="line-height: 40px" class="water-table">
+    <table border="1" width="60%" style="line-height: 40px;" class="water-table">
         <thead class="water-table-content" style="font-size:16px;font-weight: bolder">
         <td>影厅id</td>
         <td width="3%" align="center" ztype="selector" field="id">
             <input type="checkbox" value="*" id="dg1_AllCheck" onclick="checkAll(this)">
         </td>
         <td>影厅名称</td>
-        <td>影院id</td>
+        <td>影院名称</td>
         <td>影厅座位行数</td>
         <td>影厅座位列数</td>
         <td>操作</td>
@@ -110,7 +110,7 @@
                     <input type="checkbox" name="hisChk" id="dg1_RowCheck1" value="${hall.hallId}">
                 </td>
                 <td style="font-size: medium">${hall.hallName}</td>
-                <td style="font-size: medium">${hall.fkTheaterId}</td>
+                <td style="font-size: medium">${hall.theaterName}</td>
                 <td style="font-size: medium">${hall.hallCoordinateX}</td>
                 <td style="font-size: medium">${hall.hallCoordinateY}</td>
                 <td>

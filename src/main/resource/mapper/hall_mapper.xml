@@ -71,10 +71,34 @@
     </select>
 
     <!--批量删除-->
-    <delete id="batchDeleteAreas" parameterType="int">
-        delete from tb_area where area_id in
-        <foreach item="areaId" collection="array" open="(" separator="," close=")">
-            #{areaId}
+    <delete id="batchDeleteHall" parameterType="int">
+        delete from tb_hall where hall_id in
+        <foreach item="hallId" collection="array" open="(" separator="," close=")">
+            #{hallId}
         </foreach>
     </delete>
+
+    <select id="getHallInfoById" resultMap="HallResultMap">
+        SELECT hall_id,hall_name,fk_theater_id,hall_coordinateX,hall_coordinateY FROM tb_hall WHERE  hall_id=#{hallId}
+    </select>
+
+    <update id="updateHallInfo">
+        UPDATE tb_hall
+        <trim prefix="set" suffixOverrides=",">
+            <if test="hallName!=null">hall_name=#{hallName},</if>
+            <if test="fkTheaterId!=null">fk_theater_id=#{fkTheaterId},</if>
+            <if test="hallCoordinateX!=null">hall_coordinateX=#{hallCoordinateX},</if>
+            <if test="hallCoordinateY!=null">hall_coordinateY=#{hallCoordinateY},</if>
+        </trim>
+        WHERE hall_id=#{hallId}
+    </update>
+
+    <select id="criteriaQueryHall" resultMap="HallResultMap">
+        SELECT hall_id,hall_name,fk_theater_id,hall_coordinateX,hall_coordinateY FROM tb_hall
+        WHERE hall_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR hall_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR fk_theater_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR hall_coordinateX LIKE concat(concat('%',#{anyInfo}),'%')
+        OR hall_coordinateY LIKE concat(concat('%',#{anyInfo}),'%')
+    </select>
 </mapper>

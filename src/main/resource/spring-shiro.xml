@@ -9,6 +9,10 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /hall/tchDelete=anon
+                /hall/update=anon
+                /hall/anyInfo=anon
+                /hall/delete=anon
                 /movie/preupdate=anon
                 /movie/delete=anon
                 /pre_updete_movieinfo.html=anon

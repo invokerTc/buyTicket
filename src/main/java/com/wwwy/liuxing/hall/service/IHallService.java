@@ -36,4 +36,25 @@ public interface IHallService  {
      * @throws Exception
      */
     Boolean deleteHall(Integer hallId)throws Exception;
+
+    /*
+    * 根据ID获取信息
+    * */
+    HallDTO getHallInfoById(Integer hallId) throws Exception;
+
+    /*
+    *
+    * 修改信息
+    * */
+    boolean updateHallInfoById(HallDTO hallDTO) throws Exception;
+
+    /*
+       条件查询
+    */
+    PageInfo<HallDTO> criteriaQueryHall(Integer page, String anyInfo) throws Exception;
+
+    /*
+    * 批量删除
+    * */
+    boolean tchDeleteHall(int[] hall) throws Exception;
 }
