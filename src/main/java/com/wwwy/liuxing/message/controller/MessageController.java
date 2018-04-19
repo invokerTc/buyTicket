@@ -1,6 +1,8 @@
 package com.wwwy.liuxing.message.controller;
 
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.wwwy.liuxing.cart.dto.CartDTO;
 import com.wwwy.liuxing.cart.service.ICartService;
 import com.wwwy.liuxing.message.httpApiDemo.IndustrySMS;
@@ -8,7 +10,6 @@ import com.wwwy.liuxing.message.util.RandomNumUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,11 +40,11 @@ public class MessageController {
     @RequestMapping(value = "/getCode", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getRand(String telephone, HttpServletRequest request, ModelAndView model) {
-//        String randNum = randomNumUtil.setRand(telephone);
-//        String json = industrySMS.execute(telephone, randNum);
-//        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
-//        String respCode = obj.get("respCode").getAsString();
-        String respCode = "00000";
+        String randNum = randomNumUtil.setRand(telephone);
+        String json = industrySMS.execute(telephone, randNum);
+        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
+        String respCode = obj.get("respCode").getAsString();
+//        String respCode = "00000";
         if (respCode.equals("00000")) {
             return "{\"code\":\"1\",\"msg\":\"验证码发送成功\"}";
         } else if (respCode.equals("00126")) {
@@ -59,9 +60,9 @@ public class MessageController {
         if (logger.isDebugEnabled()) {
             logger.debug("login----start");
         }
-//        String randNum = randomNumUtil.getRand(telephone);
+        String randNum = randomNumUtil.getRand(telephone);
         cartService.saveBookingCart(telephone, cartDTO);
-        String randNum = "234567";
+//        String randNum = "234567";
         if (logger.isDebugEnabled()) {
             logger.debug("login----end");
         }

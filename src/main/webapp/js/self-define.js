@@ -39,7 +39,6 @@ function codeLogin() {
     var filmName = $("#filmName").text();
     var regex = /^[0-9]{6}$/
     if (code.match(regex)) {
-        alert("验证成功");
         var watchingTime = $("#watchingTime").text();
         var theaterName = $("#theaterName").text();
         var hallName = $("#hallName").text();
@@ -53,7 +52,7 @@ function codeLogin() {
             }
         }
         var sumPrice = $("#sumPrice").text();
-        alert(filmName+"---"+watchingTime+"---"+theaterName+"----"+hallName+"----"+sumPrice+"----"+sets);
+       /* alert(filmName+"---"+watchingTime+"---"+theaterName+"----"+hallName+"----"+sumPrice+"----"+sets);*/
         $.post("/message/login",
             {inputCode: code, telephone: tele,movieName:filmName,watchingTime:watchingTime,cinemaName:theaterName,hallName:hallName,totalPrice:sumPrice,selectedSets:sets},
             function (data) {
@@ -62,7 +61,7 @@ function codeLogin() {
                 window.location.href = '/cart/showBooking?tele='+tele+'&movieName='+filmName;
             }
             if (data == "订单提交失败") {
-                alert(data);
+                alert("验证码错误");
             }
         });
     } else {
@@ -126,6 +125,7 @@ var count = 0;
  }
  }
  });*/
+/*
 function bookingset() {
     var len = $(".set").length;
     alert("订单提交");
@@ -144,4 +144,4 @@ function bookingset() {
             }
         }
     );
-}
+}*/

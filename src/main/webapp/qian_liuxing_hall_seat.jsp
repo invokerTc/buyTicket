@@ -33,8 +33,8 @@ To change this template use File | Settings | File Templates.
     <link rel="dns-prefetch" href="//analytics.meituan.com"/>
     <link rel="dns-prefetch" href="//report.meituan.com"/>
     <link rel="dns-prefetch" href="//frep.meituan.com"/>
-    <link href="css/self-define.css" rel="stylesheet"/>
-    <script src="js/self-define.js" type="text/javascript"></script>
+    <link href="/css/self-define.css" rel="stylesheet"/>
+    <script src="/js/self-define.js" type="text/javascript"></script>
 
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -212,7 +212,6 @@ To change this template use File | Settings | File Templates.
                             <c:forEach begin="0" end="${hallDTO.hallCoordinateY-1}" step="1" varStatus="j">
                             <span class="seat selectable"
                                   data-column-id="${j.index+1}"
-                                  style="font-size: large"
                                   data-row-id="${i.index+1}"
                                   data-no="000000000264-1-1"
                                   data-st="N"
@@ -382,7 +381,6 @@ To change this template use File | Settings | File Templates.
             var sumprice = count * price;
             $("#sumprice").text(sumprice);
             var dd = $(this).val();
-            /* alert(dd + "被撤销了");*/
             var len = $(".set").length;
             for (var i = 0; i < len; i++) {
                 var text = $(".set").eq(i).text();
@@ -408,7 +406,8 @@ To change this template use File | Settings | File Templates.
         $.post("/order/saveOrder", {sum: sum, orderlist: orderlist},
                 function (data) {
                     if (data == "success") {
-                        window.location.href = "/countdown.html"
+                        alert("good");
+                        window.location.href = "/waiting_for_pay.html"
                     }
                 }
         );

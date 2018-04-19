@@ -140,14 +140,6 @@ public class HallMovieTest {
 
     }
     @Test
-    public void testDate(){
-        String time = "2018-4-18 18:11:23";
-        String time2= "2018-4-18 14:11:23";
-        Date date = new Date(time);
-        Date date1 = new Date(time2);
-
-    }
-    @Test
     public void testQueryPlayingHallMovie2(){
         try {
             List<HallMovieDTO> list = hallMovieService.queryPlayingHallMovie("1", "4", "8");
