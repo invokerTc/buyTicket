@@ -3,11 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
-        <!--<property name="filterChainDefinitions">
+        <property name="filterChainDefinitions">
             <value>
                 /hall/tchDelete=anon
                 /hall/update=anon
@@ -46,8 +45,8 @@
                 /hallTest.html=anon
                 /login.jsp=anon<!--不需要做任何过滤的-->
                 /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
-                /login.jsp=anon&lt;!&ndash;不需要做任何过滤的&ndash;&gt;
-                /qian_liuxing_cinema_hall_seat.html=anon&lt;!&ndash;不需要做任何过滤的&ndash;&gt;
+                /login.jsp=anon
+                /qian_liuxing_cinema_hall_seat.html=anon
                 /qian_one_movie_info.html=anon
                 /hall/getMovieHall=anon
                 /qian_pick_movie.html=anon
@@ -77,12 +76,9 @@
                 /hou_hall_movie_list.html=anon
                 /hou_hall_movie_add.html=anon
                 /hou_hall_movie_update.html=anon
-                &lt;!&ndash;/**=authc&lt;!&ndash;拦截所有,需要登录才能进入&ndash;&gt;&ndash;&gt;
-                /**=user&lt;!&ndash;user需要登录或者获取rememberme的缓存信息也能进入系统&ndash;&gt;
+                /**=user
             </value>
-        </property>-->
-
-
+        </property>
     </bean>
     <!--cookie配置参数-->
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -97,10 +93,8 @@
     </bean>
 
     <bean id="UserRealm" class="com.wwwy.liuxing.user.realm.UserRealm"/>
-       <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realms" ref="UserRealm"/>
-           <property name="rememberMeManager" ref="rememberMeManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
-
-
 </beans>
