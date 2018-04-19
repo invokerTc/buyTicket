@@ -28,7 +28,7 @@ public class HallTest {
      * 根据电影院与影厅ID获取影厅详情
      */
     @Test
-    public void testQueryHallByTheaterIdAndHallId(){
+    public void testQueryHallByTheaterIdAndHallId() {
         HallDTO hallDTO = null;
         try {
             hallDTO = hallDao.queryHallByTheaterIdAndHallId(1, 1);
@@ -43,13 +43,22 @@ public class HallTest {
      * 根据电影院与影厅ID获取影厅详情
      */
     @Test
-    public void testHallService(){
+    public void testHallService() {
         try {
             HallDTO hallDTO = hallService.queryHallByTheaterIdAndHallId("1", "1");
-            logger.info("影厅名："+hallDTO.getHallName());
+            logger.info("影厅名：" + hallDTO.getHallName());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @Test
+    public void testHallSeat() {
+        try {
+            HallDTO hallDTO = hallService.queryByName("一号IMAX厅");
+            logger.info(hallDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

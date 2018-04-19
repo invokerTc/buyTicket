@@ -14,4 +14,11 @@ public interface IHallDao {
      * @return
      */
     HallDTO queryHallByTheaterIdAndHallId(Integer theaterId,Integer hallId) throws Exception;
+
+    /**
+     * 根据影厅名称查询影厅的座位
+     * @param name
+     * @return
+     */
+    HallDTO queryByName(String name) throws Exception;
 }

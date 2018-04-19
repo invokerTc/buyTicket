@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.hall.dto;
 
 import com.wwwy.liuxing.movie.dto.MovieDTO;
+import com.wwwy.liuxing.position.PositionDTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -43,62 +44,10 @@ public class HallDTO implements Serializable {
      * 影厅对应的电影的集合
      */
     private List<MovieDTO> movieDTOList;
-
-    public List<MovieDTO> getMovieDTOList() {
-        return movieDTOList;
-    }
-
-    public void setMovieDTOList(List<MovieDTO> movieDTOList) {
-        this.movieDTOList = movieDTOList;
-    }
-
-    public HallDTO() {
-    }
-
-    public HallDTO(Integer hallId, String hallName, Integer fkTheaterId, Integer hallCoordinateX, Integer hallCoordinateY) {
-        this.hallId = hallId;
-        this.hallName = hallName;
-        this.fkTheaterId = fkTheaterId;
-        this.hallCoordinateX = hallCoordinateX;
-        this.hallCoordinateY = hallCoordinateY;
-    }
-
-    @Override
-    public String toString() {
-        return "HallDTO{" +
-                "hallId=" + hallId +
-                ", hallName='" + hallName + '\'' +
-                ", fkTheaterId=" + fkTheaterId +
-                ", hallCoordinateX=" + hallCoordinateX +
-                ", hallCoordinateY=" + hallCoordinateY +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HallDTO hallDTO = (HallDTO) o;
-
-        if (hallId != null ? !hallId.equals(hallDTO.hallId) : hallDTO.hallId != null) return false;
-        if (hallName != null ? !hallName.equals(hallDTO.hallName) : hallDTO.hallName != null) return false;
-        if (fkTheaterId != null ? !fkTheaterId.equals(hallDTO.fkTheaterId) : hallDTO.fkTheaterId != null) return false;
-        if (hallCoordinateX != null ? !hallCoordinateX.equals(hallDTO.hallCoordinateX) : hallDTO.hallCoordinateX != null)
-            return false;
-        return hallCoordinateY != null ? hallCoordinateY.equals(hallDTO.hallCoordinateY) : hallDTO.hallCoordinateY == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = hallId != null ? hallId.hashCode() : 0;
-        result = 31 * result + (hallName != null ? hallName.hashCode() : 0);
-        result = 31 * result + (fkTheaterId != null ? fkTheaterId.hashCode() : 0);
-        result = 31 * result + (hallCoordinateX != null ? hallCoordinateX.hashCode() : 0);
-        result = 31 * result + (hallCoordinateY != null ? hallCoordinateY.hashCode() : 0);
-        return result;
-    }
+    /**
+     * 影厅对应的座位的集合
+     */
+    private List<PositionDTO> positionDTOList;
 
     public Integer getHallId() {
         return hallId;
@@ -138,5 +87,56 @@ public class HallDTO implements Serializable {
 
     public void setHallCoordinateY(Integer hallCoordinateY) {
         this.hallCoordinateY = hallCoordinateY;
+    }
+
+    public List<MovieDTO> getMovieDTOList() {
+        return movieDTOList;
+    }
+
+    public void setMovieDTOList(List<MovieDTO> movieDTOList) {
+        this.movieDTOList = movieDTOList;
+    }
+
+    public List<PositionDTO> getPositionDTOList() {
+        return positionDTOList;
+    }
+
+    public void setPositionDTOList(List<PositionDTO> positionDTOList) {
+        this.positionDTOList = positionDTOList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HallDTO)) return false;
+
+        HallDTO hallDTO = (HallDTO) o;
+
+        if (hallId != null ? !hallId.equals(hallDTO.hallId) : hallDTO.hallId != null) return false;
+        if (hallName != null ? !hallName.equals(hallDTO.hallName) : hallDTO.hallName != null) return false;
+        if (fkTheaterId != null ? !fkTheaterId.equals(hallDTO.fkTheaterId) : hallDTO.fkTheaterId != null) return false;
+        if (hallCoordinateX != null ? !hallCoordinateX.equals(hallDTO.hallCoordinateX) : hallDTO.hallCoordinateX != null)
+            return false;
+        if (hallCoordinateY != null ? !hallCoordinateY.equals(hallDTO.hallCoordinateY) : hallDTO.hallCoordinateY != null)
+            return false;
+        if (movieDTOList != null ? !movieDTOList.equals(hallDTO.movieDTOList) : hallDTO.movieDTOList != null)
+            return false;
+        return positionDTOList != null ? positionDTOList.equals(hallDTO.positionDTOList) : hallDTO.positionDTOList == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = hallId != null ? hallId.hashCode() : 0;
+        result = 31 * result + (hallName != null ? hallName.hashCode() : 0);
+        result = 31 * result + (fkTheaterId != null ? fkTheaterId.hashCode() : 0);
+        result = 31 * result + (hallCoordinateX != null ? hallCoordinateX.hashCode() : 0);
+        result = 31 * result + (hallCoordinateY != null ? hallCoordinateY.hashCode() : 0);
+        result = 31 * result + (movieDTOList != null ? movieDTOList.hashCode() : 0);
+        result = 31 * result + (positionDTOList != null ? positionDTOList.hashCode() : 0);
+        return result;
+    }
+
+    public HallDTO() {
     }
 }

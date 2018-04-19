@@ -39,5 +39,6 @@
         <mapper resource="mapper/movie_mapper.xml"/>
         <mapper resource="mapper/city_mapper.xml"/>
         <mapper resource="mapper/admin_mapper.xml"/>
+        <mapper resource="mapper/position.mapper.xml"/>
     </mappers>
 </configuration>

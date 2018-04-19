@@ -172,7 +172,7 @@
             <div class="bar"></div>
             <span class="step-text">14分钟内付款</span>
         </div>
-        <div class="step last ">
+        <div class="step last " id="step-last">
             <span class="step-num">4</span>
             <div class="bar"></div>
             <span class="step-text">影院取票观影</span>
@@ -214,7 +214,7 @@
                 <div class="seats">
                     <div>
                         <#list setList as set>
-                        <span class="">${set}</span>
+                            <span class="">${set}</span>
                         </#list>
                     </div>
 
@@ -235,7 +235,8 @@
         </div>-->
         <div>
             <div>
-                <button style="background-color: #1b6aaa;font-size: large" type="button" value="">确认支付</button>
+                <button style="background-color: #1b6aaa;font-size: large" type="button" id="payButton" onclick="confirmPay()">确认支付
+                </button>
             </div>
         </div>
     </div>
@@ -300,7 +301,6 @@
         if (maxtime >= 0) {
             minutes = Math.floor(maxtime / 60);
             seconds = Math.floor(maxtime % 60);
-            /*msg = "距离结束还有"+minutes+"分"+seconds+"秒";*/
             $("#minutes").text(minutes);
             $("#seconds").text(seconds);
             if (maxtime == 5 * 60) {
@@ -316,5 +316,11 @@
         }
     }
     timer = setInterval("CountDown()", 1000);
+    function confirmPay() {
+        var attr = $("#step-last").attr("class","step done");
+        $("#payButton").attr("disabled",true);
+        $("#payButton").css("background-color","");
+        alert("购票成功，请及时取票");
+    }
 </script>
 </html>

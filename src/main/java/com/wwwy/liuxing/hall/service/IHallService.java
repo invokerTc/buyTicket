@@ -8,4 +8,11 @@ import com.wwwy.liuxing.hall.dto.HallDTO;
  */
 public interface IHallService  {
     HallDTO queryHallByTheaterIdAndHallId(String theaterId, String hallId) throws Exception;
+
+    /**
+     * 根据影厅名称查询影厅的座位
+     * @param name
+     * @return
+     */
+    HallDTO queryByName(String name) throws Exception;
 }

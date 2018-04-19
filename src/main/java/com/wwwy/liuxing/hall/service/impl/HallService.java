@@ -28,4 +28,9 @@ public class HallService implements IHallService {
         HallDTO hallDTO = hallDao.queryHallByTheaterIdAndHallId(theaterid, hallid);
         return hallDTO;
     }
+
+    @Override
+    public HallDTO queryByName(String name) throws Exception {
+        return hallDao.queryByName(name);
+    }
 }
