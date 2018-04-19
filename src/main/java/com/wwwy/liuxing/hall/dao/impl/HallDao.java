@@ -39,9 +39,21 @@ public class HallDao extends SqlSessionDaoSupport implements IHallDao {
     }
 
     @Override
+    public HallDTO queryByName(String name) throws Exception {
+        HallDTO hallDTO = getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryExistPosition", name);
+        return hallDTO;
+    }
+
+    @Override
     public List<HallDTO> queryAllHall() throws Exception {
         List<HallDTO> list = getSqlSession().selectList("com.wwwy.liuxing.hall.dto.HallMapper.queryAll");
         return list;
+    }
+
+    @Override
+    public HallDTO queryHallById(Integer id) throws Exception {
+        HallDTO o = getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryHallById", id);
+        return o;
     }
 
     @Override

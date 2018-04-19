@@ -68,6 +68,11 @@ public class HallService implements IHallService {
     }
 
     @Override
+    public HallDTO queryHallById(Integer id) throws Exception {
+        return hallDao.queryHallById(id);
+    }
+
+    @Override
     public Boolean insertHall(HallDTO hallDTO) throws Exception {
         return hallDao.insertHall(hallDTO);
     }
@@ -123,5 +128,10 @@ public class HallService implements IHallService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public HallDTO queryByName(String name) throws Exception {
+        return hallDao.queryByName(name);
     }
 }

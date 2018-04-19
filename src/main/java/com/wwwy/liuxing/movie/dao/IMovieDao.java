@@ -41,6 +41,14 @@ public interface IMovieDao {
      */
     MovieDTO getMovieByCityIdAndMovieId(Integer cityId,Integer movieId) throws Exception;
 
+    /**
+     * 根据id查询电影
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    MovieDTO queryMovieById(Integer id)throws Exception;
+
      /*
      * 查询所有电影信息
      * */

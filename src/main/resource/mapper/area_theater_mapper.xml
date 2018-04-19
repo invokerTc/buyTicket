@@ -38,10 +38,13 @@
     </update>
 
     <select id="queryAny" resultMap="AreaTheaterResultMap">
-        SELECT ar_th_id,fk_area_id,fk_theater_id FROM tb_area_theater
-        WHERE ar_th_id LIKE concat(concat('%',#{anyInfo}),'%')
-        OR fk_area_id LIKE concat(concat('%',#{anyInfo}),'%')
-        OR fk_theater_id LIKE concat(concat('%',#{anyInfo}),'%')
+        SELECT ta.ar_th_id,ta.fk_area_id,ta.fk_theater_id FROM tb_area a JOIN tb_area_theater ta JOIN tb_theater t
+        ON (a.area_id=ta.fk_area_id AND ta.fk_theater_id=t.theater_id)
+        WHERE ta.ar_th_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR ta.fk_area_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR ta.fk_theater_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR a.area_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR t.theater_name LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
     <!--批量删除-->

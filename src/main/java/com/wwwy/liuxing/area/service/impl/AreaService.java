@@ -29,6 +29,9 @@ public class AreaService implements IAreaService {
     @Autowired
     private IAreaDAO areaDAO;
 
+    @Autowired
+    private ICityService cityService;
+
 
     private static final Logger logger = Logger.getLogger(AreaService.class);
 
@@ -45,7 +48,7 @@ public class AreaService implements IAreaService {
      * @throws Exception
      */
     @Override
-    public Map<String,PageInfo<AreaDTO>> queryAllArea(Integer cityId, Integer page)throws Exception {
+    public PageInfo<AreaDTO> queryAllArea(Integer cityId, Integer page)throws Exception {
         logger.debug("currentPage::::"+page);
         int start=SysConfig.BeforeConfig.PAGE_START;
         if(null==page || page<start){
@@ -53,23 +56,15 @@ public class AreaService implements IAreaService {
         }
 //        开始分页，初始位置，每页大小
         PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
-        Map<String, List<AreaDTO>> map = areaDAO.queryAllArea(cityId);
-        String cityName =null;
-        for (String key : map.keySet()) {
-            cityName=key;
-            if(null!=cityName){
-                break;
-            }
+        List<AreaDTO> areaDTOList = areaDAO.queryAll(cityId);
+        for (AreaDTO area :
+                areaDTOList) {
+            CityDTO cityDTO = cityService.queryCityById(area.getFkCityId());
+            area.setCityName(cityDTO.getCityName());
         }
-        logger.debug("cityName====="+cityName);
-        List<AreaDTO> areaDTOList = map.get(cityName);
-//        将需要分页的集合进行封装
-        logger.info(areaDTOList);
         PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
-        HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>();
-        hashMap.put(cityName,pageInfo);
         logger.debug("pageInfo"+pageInfo);
-        return hashMap;
+        return pageInfo;
     }
 
     @Override
@@ -93,28 +88,27 @@ public class AreaService implements IAreaService {
     }
 
     @Override
-    public Map<String,PageInfo<AreaDTO>> queryAreaByAny(String anyInfo,Integer page) throws Exception {
+    public PageInfo<AreaDTO> queryAreaByAny(String anyInfo,Integer page) throws Exception {
         logger.debug("currentPage::::"+page);
         int start=SysConfig.BeforeConfig.PAGE_START;
         if(null==page || page<start){
             page=start;
         }
-        Map<String, List<AreaDTO>> map = areaDAO.queryAreaByAny(anyInfo);
-        String cityName=null;
-        HashMap<String,PageInfo<AreaDTO>> hashMap = new HashMap<>(SysConfig.BeforeConfig.MAP_SIZE);
-        for (Map.Entry entry : map.entrySet()) {
-            cityName= entry.getKey().toString();
-            logger.debug("cityName====="+cityName);
-            List<AreaDTO> areaDTOList= (List) entry.getValue();
-            PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(areaDTOList);
-            hashMap.put(cityName,pageInfo);
+        PageHelper.startPage(page,SysConfig.BeforeConfig.PAGE_SIZE);
+        List<AreaDTO> list = areaDAO.queryAreaByAny(anyInfo);
+        for (AreaDTO area :
+                list) {
+            CityDTO cityDTO = cityService.queryCityById(area.getFkCityId());
+            area.setCityName(cityDTO.getCityName());
         }
-        return hashMap;
+        PageInfo<AreaDTO> pageInfo = new PageInfo<AreaDTO>(list);
+        return pageInfo;
     }
 
     @Override
     public Boolean deleteBatchAreas(int[] areaId) throws Exception {
         return areaDAO.deleteBatchAreas(areaId);
     }
+
 
 }

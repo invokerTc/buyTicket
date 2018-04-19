@@ -41,13 +41,9 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     }
 
     @Override
-    public Map<String,List<AreaDTO>> queryAllArea(Integer cityId) throws Exception{
+    public List<AreaDTO> queryAllArea(Integer cityId) throws Exception{
         List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAllArea",cityId);
-        CityDTO cityDTO = list.get(SysConfig.BeforeConfig.ZERO_NUMBLE).getCityDTO();
-        Map<String,List<AreaDTO>> map = new HashMap<>(SysConfig.BeforeConfig.MAP_SIZE);
-        logger.debug("cityName"+cityDTO.getCityName());
-        map.put(cityDTO.getCityName(),list);
-        return map;
+        return list;
     }
 
     @Override
@@ -75,13 +71,9 @@ public class AreaDAO extends SqlSessionDaoSupport implements IAreaDAO {
     }
 
     @Override
-    public Map<String,List<AreaDTO>> queryAreaByAny(String anyInfo) throws Exception {
+    public List<AreaDTO> queryAreaByAny(String anyInfo) throws Exception {
         List<AreaDTO> list = getSqlSession().selectList("com.wwwy.liuxin.area.dto.AreaMapper.queryAny", anyInfo);
-        CityDTO cityDTO = list.get(SysConfig.BeforeConfig.ZERO_NUMBLE).getCityDTO();
-        Map<String,List<AreaDTO>> map = new HashMap<>(SysConfig.BeforeConfig.MAP_SIZE);
-        logger.debug("cityName"+cityDTO.getCityName());
-        map.put(cityDTO.getCityName(),list);
-        return map;
+        return list;
     }
 
     @Override

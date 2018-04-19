@@ -22,6 +22,15 @@ public interface IHallService  {
     PageInfo<HallDTO> queryAllHall(Integer page)throws Exception;
 
     /**
+     * 根据id查询对应的厅
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallDTO queryHallById(Integer id)throws Exception;
+
+
+    /**
      * 插入一条影厅记录
      * @param hallDTO
      * @return
@@ -36,6 +45,13 @@ public interface IHallService  {
      * @throws Exception
      */
     Boolean deleteHall(Integer hallId)throws Exception;
+
+    /**
+     * 根据影厅名称查询影厅的座位
+     * @param name
+     * @return
+     */
+    HallDTO queryByName(String name) throws Exception;
 
     /*
     * 根据ID获取信息

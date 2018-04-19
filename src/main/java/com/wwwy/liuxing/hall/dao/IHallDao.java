@@ -18,11 +18,26 @@ public interface IHallDao {
     HallDTO queryHallByTheaterIdAndHallId(Integer theaterId,Integer hallId) throws Exception;
 
     /**
+     * 根据影厅名称查询影厅的座位
+     * @param name
+     * @return
+     */
+    HallDTO queryByName(String name) throws Exception;
+
+    /**
      * 查询出所有的影厅
      * @return
      * @throws Exception
      */
     List<HallDTO> queryAllHall()throws Exception;
+
+    /**
+     * 根据id查询对应的厅
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallDTO queryHallById(Integer id)throws Exception;
 
 
     /**
