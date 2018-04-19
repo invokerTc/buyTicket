@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.movie.dao.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.movie.dao.IMovieDao;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -72,5 +73,60 @@ public class MovieDao extends SqlSessionDaoSupport implements IMovieDao {
         return movie;
     }
 
+    @Override
+    public MovieDTO queryMovieById(Integer id) throws Exception {
+        MovieDTO o = getSqlSession().selectOne("com.wwwy.liuxing.movie.dto.MovieMapper.getMovieById", id);
+        return o;
+    }
 
+
+    /*
+    *
+    * 后台查询所有电影信息
+    * */
+    @Override
+    public List<MovieDTO> getMovieInfo() throws Exception {
+        return getSqlSession().selectList("com.wwwy.liuxing.movie.dto.MovieMapper.getMovieInfo");
+    }
+
+    /*
+    * 后台增加电影信息
+    * */
+    @Override
+    public Integer insertMovieInfo(MovieDTO movieDTO) throws Exception {
+        return getSqlSession().insert("com.wwwy.liuxing.movie.dto.MovieMapper.insertMovieInfo",movieDTO);
+    }
+
+    /*
+    * 后台更改电影信息
+    * */
+    @Override
+    public Integer upadetaMovieInfo(MovieDTO movieDTO) throws Exception {
+        return getSqlSession().update("com.wwwy.liuxing.movie.dto.MovieMapper.updateMovieInfo",movieDTO);
+    }
+
+    /*
+    * 后台通过ID获取电影信息
+    * */
+    @Override
+    public MovieDTO getMovieInfoById(Integer moiveId) throws Exception {
+        return getSqlSession().selectOne("com.wwwy.liuxing.movie.dto.MovieMapper.getMovieInfoById",moiveId);
+    }
+
+    /*
+    * 后台删除电影信息
+    * */
+    @Override
+    public Integer deleteMovieInfoById(Integer moiveId) throws Exception {
+        return getSqlSession().delete("com.wwwy.liuxing.movie.dto.MovieMapper.deleteMovieInfoById",moiveId);
+    }
+
+    /*
+    * 条件查询电影信息
+    * */
+    @Override
+    public List<MovieDTO> criteriaQueryMovie(String anyInfo) throws Exception {
+        List<MovieDTO> movieDTOPageInfo = getSqlSession().selectList("com.wwwy.liuxing.movie.dto.MovieMapper.criteriaQueryMovie", anyInfo);
+        return movieDTOPageInfo;
+    }
 }

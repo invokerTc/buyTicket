@@ -61,4 +61,19 @@ public class HallTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testInsert(){
+        HallDTO hallDTO = new HallDTO();
+        hallDTO.setHallName("lalla");
+        hallDTO.setFkTheaterId(3);
+        hallDTO.setHallCoordinateX(6);
+        hallDTO.setHallCoordinateY(7);
+        try {
+            Boolean aBoolean = hallDao.insertHall(hallDTO);
+            logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

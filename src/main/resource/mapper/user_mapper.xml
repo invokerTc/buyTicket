@@ -12,11 +12,38 @@
     </resultMap>
 
     <select id="getNameAndPassWord" resultMap="UserResultMap">
-        select user_name,user_password from tb_user WHERE user_name=#{userName};
+        select user_name,user_password from tb_user WHERE user_name=#{userName}
     </select>
 
     <insert id="setUserRegister">
         INSERT INTO tb_user (user_name,user_password,user_realname,user_tel)
-        VALUES (#{userName},#{userPassword},#{userRealName},#{userTel});
+        VALUES (#{userName},#{userPassword},#{userRealName},#{userTel})
     </insert>
+
+    <select id="getUserInfo" resultMap="UserResultMap">
+        SELECT user_id,user_name,user_password,user_realname,user_tel FROM tb_user
+    </select>
+
+    <select id="getUserById" resultMap="UserResultMap">
+        SELECT user_id,user_name,user_password,user_realname,user_tel FROM tb_user WHERE user_id=#{userId}
+    </select>
+
+    <update id="updateUserInfo">
+        UPDATE tb_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null">user_name=#{userName},</if>
+            <if test="userPassword!=null">user_password=#{userPassword},</if>
+            <if test="userRealName!=null">user_realname=#{userRealName},</if>
+            <if test="userTel!=null">user_tel=#{userTel},</if>
+        </trim>
+        WHERE user_id=#{userId}
+    </update>
+
+    <select id="criteriaQueryUser" resultMap="UserResultMap">
+        SELECT user_id,user_name,user_password,user_realname,user_tel FROM tb_user WHERE
+        user_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR user_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR user_realname LIKE concat(concat('%',#{anyInfo}),'%')
+        OR user_tel LIKE concat(concat('%',#{anyInfo}),'%')
+    </select>
 </mapper>

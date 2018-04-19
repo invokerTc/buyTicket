@@ -2,6 +2,8 @@ package com.wwwy.liuxing.hall.dao;
 
 import com.wwwy.liuxing.hall.dto.HallDTO;
 
+import java.util.List;
+
 /**
  * Created by wanghao on 2018/4/12.
  * 获取影厅的详细信息
@@ -21,4 +23,36 @@ public interface IHallDao {
      * @return
      */
     HallDTO queryByName(String name) throws Exception;
+
+    /**
+     * 查询出所有的影厅
+     * @return
+     * @throws Exception
+     */
+    List<HallDTO> queryAllHall()throws Exception;
+
+    /**
+     * 根据id查询对应的厅
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    HallDTO queryHallById(Integer id)throws Exception;
+
+
+    /**
+     * 插入一条影厅记录
+     * @param hallDTO
+     * @return
+     * @throws Exception
+     */
+    Boolean insertHall(HallDTO hallDTO)throws Exception;
+
+    /**
+     * 很久id删除一条记录
+     * @param hallId
+     * @return
+     * @throws Exception
+     */
+    Boolean deleteHall(Integer hallId)throws Exception;
 }

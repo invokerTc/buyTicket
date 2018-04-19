@@ -40,5 +40,6 @@
         <mapper resource="mapper/city_mapper.xml"/>
         <mapper resource="mapper/admin_mapper.xml"/>
         <mapper resource="mapper/position.mapper.xml"/>
+        <mapper resource="mapper/area_theater_mapper.xml"/>
     </mappers>
 </configuration>

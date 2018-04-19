@@ -1,5 +1,6 @@
 package com.wwwy.liuxing.movie.service;
 
+import com.github.pagehelper.PageInfo;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 
 import java.util.List;
@@ -30,11 +31,53 @@ public interface IMovieService {
     List<MovieDTO> getMoviesByCondition(String type, String country, String date) throws Exception;
 
     /**
-     * 根据城市和电影获取放映该电影的电影院名和影院地址 （影院最低价格 用另一个sql在hallmovie_mapper.xml中查询每个放映该电影的最低价格）
+     * 根据城市和电影获取放映该电影详情
      * @param cityId
      * @param movieId
      * @return
      * @throws Exception
      */
     MovieDTO getMovieByCityIdAndMovieId(String cityId,String movieId) throws Exception;
+
+
+    /**
+     * 根据id查询电影
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    MovieDTO queryMovieById(Integer id)throws Exception;
+
+
+    /*
+    * 后台增加电影信息
+    * */
+    boolean insertMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 后台查询电影所有信息
+    * */
+    PageInfo<MovieDTO> getAllMovieInfo(Integer page)throws Exception;
+
+    /*
+    * 后台更改电影信息
+    * */
+    boolean updateMovieInfo(MovieDTO movieDTO)throws Exception;
+
+    /*
+    * 后台通过ID获取电影信息
+    * */
+    MovieDTO getMovieInfoById(Integer movieId)throws Exception;
+
+
+    /*
+    * 通过ID删除电影信息
+    * */
+    boolean deleteMovieInfoById(Integer movieId)throws Exception;
+
+    /*
+    * 条件查询电影信息
+    * */
+    PageInfo<MovieDTO> criteriaQueryMovie(Integer page,String anyInfo)throws Exception;
+
 }
