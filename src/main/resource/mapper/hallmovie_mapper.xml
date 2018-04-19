@@ -54,7 +54,8 @@
         and hm.fk_movie_id = m.movie_id
         where c.city_id=#{cityId}
         and th.theater_id=#{theaterId}
-        and m.movie_id=#{movieId} ;
+        and m.movie_id=#{movieId}
+        and hm.movie_runtime > now()
     </select>
 
     <select id="queryById" resultMap="HallMovieResultMap">

@@ -150,9 +150,10 @@ public class HallMovieTest {
     @Test
     public void testQueryPlayingHallMovie2(){
         try {
-            List<HallMovieDTO> list = hallMovieService.queryPlayingHallMovie("1", "1", "1");
+            List<HallMovieDTO> list = hallMovieService.queryPlayingHallMovie("1", "4", "8");
             for(HallMovieDTO hallMovieDTO:list){
-                logger.info(hallMovieDTO.getHallName()+"\t"+hallMovieDTO.getMoviePrice());
+                logger.info(hallMovieDTO.getHallName()+"\t"+hallMovieDTO.getMovieRuntime()+"\t"+hallMovieDTO.getMoviePrice());
+
             }
         } catch (Exception e) {
             e.printStackTrace();
