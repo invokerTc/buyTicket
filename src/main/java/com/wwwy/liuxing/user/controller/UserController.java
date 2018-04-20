@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Administrator on 2018/4/11.
@@ -60,26 +58,14 @@ public class UserController {
         return "{\"code\":1}";
     }
 
-    @RequestMapping("/random")
-    public String repeatCommit(HttpSession session, Model model){
-        Random random = new Random();
-        int nextInt = random.nextInt();
-        session.setAttribute("token",nextInt+"");
-        model.addAttribute("token",nextInt+"");
-        return "qian_register";
-    }
-
     /*
     * 用户注册
     * */
     @RequestMapping("/register")
     @ResponseBody
     public String userRegister(UserDTO userDTO, String inputCode) {
-    public String userRegister(UserDTO userDTO) {
         try {
             boolean dto = userService.setUserDTO(userDTO, inputCode);
-            if (dto) {
-            boolean dto = userService.setUserDTO(userDTO);
             if (dto) {
                 return "{\"code\":1}";
             }
@@ -164,20 +150,5 @@ public class UserController {
             modelMap.addAttribute("userInfoList", null);
         }
         return "hou_userlist";
-    }
-
-    @RequestMapping("/queryByTel")
-    @ResponseBody
-    public String queryByTel(String tele) {
-        try {
-            boolean flag = userService.queryUserByTel(tele);
-            if (flag) {
-                return "{\"code\":0}";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "{\"code\":1}";
-        }
-        return "{\"code\":1}";
     }
 }
