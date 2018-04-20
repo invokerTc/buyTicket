@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
+
 /**
  * Created by wanghao on 2018/4/12.
  * 测试根据影院获取影厅信息
@@ -55,8 +58,8 @@ public class HallTest {
     @Test
     public void testHallSeat() {
         try {
-            HallDTO hallDTO = hallService.queryByName("一号IMAX厅");
-            logger.info(hallDTO);
+//            HallDTO hallDTO = hallService.queryByName(1);
+//            logger.info(hallDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,6 +75,15 @@ public class HallTest {
         try {
             Boolean aBoolean = hallDao.insertHall(hallDTO);
             logger.debug(aBoolean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testQu(){
+        try {
+            HallDTO hallDTO = hallService.queryById(2);
+            System.out.println(hallDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }

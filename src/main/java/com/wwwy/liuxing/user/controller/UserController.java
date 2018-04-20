@@ -39,7 +39,7 @@ public class UserController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public String userLogin(String userName, String passWord, Model model){
+    public String userLogin(String userName, String passWord, Model model) {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, passWord);
         Subject subject = SecurityUtils.getSubject();
         try {
@@ -47,10 +47,10 @@ public class UserController {
             subject.login(usernamePasswordToken);
             //可以调用登录用户名称传到前端页面
             model.addAttribute("userName", userName);
-        }catch (UnknownAccountException e){
+        } catch (UnknownAccountException e) {
             e.printStackTrace();
             return "{\"code\":0}";
-        }catch (IncorrectCredentialsException e){
+        } catch (IncorrectCredentialsException e) {
             e.printStackTrace();
             return "{\"code\":2}";
         }
@@ -62,10 +62,10 @@ public class UserController {
     * */
     @RequestMapping("/register")
     @ResponseBody
-    public String userRegister(UserDTO userDTO){
+    public String userRegister(UserDTO userDTO) {
         try {
             boolean dto = userService.setUserDTO(userDTO);
-            if (dto){
+            if (dto) {
                 return "{\"code\":1}";
             }
         } catch (Exception e) {
@@ -81,10 +81,10 @@ public class UserController {
     @RequestMapping("/list")
     public String userInfo(Integer page, ModelMap modelMap) {
         try {
-            PageInfo<UserDTO> pageInfo  = userService.getUserInfo(page);
+            PageInfo<UserDTO> pageInfo = userService.getUserInfo(page);
             List<UserDTO> userInfoList = pageInfo.getList();
-            modelMap.addAttribute("pageInfo",pageInfo);
-            modelMap.addAttribute("userInfoList",userInfoList);
+            modelMap.addAttribute("pageInfo", pageInfo);
+            modelMap.addAttribute("userInfoList", userInfoList);
             logger.info(userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,23 +97,23 @@ public class UserController {
     * 修改用户信息
     * */
     @RequestMapping("/update")
-    public String updateUserInfo(UserDTO userDTO,ModelMap modelMap,HttpServletRequest request){
-        PageInfo<UserDTO> PageInfo =null;
-        List<UserDTO> userInfoList1=null;
+    public String updateUserInfo(UserDTO userDTO, ModelMap modelMap, HttpServletRequest request) {
+        PageInfo<UserDTO> PageInfo = null;
+        List<UserDTO> userInfoList1 = null;
         try {
             boolean b = userService.updateUserInfo(userDTO);
             logger.info(b);
-            if (b){
+            if (b) {
                 String page = request.getParameter("page");
                 int parseInt = Integer.parseInt(page);
                 PageInfo = userService.getUserInfo(parseInt);
-               userInfoList1 = PageInfo.getList();
+                userInfoList1 = PageInfo.getList();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        modelMap.addAttribute("pageInfo",PageInfo);
-        modelMap.addAttribute("userInfoList",userInfoList1);
+        modelMap.addAttribute("pageInfo", PageInfo);
+        modelMap.addAttribute("userInfoList", userInfoList1);
         return "hou_userlist";
     }
 
@@ -121,33 +121,48 @@ public class UserController {
     * 根据id获取用户信息进行预修改
     * */
     @RequestMapping("/preupdate")
-    public String getUserInfoById(Integer userId,ModelMap model){
+    public String getUserInfoById(Integer userId, ModelMap model) {
         try {
             UserDTO userInfoList = userService.getUserInfoById(userId);
             logger.info(userInfoList);
-            model.addAttribute("userInfoList",userInfoList);
+            model.addAttribute("userInfoList", userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "pre_updete_userinfo";
-        }
+    }
 
     /*
     * 条件查询用户信息，并分页
     * */
     @RequestMapping("anyInfo")
-    public String criteriaQueryUser(String anyInfo,Integer page,Model modelMap){
+    public String criteriaQueryUser(String anyInfo, Integer page, Model modelMap) {
         try {
             PageInfo<UserDTO> pageInfo = userService.criteriaQueryUser(anyInfo, page);
             List<UserDTO> userInfoList = pageInfo.getList();
-            modelMap.addAttribute("pageInfo",pageInfo);
+            modelMap.addAttribute("pageInfo", pageInfo);
             logger.info(pageInfo);
-            modelMap.addAttribute("userInfoList",userInfoList);
-            logger.info("================"+userInfoList);
+            modelMap.addAttribute("userInfoList", userInfoList);
+            logger.info("================" + userInfoList);
         } catch (Exception e) {
             e.printStackTrace();
-            modelMap.addAttribute("userInfoList",null);
+            modelMap.addAttribute("userInfoList", null);
         }
         return "hou_userlist";
+    }
+
+    @RequestMapping("/queryByTel")
+    @ResponseBody
+    public String queryByTel(String tele) {
+        try {
+            boolean flag = userService.queryUserByTel(tele);
+            if (flag) {
+                return "{\"code\":0}";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{\"code\":1}";
+        }
+        return "{\"code\":1}";
     }
 }

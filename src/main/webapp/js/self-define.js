@@ -77,9 +77,17 @@ function checkTele() {
     var patrn = /^[1]([3]|[5]|[8]){1}[0-9]{9}$/;
     if (tele != "") {
         if (tele.match(patrn)) {
-            $("#codeButton").attr("disabled", false);
+            $.post("/user/queryByTel",{tele:tele},function (data) {
+                if (data==0){
+                    $("#codeButton").attr("disabled", false);
+                }else {
+                    alert("请您先注册");
+                    window.location.href="/qian_register.html";
+                }
+            });
+
         } else {
-            $("#teleSpan").text("手机号格式错误");
+            /*$("#teleSpan").text("手机号格式错误");*/
             $("#codeButton").attr("disabled", true);
         }
     } else {
@@ -87,6 +95,7 @@ function checkTele() {
         $("#codeButton").attr("disabled", true);
     }
 }
+
 var count = 0;
 /*$(".checkbox").click(function () {
  if (this.checked) {

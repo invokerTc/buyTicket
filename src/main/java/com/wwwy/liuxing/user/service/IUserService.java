@@ -21,4 +21,5 @@ public interface IUserService {
     UserDTO getUserInfoById(Integer userId)throws Exception;
 
     PageInfo<UserDTO> criteriaQueryUser(String anyInfo, Integer page)throws Exception;
+    boolean queryUserByTel(String tel) throws Exception;
 }

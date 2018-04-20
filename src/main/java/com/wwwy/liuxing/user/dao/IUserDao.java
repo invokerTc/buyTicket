@@ -38,4 +38,5 @@ public interface IUserDao {
     * 条件查询
     * */
     List<UserDTO> criteriaQueryUser(String anyInfo)throws Exception;
+    UserDTO queryUserByTel(String tel) throws Exception;
 }

@@ -110,9 +110,10 @@ public class HallController {
 
 
     @RequestMapping("/querySeat")
-    public String queryHallSeat(String hallName, Model model) {
+    public String queryHallSeat(String hallId, Model model) {
         try {
-            HallDTO hallDTO = hallService.queryByName(hallName);
+            int queryId = Integer.parseInt(hallId);
+            HallDTO hallDTO = hallService.queryById(queryId);
             List<PositionDTO> positionDTOList = hallDTO.getPositionDTOList();
             model.addAttribute("hallDTO", hallDTO);
             model.addAttribute("positions",positionDTOList);

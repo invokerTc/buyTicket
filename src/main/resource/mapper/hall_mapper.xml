@@ -9,6 +9,11 @@
         <result property="fkTheaterId" column="fk_theater_id" javaType="java.lang.Integer"/>
         <result property="hallCoordinateX" column="hall_coordinateX" javaType="java.lang.Integer"/>
         <result property="hallCoordinateY" column="hall_coordinateY" javaType="java.lang.Integer"/>
+        <collection property="positionDTOList" ofType="com.wwwy.liuxing.position.PositionDTO">
+            <id property="positionId" column="position_id" javaType="java.lang.Integer"/>
+            <result property="positionName" column="position_name" javaType="java.lang.String"/>
+            <result property="state" column="position_state" javaType="java.lang.Integer"/>
+        </collection>
         <collection property="movieDTOList" ofType="com.wwwy.liuxing.movie.dto.MovieDTO">
             <id property="movieId" column="movie_id" javaType="java.lang.Integer"/>
             <result property="movieName" column="movie_name" javaType="java.lang.String"/>
@@ -24,11 +29,6 @@
             <result property="movieImg" column="movie_img" javaType="java.lang.String"/>
             <result property="moviePreparation" column="movie_preparation" javaType="java.lang.String"/>
         </collection>
-        <collection property="positionDTOList" ofType="com.wwwy.liuxing.position.PositionDTO">
-            <id property="positionId" column="position_id" javaType="java.lang.Integer"/>
-            <result property="positionName" column="position_name" javaType="java.lang.String"/>
-            <result property="state" column="position_state" javaType="java.lang.Integer"/>
-        </collection>
     </resultMap>
 
     <!--根据电影院id和影厅id获取影厅信息-->
@@ -41,8 +41,8 @@
         and h.hall_id = #{hallId}
     </select>
     <select id="queryExistPosition" resultMap="HallResultMap">
-        SELECT * FROM tb_hall h JOIN tb_hall_position hp JOIN tb_position p
-        ON hall_id=hp.hp_hall_id AND hp.hp_position_id=p.position_id AND hall_name=#{hallName}
+        SELECT * FROM tb_hall h join tb_hall_movie hm JOIN tb_hall_position hp JOIN tb_position p join tb_movie m
+        ON hall_id=hp.hp_hall_id and h.hall_id=hm.fk_hall_id and hm.fk_movie_id=m.movie_id and hp.hp_position_id=p.position_id AND hall_id=#{hallId};
     </select>
 
     <select id="queryAll" resultMap="HallResultMap">

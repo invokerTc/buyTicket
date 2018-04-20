@@ -51,5 +51,5 @@ public interface IHallService  {
      * @param name
      * @return
      */
-    HallDTO queryByName(String name) throws Exception;
+    HallDTO queryById(Integer id) throws Exception;
 }
