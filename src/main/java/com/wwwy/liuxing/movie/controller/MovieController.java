@@ -35,14 +35,14 @@ public class MovieController {
 
     /**
      * 首页获取所有的电影列表
-     * @param cityName
      * @param modelMap
      * @return
      */
-    @RequestMapping("getAllMovie")
-    public String getAllMovieByCityName(String cityName, ModelMap modelMap){
+    @RequestMapping("/getAllMovie")
+    public String getAllMovieByCityName(ModelMap modelMap){
         logger.info("进入MovieController 的 /movie/getAllMovie  方法");
         try {
+            String cityName = "武汉";
             List<MovieDTO> movieList = movieService.getAllMovieByCityName(cityName);
             modelMap.put("movieList",movieList);
         } catch (Exception e) {

@@ -44,7 +44,7 @@ public class UserService implements IUserService{
     @Override
     public boolean setUserDTO(UserDTO userDTO,String inputCode) throws Exception {
         String telephone = userDTO.getUserTel();
-       String randNum = randomNumUtil.getRand(telephone);
+        String randNum = randomNumUtil.getRand(telephone);
        /* String randNum = "234567";*/
         logger.info(randNum.hashCode());
         logger.info(inputCode.hashCode());

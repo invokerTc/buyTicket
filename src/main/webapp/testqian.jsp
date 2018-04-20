@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html lang="en">
 <%--
 Created by IntelliJ IDEA.
@@ -81,7 +83,7 @@ To change this template use File | Settings | File Templates.
 <body>
 <div id="win"
      style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:540px; margin-top:670px; border:1px solid #888; background-color:#edf; text-align:center">
-    <div style=" margin-left: 220px">
+    <div style="margin-left: 220px">
         <button onclick="closeLogin();">x</button>
     </div>
     <div style="margin-top: 40px">
@@ -125,10 +127,10 @@ To change this template use File | Settings | File Templates.
 
         <div class="user-info">
             <div class="user-avatar J-login">
-                <img src="http://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                 <span class="caret"></span>
                 <ul class="user-menu">
-                    <li><a id="userName1" href="javascript:void 0">未登录</a></li>
+                        <!--shiro:principal当前登录人的用户名-->
+                        欢迎<shiro:principal/>
                 </ul>
             </div>
         </div>
@@ -1022,7 +1024,6 @@ To change this template use File | Settings | File Templates.
                     var index = jsonObj.code;
                     if (jsonObj.code == 1) {
                         alert(errArrays[index])
-                        document.getElementById("userName1").innerHTML = "已登录"
                         closeLogin();
                     } else {
                         alert(errArrays[index]);
