@@ -10,16 +10,33 @@ import java.util.List;
  */
 public interface IUserService {
 
+    /*
+    * 登录判断
+    * */
     UserDTO checkUserNameAndPassWord(String userName)throws Exception;
 
-    boolean setUserDTO(UserDTO userDTO)throws Exception;
+    /*
+    * 注册
+    * */
+    boolean setUserDTO(UserDTO userDTO,String inputCode)throws Exception;
 
+    /*
+    * 后台查询
+    * */
     PageInfo<UserDTO> getUserInfo(Integer page)throws Exception;
 
+    /*
+    * 修改信息
+    * */
     boolean updateUserInfo(UserDTO userDTO)throws Exception;
-
+    /*
+    * 根据ID获取信息
+    * */
     UserDTO getUserInfoById(Integer userId)throws Exception;
 
+    /*
+    * 条件查询
+    * */
     PageInfo<UserDTO> criteriaQueryUser(String anyInfo, Integer page)throws Exception;
     boolean queryUserByTel(String tel) throws Exception;
 }

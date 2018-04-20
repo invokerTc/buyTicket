@@ -19,63 +19,47 @@
 <body>
 
 <div id="div_main">
-    <h3>添加影厅</h3>
-    <form class="form-horizontal" id="form" action="/hall/all?page=1" method="post">
-        <input type="hidden" value="${token}" name="token" id="token">
+    <form class="form-horizontal" id="form" action="/hall/update?page=1" method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">id</label>
+            <div class="col-sm-10">
+                <input type="hidden"  class="form-control" name="hallId" value="${hallInfoById.hallId}"/>
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">影厅名称</label>
             <div class="col-sm-10">
-                <input type="text"  class="form-control" name="hallName"/>
+                <input type="text"  class="form-control" name="hallName" value="${hallInfoById.hallName}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">影院ID</label>
+            <div class="col-sm-10">
+                <input type="text"  class="form-control" name="fkTheaterId" value="${hallInfoById.fkTheaterId}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">影院名称</label>
             <div class="col-sm-10">
-                <input type="text"  class="form-control" name="theaterName"/>
+                <input type="text"  class="form-control" name="theaterName" value="${hallInfoById.theaterName}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">影厅座位行数</label>
             <div class="col-sm-10">
-                <input type="text"  class="form-control" name="hallCoordinateX"/>
+                <input type="text"  class="form-control" name="hallCoordinateX" value="${hallInfoById.hallCoordinateX}"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">影厅座位列数</label>
             <div class="col-sm-10">
-                <input type="text"  class="form-control" name="hallCoordinateY"/>
+                <input type="text"  class="form-control" name="hallCoordinateY" value="${hallInfoById.hallCoordinateY}"/>
             </div>
         </div>
-        <input type="button" onclick="apply()" value="提交">
+        <input type="submit" value="提交">
     </form>
 
 </div>
-<script type="text/javascript">
-    function apply() {
-        var hallName=$("input[name='hallName']").val();
-        var theaterName=$("input[name='theaterName']").val();
-        var hallCoordinateX=$("input[name='hallCoordinateX']").val();
-        var hallCoordinateY=$("input[name='hallCoordinateY']").val();
-        var tokens=$("#token").val();
-        $.post("/hall/insert",
-                {hallName:hallName,
-                    theaterName:theaterName,
-                    hallCoordinateX:hallCoordinateX,
-                    hallCoordinateY:hallCoordinateY,
-                    tokens:tokens
-                },
-                function(data) {
-                    if (data == "success") {
-                        alert("添加成功")
-                        $("#form").submit();
-                    } else {
-                        alert("Sorry: 请重新添加");
-                    }
-                });
-    }
-
-
-</script>
 </body>
 
 </html>

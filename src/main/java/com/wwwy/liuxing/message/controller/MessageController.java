@@ -40,6 +40,11 @@ public class MessageController {
     @RequestMapping(value = "/getCode", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String getRand(String telephone, HttpServletRequest request, ModelAndView model) {
+        String randNum = randomNumUtil.setRand(telephone);
+        String json = industrySMS.execute(telephone, randNum);
+        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
+        String respCode = obj.get("respCode").getAsString();
+       /* String respCode = "00000";*/
 //        String randNum = randomNumUtil.setRand(telephone);
 //        String json = industrySMS.execute(telephone, randNum);
 //        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
@@ -59,6 +64,15 @@ public class MessageController {
     public String login(String inputCode, String telephone, CartDTO cartDTO) {
 //        String randNum = randomNumUtil.getRand(telephone);
         String randNum = "234567";
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----start");
+        }
+        String randNum = randomNumUtil.getRand(telephone);
+        cartService.saveBookingCart(telephone, cartDTO);
+       /*  String randNum = "234567";*/
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----end");
+        }
         if (randNum.equals(inputCode)) {
             String repeat = cartService.saveBookingCart(telephone, cartDTO);
             if (repeat.equals("")) {

@@ -48,6 +48,7 @@ public class HallMovieService implements IHallMovieService {
         List<HallMovieDTO> list = hallMovieDao.queryAll();
         for (HallMovieDTO hm :
                 list) {
+
             HallDTO hallDTO = hallDAO.queryHallById(hm.getFkHallId());
             hm.setHallName(hallDTO.getHallName());
             MovieDTO movieDTO = movieService.queryMovieById(hm.getFkMovieId());

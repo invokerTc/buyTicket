@@ -2,6 +2,8 @@ package com.wwwy.liuxing.user.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wwwy.liuxing.message.controller.MessageController;
+import com.wwwy.liuxing.message.util.RandomNumUtil;
 import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.user.dao.IUserDao;
 import com.wwwy.liuxing.user.dto.UserDTO;
@@ -25,6 +27,8 @@ public class UserService implements IUserService{
     @Autowired
     private IUserDao userDao;
 
+    @Autowired
+    private RandomNumUtil randomNumUtil;
     /*
     * 登录业务
     * */
@@ -38,11 +42,18 @@ public class UserService implements IUserService{
     * 注册业务
     * */
     @Override
-    public boolean setUserDTO(UserDTO userDTO) throws Exception {
-        userDTO.setUserPassword(PassWordMd5.passWordMd5(userDTO));
-        Integer i = userDao.setUserDto(userDTO);
-        if (i>0){
-           return true;
+    public boolean setUserDTO(UserDTO userDTO,String inputCode) throws Exception {
+        String telephone = userDTO.getUserTel();
+       String randNum = randomNumUtil.getRand(telephone);
+       /* String randNum = "234567";*/
+        logger.info(randNum.hashCode());
+        logger.info(inputCode.hashCode());
+        if (randNum.equals(inputCode)){
+            userDTO.setUserPassword(PassWordMd5.passWordMd5(userDTO));
+            Integer i = userDao.setUserDto(userDTO);
+            if (i>0){
+                return true;
+            }
         }
         return false;
     }

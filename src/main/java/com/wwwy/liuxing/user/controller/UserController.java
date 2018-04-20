@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.user.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wwwy.liuxing.message.util.RandomNumUtil;
 import com.wwwy.liuxing.system.SysConfig;
 import com.wwwy.liuxing.user.dao.IUserDao;
 import com.wwwy.liuxing.user.dto.UserDTO;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2018/4/11.
@@ -57,13 +60,25 @@ public class UserController {
         return "{\"code\":1}";
     }
 
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "qian_register";
+    }
+
     /*
     * 用户注册
     * */
     @RequestMapping("/register")
     @ResponseBody
+    public String userRegister(UserDTO userDTO, String inputCode) {
     public String userRegister(UserDTO userDTO) {
         try {
+            boolean dto = userService.setUserDTO(userDTO, inputCode);
+            if (dto) {
             boolean dto = userService.setUserDTO(userDTO);
             if (dto) {
                 return "{\"code\":1}";
@@ -72,7 +87,7 @@ public class UserController {
             e.printStackTrace();
             return "{\"code\":0}";
         }
-        return "";
+        return "{\"code\":2}";
     }
 
     /*
