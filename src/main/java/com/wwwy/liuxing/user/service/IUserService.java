@@ -38,4 +38,5 @@ public interface IUserService {
     * 条件查询
     * */
     PageInfo<UserDTO> criteriaQueryUser(String anyInfo, Integer page)throws Exception;
+    boolean queryUserByTel(String tel) throws Exception;
 }

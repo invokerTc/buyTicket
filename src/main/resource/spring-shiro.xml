@@ -77,6 +77,7 @@
                 /hall/**=anon
                 /hou_hall_add.html=anon
                 /hallMovie/**=anon
+                /user/queryByTel=anon
                 /hou_hall_movie_list.html=anon
                 /hou_hall_movie_add.html=anon
                 /hou_hall_movie_update.html=anon

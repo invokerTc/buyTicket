@@ -10,14 +10,17 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisServer;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -57,18 +60,32 @@ public class AreaTheaterController {
 
     }
 
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "hou_area_theater_add";
+    }
+
     @RequestMapping("/insert")
     @ResponseBody
-    public String insertAreaTheater(HttpServletRequest request){
+    public String insertAreaTheater(HttpServletRequest request,HttpSession session){
         String areaId = request.getParameter("areaId");
         String theaterId = request.getParameter("theaterId");
+        String tokens = request.getParameter("tokens");
+        logger.debug(tokens);
         AreaTheaterDTO areaTheaterDTO = new AreaTheaterDTO();
         areaTheaterDTO.setFkArId(Integer.parseInt(areaId));
         areaTheaterDTO.setFkThId(Integer.parseInt(theaterId));
         try {
-            Boolean aBoolean = areaTheaterService.insertAreaTheater(areaTheaterDTO);
-            if(aBoolean){
-                return "success";
+            Object token = session.getAttribute("token");
+            if(null!=token && token.equals(tokens)) {
+                Boolean aBoolean = areaTheaterService.insertAreaTheater(areaTheaterDTO);
+                if (aBoolean) {
+                    return "success";
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

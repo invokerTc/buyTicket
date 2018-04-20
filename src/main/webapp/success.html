@@ -3,26 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-登陆成功！！！！！
-${cart}
-<table>
-    <tr>
-        <td>电影名称</td>
-        <td>观看时间</td>
-        <td>影院名称</td>
-        <td>座位</td>
-    </tr>
-    <tr>
-        <td>${cart.movieName}</td>
-        <td>${cart.watchingTime}</td>
-        <td>${cart.cinemaName}</td>
-        <td>
-            <span>${cart.hallName}</span>
-            <span>${cart.selectedSets}</span>
-        </td>
-    </tr>
-</table>
+<div id="win"
+     style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:500px; margin-top:200px; border:1px solid #888; background-color:#edf; text-align:center">
+    <div style="margin-top: 40px">
+        <div style="width: 300px;">
+            <span>用户名称：</span><span><input type="text"/></span></div>
+        <div style="width: 300px;margin-top: 20px">
+            <span>用户密码：</span><span><input type="password"/></span></div>
+    </div>
+    <div style="margin-top: 20px">
+        <button onclick="login()">登录</button>
+        <button onclick="closeLogin();">关闭登录框</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function openLogin() {
+        document.getElementById("win").style.display = "";
+    }
+    function closeLogin() {
+        document.getElementById("win").style.display = "none";
+    }
+    function login() {
+        var errArrays = new Array();
+        errArrays[0] = '账号输入错误，请重新输入';
+        errArrays[1] = '登录成功';
+        errArrays[2] = '密码错误，请重新输入';
+        $.post(
+                "/user/login",
+                {
+                    userName: usernameStr, passWord: passwordStr
+                }, function (data) {
+                    var jsonObj = JSON.parse(data)
+                    var index = jsonObj.code;
+                    if (jsonObj.code == 1) {
+                        alert(errArrays[index])
+                       closeLogin();
+                    } else {
+                        alert(errArrays[index]);
+                    }
+                });
+    }
+</script>
+<a href="javascript:openLogin();">打开登录框</a>
 </body>
 </html>

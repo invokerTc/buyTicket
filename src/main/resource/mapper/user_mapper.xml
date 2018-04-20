@@ -46,4 +46,7 @@
         OR user_realname LIKE concat(concat('%',#{anyInfo}),'%')
         OR user_tel LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
+    <select id="queryUserByTel" resultMap="UserResultMap">
+        SELECT * FROM tb_user WHERE user_tel=#{userTel}
+    </select>
 </mapper>

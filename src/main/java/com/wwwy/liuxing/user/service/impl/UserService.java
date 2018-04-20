@@ -113,4 +113,14 @@ public class UserService implements IUserService{
         logger.info(userDTOPageInfo);
         return userDTOPageInfo;
     }
+
+    @Override
+    public boolean queryUserByTel(String tel) throws Exception {
+        boolean flag=false;
+        UserDTO userDTO = userDao.queryUserByTel(tel);
+        if (userDTO!=null){
+            flag=true;
+        }
+        return flag;
+    }
 }

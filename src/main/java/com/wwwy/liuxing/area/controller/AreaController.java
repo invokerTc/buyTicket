@@ -9,14 +9,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author W1665
@@ -55,18 +58,36 @@ public class AreaController {
     }
 
     /**
+     * 防止重复提交
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "hou_area_add";
+    }
+
+    /**
      * 插入一条新数据
      */
     @RequestMapping("/insert")
     @ResponseBody
-    public String insertArea(String areaName, ModelMap modelMap) {
+    public String insertArea(String areaName,String tokens,HttpSession session, ModelMap modelMap) {
         AreaDTO areaDTO = new AreaDTO();
         areaDTO.setAreaName(areaName);
         areaDTO.setFkCityId(SysConfig.BeforeConfig.PAGE_START);
         try {
-            Boolean aBoolean = areaService.insertArea(areaDTO);
-            if (aBoolean == true) {
-                return "success";
+            Object token = session.getAttribute("token");
+            if(null!=token && token.equals(tokens)) {
+                Boolean aBoolean = areaService.insertArea(areaDTO);
+                if (aBoolean == true) {
+                    return "success";
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
