@@ -48,4 +48,5 @@ public interface IMovieCache {
     String getValue(String key);
 
     void saveValueWithTime(String key, String value, long num, TimeUnit unit);
+
 }
