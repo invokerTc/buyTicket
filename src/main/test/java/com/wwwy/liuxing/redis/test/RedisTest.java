@@ -10,6 +10,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,5 +36,15 @@ public class RedisTest {
         String rand = randomNumUtil.setRand("1243");
         logger.info(rand);
         movieCache.getValue("1243");
+    }
+    @Test
+    public void testCase3(){
+        Set<String> keys = movieCache.getAllKeyLikePattern("booking一号厅今天 4月9 21:30*");
+        for (String str:keys) {
+            List allByKey = movieCache.getAllByKey(str);
+            String seats = (String) allByKey.get(4);
+            logger.info(seats);
+        }
+        
     }
 }

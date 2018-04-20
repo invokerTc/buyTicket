@@ -83,9 +83,9 @@ To change this template use File | Settings | File Templates.
      style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:540px; margin-top:670px; border:1px solid #888; background-color:#edf; text-align:center">
     <div style="margin-top: 40px">
         <div style="width: 300px;">
-            <span>用户名称：</span><span><input type="text"/></span></div>
+            <span>用户名称：</span><span><input type="text" id="username"/></span></div>
         <div style="width: 300px;margin-top: 20px;">
-            <span>用户密码：</span><span><input type="password"/></span></div>
+            <span>用户密码：</span><span><input type="password" id="password"/></span></div>
     </div>
     <div style="margin-top: 20px">
         <button onclick="login()">登录</button>
@@ -1016,6 +1016,8 @@ To change this template use File | Settings | File Templates.
         document.getElementById("win").style.display = "none";
     }
     function login() {
+        var username = $("#username").val();
+        alert(username);
         var errArrays = new Array();
         errArrays[0] = '账号输入错误，请重新输入';
         errArrays[1] = '登录成功';
