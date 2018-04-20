@@ -8,6 +8,10 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /hall/tchDelete=anon
+                /hall/update=anon
+                /hall/anyInfo=anon
+                /hall/delete=anon
                 /movie/preupdate=anon
                 /movie/delete=anon
                 /pre_updete_movieinfo.html=anon
@@ -41,6 +45,9 @@
                 /hallTest.html=anon
                 /login.jsp=anon<!--不需要做任何过滤的-->
                 /qian_liuxing_cinema_hall_seat.html=anon<!--不需要做任何过滤的-->
+                /login.jsp=anon
+                /login.jsp=anon
+                /qian_liuxing_cinema_hall_seat.html=anon
                 /login.jsp=anon
                 /qian_liuxing_cinema_hall_seat.html=anon
                 /qian_one_movie_info.html=anon

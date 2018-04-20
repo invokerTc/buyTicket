@@ -44,7 +44,7 @@ public class MessageController {
         String json = industrySMS.execute(telephone, randNum);
         JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
         String respCode = obj.get("respCode").getAsString();
-//        String respCode = "00000";
+       /* String respCode = "00000";*/
         if (respCode.equals("00000")) {
             return "{\"code\":\"1\",\"msg\":\"验证码发送成功\"}";
         } else if (respCode.equals("00126")) {
@@ -62,7 +62,7 @@ public class MessageController {
         }
         String randNum = randomNumUtil.getRand(telephone);
         cartService.saveBookingCart(telephone, cartDTO);
-//        String randNum = "234567";
+       /*  String randNum = "234567";*/
         if (logger.isDebugEnabled()) {
             logger.debug("login----end");
         }

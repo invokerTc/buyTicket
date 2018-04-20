@@ -49,10 +49,30 @@ public interface IHallDao {
     Boolean insertHall(HallDTO hallDTO)throws Exception;
 
     /**
-     * 很久id删除一条记录
+     * 根据id删除一条记录
      * @param hallId
      * @return
      * @throws Exception
      */
     Boolean deleteHall(Integer hallId)throws Exception;
+
+    /*
+    * 通过ID获取影厅信息
+    * */
+    HallDTO getHallInfoById(Integer hallId)throws Exception;
+
+    /*
+    * 修改影厅信息
+    * */
+    Integer updateHallInfo(HallDTO hallDTO)throws Exception;
+
+    /*
+    * 条件查询
+    * */
+    List<HallDTO> criteriaQueryHall(String anyInfo)throws Exception;
+
+    /*
+    * 批量删除
+    * */
+    Integer tchDeleteHall(int[] hall)throws Exception;
 }
