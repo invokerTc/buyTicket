@@ -47,11 +47,11 @@ public interface IHallService  {
     Boolean deleteHall(Integer hallId)throws Exception;
 
     /**
-     * 根据影厅名称查询影厅的座位
+     * 根据影厅电影中间表id查询影厅
      * @param name
      * @return
      */
-    HallDTO queryById(Integer id) throws Exception;
+    HallDTO queryByHallMovieId(Integer id) throws Exception;
     HallDTO queryByName(String name) throws Exception;
 
     /*

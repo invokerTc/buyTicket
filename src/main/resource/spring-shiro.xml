@@ -39,7 +39,8 @@
                 /loginCode.html=anon
                 /qian_liuxing_cinema_hall_seat.bak.html=anon
                 /message/getCode=anon
-                /message/login=anon
+                /message/check=anon
+                /cart/conmmit=anon
                 /cart/showBooking=anon
                 /success.html=anon
                 /hallTest.html=anon

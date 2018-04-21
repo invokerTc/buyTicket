@@ -5,6 +5,7 @@ import com.github.pagehelper.util.StringUtil;
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.dao.IHallDao;
 import com.wwwy.liuxing.hall.service.IHallService;
+import com.wwwy.liuxing.movie.dto.MovieDTO;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -86,7 +87,9 @@ public class HallTest {
     @Test
     public void testQu(){
         try {
-            HallDTO hallDTO = hallService.queryById(2);
+            HallDTO hallDTO = hallService.queryByHallMovieId(7);
+            List<MovieDTO> movieDTOList = hallDTO.getMovieDTOList();
+            MovieDTO movieDTO = movieDTOList.get(0);
             System.out.println(hallDTO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,7 +100,7 @@ public class HallTest {
     public void testHallById(){
         HallDTO hallInfoById = null;
         try {
-            hallInfoById = hallDao.getHallInfoById(1);
+            hallInfoById = hallDao.getHallInfoById(5);
         } catch (Exception e) {
             e.printStackTrace();
         }

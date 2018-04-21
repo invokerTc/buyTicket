@@ -42,7 +42,7 @@
     </select>
     <select id="queryExistPosition" resultMap="HallResultMap">
         SELECT * FROM tb_hall h join tb_hall_movie hm JOIN tb_hall_position hp JOIN tb_position p join tb_movie m
-        ON hall_id=hp.hp_hall_id and h.hall_id=hm.fk_hall_id and hm.fk_movie_id=m.movie_id and hp.hp_position_id=p.position_id AND hall_id=#{hallId};
+        ON hall_id=hp.hp_hall_id and h.hall_id=hm.fk_hall_id and hm.fk_movie_id=m.movie_id and hp.hp_position_id=p.position_id AND hm.ha_mo_id=#{id};
     </select>
 
     <select id="queryAll" resultMap="HallResultMap">

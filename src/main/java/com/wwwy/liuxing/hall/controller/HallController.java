@@ -36,13 +36,12 @@ public class HallController {
     private static final Logger logger = Logger.getLogger(HallController.class);
     @Autowired
     private IHallService hallService;
-
     @Autowired
     private IMovieService movieService;
     @Autowired
     private IHallMovieService hallMovieService;
     @Autowired
-    private  ITheaterService theaterService;
+    private ITheaterService theaterService;
 
     @RequestMapping("/getHall")
     public String getHallInfo(String theaterId, String hallId, ModelMap modelMap) {
@@ -56,16 +55,17 @@ public class HallController {
         }
         return "qian_liuxing_cinema_hall_seat";
     }
+
     @RequestMapping("/getMovieHall")
-    public String getMovieHall(String cityId,String theaterId,String movieId,ModelMap modelMap){
+    public String getMovieHall(String cityId, String theaterId, String movieId, ModelMap modelMap) {
         logger.info("这是 /getMovieHall 方法");
         try {
             TheaterDTO theaterDTO = theaterService.queryTheaterById(Integer.parseInt(theaterId));
             MovieDTO movieDTO = movieService.getMovieByCityIdAndMovieId(cityId, movieId);
             List<HallMovieDTO> hallMovieList = hallMovieService.queryPlayingHallMovie(cityId, theaterId, movieId);
-            modelMap.put("theaterDTO",theaterDTO);
-            modelMap.put("movieDTO",movieDTO);
-            modelMap.put("hallMovieList",hallMovieList);
+            modelMap.put("theaterDTO", theaterDTO);
+            modelMap.put("movieDTO", movieDTO);
+            modelMap.put("hallMovieList", hallMovieList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,13 +73,13 @@ public class HallController {
     }
 
     @RequestMapping("/all")
-    public String queryAllHall(HttpServletRequest request,ModelMap modelMap){
+    public String queryAllHall(HttpServletRequest request, ModelMap modelMap) {
         String page = request.getParameter("page");
         try {
             PageInfo<HallDTO> pageInfo = hallService.queryAllHall(Integer.parseInt(page));
             List<HallDTO> list = pageInfo.getList();
-            modelMap.addAttribute("page",pageInfo);
-            modelMap.addAttribute("hallList",list);
+            modelMap.addAttribute("page", pageInfo);
+            modelMap.addAttribute("hallList", list);
             return "hou_hall_list";
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,22 +89,23 @@ public class HallController {
 
     /**
      * 防止重复提交
+     *
      * @param session
      * @param model
      * @return
      */
     @RequestMapping("/random")
-    public String repeatCommit(HttpSession session, Model model){
+    public String repeatCommit(HttpSession session, Model model) {
         Random random = new Random();
         int nextInt = random.nextInt();
-        session.setAttribute("token",nextInt+"");
-        model.addAttribute("token",nextInt+"");
+        session.setAttribute("token", nextInt + "");
+        model.addAttribute("token", nextInt + "");
         return "hou_hall_add";
     }
 
     @RequestMapping("/insert")
     @ResponseBody
-    public String insertHall(HttpServletRequest request,HttpSession session){
+    public String insertHall(HttpServletRequest request, HttpSession session) {
         String hallName = request.getParameter("hallName");
         String theaterName = request.getParameter("theaterName");
         String hallCoordinateX = request.getParameter("hallCoordinateX");
@@ -112,7 +113,7 @@ public class HallController {
         String tokens = request.getParameter("tokens");
         try {
             Object token = session.getAttribute("token");
-            if(null!=token && token.equals(tokens)) {
+            if (null != token && token.equals(tokens)) {
                 TheaterDTO theaterDTO = theaterService.queryTheaterByName(theaterName);
                 HallDTO hallDTO = new HallDTO();
                 hallDTO.setHallName(hallName);
@@ -132,24 +133,29 @@ public class HallController {
 
 
     @RequestMapping("/querySeat")
-    public String queryHallSeat(String hallId, Model model) {
+    public String queryHallSeat(String hallMovieId, Model model) {
         try {
-            int queryId = Integer.parseInt(hallId);
-            HallDTO hallDTO = hallService.queryById(queryId);
+            int queryId = Integer.parseInt(hallMovieId);
+            HallMovieDTO hallMovieDTO = hallMovieService.queryById(queryId);
+            HallDTO hallDTO = hallService.queryByHallMovieId(queryId);
             List<PositionDTO> positionDTOList = hallDTO.getPositionDTOList();
+            MovieDTO movieDTO = hallDTO.getMovieDTOList().get(0);
             model.addAttribute("hallDTO", hallDTO);
-            model.addAttribute("positions",positionDTOList);
+            model.addAttribute("movieDTO",movieDTO);
+            model.addAttribute("hallMovieDTO",hallMovieDTO);
+            model.addAttribute("positions", positionDTOList);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "qian_liuxing_hall_seat";
     }
+
     @RequestMapping("/delete")
     @ResponseBody
-    public String deleteHallById(Integer hallId){
+    public String deleteHallById(Integer hallId) {
         try {
             Boolean deleteHall = hallService.deleteHall(hallId);
-            if (deleteHall){
+            if (deleteHall) {
                 return "success";
             }
         } catch (Exception e) {
@@ -159,11 +165,11 @@ public class HallController {
     }
 
     @RequestMapping("/preUpdate")
-    public String preUpdateHallInfo(Integer hallId,ModelMap modelMap){
+    public String preUpdateHallInfo(Integer hallId, ModelMap modelMap) {
         try {
             HallDTO hallInfoById = hallService.getHallInfoById(hallId);
-            modelMap.addAttribute("hallInfoById",hallInfoById);
-            logger.info("hallInfoById====================================="+hallInfoById);
+            modelMap.addAttribute("hallInfoById", hallInfoById);
+            logger.info("hallInfoById=====================================" + hallInfoById);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -171,15 +177,15 @@ public class HallController {
     }
 
     @RequestMapping("/update")
-    public String updateHallInfo(HallDTO hallDTO,Integer page,ModelMap modelMap){
+    public String updateHallInfo(HallDTO hallDTO, Integer page, ModelMap modelMap) {
         try {
             boolean b = hallService.updateHallInfoById(hallDTO);
-            if (b){
+            if (b) {
                 PageInfo<HallDTO> hallDTOPageInfo = hallService.queryAllHall(page);
                 List<HallDTO> list = hallDTOPageInfo.getList();
-                logger.info("updateliast============================="+list);
-                modelMap.addAttribute("page",hallDTOPageInfo);
-                modelMap.addAttribute("hallList",list);
+                logger.info("updateliast=============================" + list);
+                modelMap.addAttribute("page", hallDTOPageInfo);
+                modelMap.addAttribute("hallList", list);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -188,14 +194,14 @@ public class HallController {
     }
 
     @RequestMapping("/anyInfo")
-    public String criteriaQueryHall(Integer page,String anyInfo,ModelMap modelMap){
+    public String criteriaQueryHall(Integer page, String anyInfo, ModelMap modelMap) {
         try {
             PageInfo<HallDTO> hallDTOPageInfo = hallService.criteriaQueryHall(page, anyInfo);
-            logger.info("===================================="+hallDTOPageInfo);
+            logger.info("====================================" + hallDTOPageInfo);
             List<HallDTO> list = hallDTOPageInfo.getList();
-            logger.info("==================================="+list);
-            modelMap.addAttribute("page",hallDTOPageInfo);
-            modelMap.addAttribute("hallList",list);
+            logger.info("===================================" + list);
+            modelMap.addAttribute("page", hallDTOPageInfo);
+            modelMap.addAttribute("hallList", list);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -204,13 +210,13 @@ public class HallController {
 
     @RequestMapping("tchDelete")
     @ResponseBody
-    public String tchDeleteHall(String ids){
+    public String tchDeleteHall(String ids) {
         String[] split = StringUtils.split(ids, ",");
         int[] ints = Arrays.stream(split).mapToInt(Integer::valueOf).toArray();
         logger.info(ints);
         try {
             boolean tchDeleteHall = hallService.tchDeleteHall(ints);
-            if (tchDeleteHall){
+            if (tchDeleteHall) {
                 return "success";
             }
         } catch (Exception e) {

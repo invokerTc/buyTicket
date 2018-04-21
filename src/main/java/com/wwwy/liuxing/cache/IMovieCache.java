@@ -50,5 +50,6 @@ public interface IMovieCache {
 
     void saveValueWithTime(String key, String value, long num, TimeUnit unit);
     Set<String> getAllKeyLikePattern(String pattern);
+    String saveString(List<String> keyList,String hallMovieId,String value);
 
 }

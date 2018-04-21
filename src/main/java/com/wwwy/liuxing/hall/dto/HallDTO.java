@@ -179,8 +179,6 @@ public class HallDTO implements Serializable {
         this.positionDTOList = positionDTOList;
     }
 
-    public HallDTO() {
-    }
     public List<TheaterDTO> getTheaterDTOList() {
         return theaterDTOList;
     }

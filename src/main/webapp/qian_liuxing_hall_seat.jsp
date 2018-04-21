@@ -197,7 +197,7 @@ To change this template use File | Settings | File Templates.
                  data-seq-no="201804090213801">
                 <div class="row-id-container">
                     <c:forEach begin="1" end="${hallDTO.hallCoordinateX}" step="1" var="index">
-                    <span class="row-id">${index}</span>
+                        <span class="row-id">${index}</span>
                     </c:forEach>
                 </div>
 
@@ -207,20 +207,22 @@ To change this template use File | Settings | File Templates.
                         <div class="c-screen-line"></div>
                     </div>
                     <div class="seats-wrapper">
-                        <c:forEach begin="1" end="${hallDTO.hallCoordinateX}" step="1" items="${positions}" var="pos" varStatus="i">
-                        <div class="row">
-                            <c:forEach begin="1" end="${hallDTO.hallCoordinateY}" step="1" varStatus="j">
+                        <c:forEach begin="0" end="${hallDTO.hallCoordinateX-1}" step="1" items="${positions}" var="pos"
+                                   varStatus="i">
+                            <div class="row">
+                                <c:forEach begin="0" end="${hallDTO.hallCoordinateY-1}" step="1" varStatus="j">
                             <span class="seat selectable"
-                                  data-column-id="${j.index}"
-                                  data-row-id="${i.index}"
+                                  data-column-id="${j.index+1}"
+                                  data-row-id="${i.index+1}"
                                   data-no="000000000264-1-1"
                                   data-st="N"
+                                  data-id="${positions.get(hallDTO.hallCoordinateY*(i.index)+j.index).positionId}"
                                   data-act="seat-click"
                                   data-bid="b_s7eiiijf"
                                   value="${positions.get(j.index+4*i.index).state}"
                             ></span>
-                            </c:forEach>
-                        </div>
+                                </c:forEach>
+                            </div>
                         </c:forEach>
                     </div>
                 </div>
@@ -234,14 +236,14 @@ To change this template use File | Settings | File Templates.
                         <img src="http://p0.meituan.net/movie/a547dd7f6851d7ced67ec1b6c8b7f3b2447754.jpg@115w_158h_1e_1c">
                     </div>
                     <div class="content">
-                        <p class="name text-ellipsis" id="filmName">红海行动</p>
+                        <p class="name text-ellipsis" id="filmName">${movieDTO.movieName}</p>
                         <div class="info-item">
                             <span>类型 :</span>
-                            <span class="value">动作,冒险,科幻</span>
+                            <span class="value">${movieDTO.movieType}</span>
                         </div>
                         <div class="info-item">
                             <span>时长 :</span>
-                            <span class="value">140分钟</span>
+                            <span class="value">${movieDTO.movieTime}</span>
                         </div>
                     </div>
                 </div>
@@ -252,21 +254,22 @@ To change this template use File | Settings | File Templates.
                         <span class="value text-ellipsis" id="theaterName">江夏高德影院</span>
                     </div>
                     <div class="info-item">
-                        <span>影厅 :qian_liuxing_cinema_hall_seat.html</span>
-                        <span class="value text-ellipsis" id="hallName">一号厅</span>
+                        <span>影厅 :</span>
+                        <span class="value text-ellipsis" id="hallName">${hallDTO.hallName}</span>
                     </div>
                     <div class="info-item">
                         <span>版本 :</span>
-                        <span class="value text-ellipsis">原版3D</span>
+                        <span class="value text-ellipsis">${hallMovieDTO.movieVersion}</span>
+                        <span style="display: none" id="hallMovieId">${hallMovieDTO.haMoId}</span>
                     </div>
                     <div class="info-item">
                         <span>场次 :</span>
-                        <span class="value text-ellipsis screen" id="watchingTime">今天 4月9 21:30</span>
+                        <span class="value text-ellipsis screen" id="watchingTime">${hallMovieDTO.movieRuntime}</span>
                     </div>
                     <div class="info-item">
                         <span>票价 :</span>
                         <span class="value text-ellipsis" style="width: 20px">￥</span><span class="value text-ellipsis"
-                                                                                            style="width: 20px">28</span><span
+                                                                                            style="width: 20px">${hallMovieDTO.moviePrice}</span><span
                             class="value text-ellipsis" style="width: 50px">/张</span>
                     </div>
                 </div>
@@ -302,12 +305,13 @@ To change this template use File | Settings | File Templates.
                             <div><span style="font-size: 15px;color: #4cae4c">验证码：<input type="text" class="input"
                                                                                          placeholder="输入验证码"
                                                                                          name="inputCode"
-                                                                                         id="inputCode"/></span>
+                                                                                         id="inputCode"
+                                                                                         onblur="codeCheck()"/></span>
                                 <input type="button" id="codeButton" name="getCode" value="获取验证码" onclick="getcode()"
                                        disabled="disabled"/></div>
                         </div>
                         <div style="font-size: 15px;margin: 20px auto;text-align: center">
-                            <input type="button" value="提交订单" onclick="codeLogin()"/>
+                            <input type="button" id="conmmitButton" value="提交订单" onclick="conmmitCart()"/>
                         </div>
                     </div>
                 </form>
@@ -391,27 +395,6 @@ To change this template use File | Settings | File Templates.
             }
         }
     });
-    function bookingset() {
-        var len = $(".set").length;
-        alert("订单提交");
-        var orderlist = ",";
-        for (var i = 0; i < len; i++) {
-            var text = $(".set").eq(i).text();
-            if (text != "") {
-                orderlist = orderlist + text + ","
-            }
-        }
-        var sum = $("#sumprice").text();
-        /* alert("总价：" + sum);*/
-        $.post("/order/saveOrder", {sum: sum, orderlist: orderlist},
-                function (data) {
-                    if (data == "success") {
-                        alert("good");
-                        window.location.href = "/waiting_for_pay.html"
-                    }
-                }
-        );
-    }
     $(document).ready(function () {
         var len = $(".seat").length;
         for (var i = 0; i < len; i++) {
