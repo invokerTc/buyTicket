@@ -38,7 +38,7 @@ public class CartTest {
 
     @Test
     public void testCase2() {
-        CartDTO cartDTO = cartService.getBookingCart("13245645433", "","红海行动");
+        CartDTO cartDTO = cartService.getBookingCart("13245645433", "红海行动");
         logger.debug(cartDTO.getMovieName());
         logger.debug(cartDTO.getWatchingTime());
         logger.debug(cartDTO.getSelectedSets());

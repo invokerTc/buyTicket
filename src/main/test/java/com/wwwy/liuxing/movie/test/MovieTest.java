@@ -1,7 +1,6 @@
 package com.wwwy.liuxing.movie.test;
 
 import com.github.pagehelper.PageInfo;
-import com.wwwy.liuxing.cache.IMovieCache;
 import com.wwwy.liuxing.movie.dao.IMovieDao;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 import com.wwwy.liuxing.movie.service.IMovieService;
@@ -9,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -29,10 +27,6 @@ public class MovieTest {
 
     @Autowired
     private IMovieService movieService;
-    @Autowired
-    private StringRedisTemplate redisTemplate;
-    @Autowired
-    private IMovieCache movieCache;
 
     /**
      * 测试MovieDao的  getAllMovieByCityName(String cityName)
@@ -217,20 +211,6 @@ public class MovieTest {
             for (MovieDTO m:list) {
                 logger.info("=========================="+m);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * 测试MovieDao的  getAllMovieByCityName(String cityName)
-     * 测试把查询到的数据放入redis
-     */
-    @Test
-    public void testDaoGetAllMovieByCityNameToRedis(){
-        try {
-            List<MovieDTO> dtoList = movieDao.getAllMovieByCityName("武汉");
-//            movieCache.saveList("getAllMovieByCityName",dtoList);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

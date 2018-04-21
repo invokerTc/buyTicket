@@ -131,7 +131,7 @@ public class HallService implements IHallService {
     }
 
     @Override
-    public HallDTO queryById(Integer id) throws Exception {
-        return hallDao.queryById(id);
+    public HallDTO queryByName(String name) throws Exception {
+        return hallDao.queryByName(name);
     }
 }

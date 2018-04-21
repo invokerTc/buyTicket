@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -54,11 +53,5 @@ public class MovieCache implements IMovieCache {
     @Override
     public void saveValueWithTime(String key, String value, long num, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, num, unit);
-    }
-
-    @Override
-    public Set<String> getAllKeyLikePattern(String pattern) {
-        Set<String> keys = redisTemplate.keys(pattern);
-        return keys;
     }
 }

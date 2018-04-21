@@ -2,7 +2,6 @@ package com.wwwy.liuxing.cache;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,6 +48,4 @@ public interface IMovieCache {
     String getValue(String key);
 
     void saveValueWithTime(String key, String value, long num, TimeUnit unit);
-    Set<String> getAllKeyLikePattern(String pattern);
-
 }

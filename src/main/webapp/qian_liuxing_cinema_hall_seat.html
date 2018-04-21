@@ -95,19 +95,6 @@ To change this template use File | Settings | File Templates.
         <button onclick="openregister();">注册账号</button>
     </div>
 </div>
-<div id="win"
-     style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:540px; margin-top:670px; border:1px solid #888; background-color:#edf; text-align:center">
-    <div style="margin-top: 40px">
-        <div style="width: 300px;">
-            <span>用户名称：</span><span><input type="text" id="username"/></span></div>
-        <div style="width: 300px;margin-top: 20px;">
-            <span>用户密码：</span><span><input type="password" id="password"/></span></div>
-    </div>
-    <div style="margin-top: 20px">
-        <button onclick="login()">登录</button>
-        <button onclick="closeLogin();">关闭登录框</button>
-    </div>
-</div>
 <div class="header">
     <div class="header-inner">
         <a href="/" class="logo" data-act="icon-click"></a>
@@ -141,7 +128,7 @@ To change this template use File | Settings | File Templates.
                 <img src="http://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                 <span class="caret"></span>
                 <ul class="user-menu">
-                    <li><a href="javascript:void 0">登录</a></li>
+                    <li><a id="userName1" href="javascript:void 0">未登录</a></li>
                 </ul>
             </div>
         </div>
@@ -227,7 +214,6 @@ To change this template use File | Settings | File Templates.
                         <div class="screen">银幕中央</div>
                         <div class="c-screen-line"></div>
                     </div>
-
                     <div class="seats-wrapper">
                         <div class="row">
             <span class="seat selectable"
@@ -890,7 +876,7 @@ To change this template use File | Settings | File Templates.
                         <span class="value text-ellipsis" id="theaterName">江夏高德影院</span>
                     </div>
                     <div class="info-item">
-                        <span>影厅 :qian_liuxing_cinema_hall_seat.html</span>
+                        <span>影厅 :</span>
                         <span class="value text-ellipsis" id="hallName">一号厅</span>
                     </div>
                     <div class="info-item">
@@ -903,7 +889,9 @@ To change this template use File | Settings | File Templates.
                     </div>
                     <div class="info-item">
                         <span>票价 :</span>
-                        <span class="value text-ellipsis" style="width: 20px">￥</span><span class="value text-ellipsis" style="width: 20px">28</span><span class="value text-ellipsis" style="width: 50px">/张</span>
+                        <span class="value text-ellipsis" style="width: 20px">￥</span><span class="value text-ellipsis"
+                                                                                            style="width: 20px">28</span><span
+                            class="value text-ellipsis" style="width: 50px">/张</span>
                     </div>
                 </div>
 
@@ -944,17 +932,25 @@ To change this template use File | Settings | File Templates.
                 <form>
                     <div>
                         <div style="font-size: 15px;">
-                            <span style="color: #4cae4c">手机号：</span><input type="text" class="input" name="telephone" id="telephone" placeholder="输入手机号"
-                                       onfocus="acquireFocus()"
-                                       onblur="checkTele()"/>
+                            <span style="color: #4cae4c">手机号：</span><input type="text" class="input" name="telephone"
+                                                                           id="telephone" placeholder="输入手机号"
+                                                                           onfocus="acquireFocus()"
+                                                                           onblur="checkTele()"/>
+                            <input type="button" id="toRegister" name="toRegister" value="登录" onclick="openLogin()"
+                            />
                             <span id="teleSpan" style="font-size: small"></span>
                         </div>
 
                         <div style="font-size: 15px;margin-top: 3px">
-                            <div><span style="font-size: 15px;color: #4cae4c">验证码：<input type="text" class="input" placeholder="输入验证码" name="inputCode"
-                                            id="inputCode"/></span>
+                            <div>
+                                <span style="font-size: 15px;color: #4cae4c">验证码：<input type="text" class="input"
+                                                                                        placeholder="输入验证码"
+                                                                                        name="inputCode"
+                                                                                        id="inputCode"/>
+                                </span>
                                 <input type="button" id="codeButton" name="getCode" value="获取验证码" onclick="getcode()"
-                                       disabled="disabled"/></div>
+                                       disabled="disabled"/>
+                            </div>
                         </div>
                         <div style="font-size: 15px;margin: 20px auto;text-align: center">
                             <input type="button" value="提交订单" onclick="codeLogin()"/>
@@ -973,8 +969,6 @@ To change this template use File | Settings | File Templates.
             <div class="ok-btn btn">我知道了</div>
         </div>
     </div>
-
-
 </div>
 <div class="footer">
     <p class="friendly-links">
@@ -1002,6 +996,42 @@ To change this template use File | Settings | File Templates.
 <script src="//ms0.meituan.net/mywww/es5-sham.d6ea26f4.js"></script><![endif]-->
 <script src="//ms0.meituan.net/mywww/common.dc33ab40.js"></script>
 <script src="//ms0.meituan.net/mywww/cinemas-seat.f35e64e9.js"></script>
+
+<script type="text/javascript">
+    function openLogin() {
+        document.getElementById("win").style.display = "";
+    }
+    function closeLogin() {
+        document.getElementById("win").style.display = "none";
+    }
+    function login() {
+        var usernameStr=$("#userName").val();
+        var passwordStr=$("#passWord").val();
+        var errArrays = new Array();
+        errArrays[0] = '账号输入错误，请重新输入';
+        errArrays[1] = '登录成功';
+        errArrays[2] = '密码错误，请重新输入';
+        $.post(
+                "/user/login",
+                {
+                    userName: usernameStr, passWord: passwordStr
+                }, function (data) {
+                    var jsonObj = JSON.parse(data)
+                    var index = jsonObj.code;
+                    if (jsonObj.code == 1) {
+                        alert(errArrays[index])
+                        document.getElementById("userName1").innerHTML = "已登录"
+                        closeLogin();
+                    } else {
+                        alert(errArrays[index]);
+                    }
+                });
+    }
+
+    function openregister() {
+        window.open("qian_register.html")
+    }
+</script>
 </body>
 </html>
 

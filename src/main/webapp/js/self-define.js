@@ -57,11 +57,11 @@ function codeLogin() {
             {inputCode: code, telephone: tele,movieName:filmName,watchingTime:watchingTime,cinemaName:theaterName,hallName:hallName,totalPrice:sumPrice,selectedSets:sets},
             function (data) {
             if (data == "订单提交成功") {
-                window.location.href = '/cart/showBooking?tele='+tele+'&hallName='+hallName+'&watchingTime='+watchingTime;
-            }else if (data == "订单提交失败") {
+                alert(tele+"========="+filmName);
+                window.location.href = '/cart/showBooking?tele='+tele+'&movieName='+filmName;
+            }
+            if (data == "订单提交失败") {
                 alert("验证码错误");
-            }else {
-                alert(data+"已经被预订");
             }
         });
     } else {
@@ -72,31 +72,21 @@ function codeLogin() {
 function acquireFocus() {
     $("#teleSpan").text("");
 }
-/*function checkTele() {
+function checkTele() {
     var tele = $("#telephone").val();
     var patrn = /^[1]([3]|[5]|[8]){1}[0-9]{9}$/;
     if (tele != "") {
         if (tele.match(patrn)) {
-            $.post("/user/queryByTel",{tele:tele},function (data) {
-                var parse = JSON.parse(data);
-                if (parse.code==0){
-                    $("#codeButton").attr("disabled", false);
-                }else {
-                    alert("请您先注册");
-                    /!*window.location.href="/qian_register.html";*!/
-                }
-            });
-
+            $("#codeButton").attr("disabled", false);
         } else {
-            /!*$("#teleSpan").text("手机号格式错误");*!/
+            $("#teleSpan").text("手机号格式错误");
             $("#codeButton").attr("disabled", true);
         }
     } else {
-        /!*$("#teleSpan").text("请输入手机号");*!/
+        /*$("#teleSpan").text("请输入手机号");*/
         $("#codeButton").attr("disabled", true);
     }
-}*/
-
+}
 var count = 0;
 /*$(".checkbox").click(function () {
  if (this.checked) {

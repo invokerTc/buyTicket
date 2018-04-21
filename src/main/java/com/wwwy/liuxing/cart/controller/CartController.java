@@ -17,8 +17,8 @@ public class CartController {
     @Autowired
     private ICartService cartService;
     @RequestMapping("/showBooking")
-    public String showBooking(String tele, String hallName,String watchingTime, Model model){
-        CartDTO cartDTO = cartService.getBookingCart(tele,hallName,watchingTime );
+    public String showBooking(String tele, String movieName, Model model){
+        CartDTO cartDTO = cartService.getBookingCart(tele, movieName);
         String selectedSets = cartDTO.getSelectedSets();
         List<String> setList = cartService.getSetList(selectedSets);
         model.addAttribute("cart",cartDTO);
