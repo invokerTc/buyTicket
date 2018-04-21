@@ -80,6 +80,8 @@
                 /hou_hall_movie_list.html=anon
                 /hou_hall_movie_add.html=anon
                 /hou_hall_movie_update.html=anon
+                /order/**=anon
+                /hou_order_any_list.html=anon
                 /**=user
             </value>
         </property>

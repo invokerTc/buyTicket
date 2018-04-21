@@ -14,7 +14,7 @@ public class OrderDTO implements Serializable{
 
     private Integer cartId;
 
-    private Integer bookNumble;
+    private Integer bookingNum;
 
     private String movieName;
 
@@ -22,7 +22,7 @@ public class OrderDTO implements Serializable{
 
     private String movieTime;
 
-    private String movieIma;
+    private String movieImg;
 
     private String cinemaName;
 
@@ -41,31 +41,15 @@ public class OrderDTO implements Serializable{
     public OrderDTO() {
     }
 
-    public OrderDTO(Integer cartId, Integer bookNumble, String movieName, String movieVersion, String movieTime, String movieIma, String cinemaName, String hallName, String movieRound, String place, Integer originalPrice, Integer totalPrice, String tel) {
-        this.cartId = cartId;
-        this.bookNumble = bookNumble;
-        this.movieName = movieName;
-        this.movieVersion = movieVersion;
-        this.movieTime = movieTime;
-        this.movieIma = movieIma;
-        this.cinemaName = cinemaName;
-        this.hallName = hallName;
-        this.movieRound = movieRound;
-        this.place = place;
-        this.originalPrice = originalPrice;
-        this.totalPrice = totalPrice;
-        this.tel = tel;
-    }
-
     @Override
     public String toString() {
         return "OrderDTO{" +
                 "cartId=" + cartId +
-                ", bookNumble=" + bookNumble +
+                ", bookingNum=" + bookingNum +
                 ", movieName='" + movieName + '\'' +
                 ", movieVersion='" + movieVersion + '\'' +
                 ", movieTime='" + movieTime + '\'' +
-                ", movieIma='" + movieIma + '\'' +
+                ", movieImg='" + movieImg + '\'' +
                 ", cinemaName='" + cinemaName + '\'' +
                 ", hallName='" + hallName + '\'' +
                 ", movieRound='" + movieRound + '\'' +
@@ -90,7 +74,7 @@ public class OrderDTO implements Serializable{
         if (cartId != null ? !cartId.equals(orderDTO.cartId) : orderDTO.cartId != null) {
             return false;
         }
-        if (bookNumble != null ? !bookNumble.equals(orderDTO.bookNumble) : orderDTO.bookNumble != null) {
+        if (bookingNum != null ? !bookingNum.equals(orderDTO.bookingNum) : orderDTO.bookingNum != null) {
             return false;
         }
         if (movieName != null ? !movieName.equals(orderDTO.movieName) : orderDTO.movieName != null) {
@@ -102,7 +86,7 @@ public class OrderDTO implements Serializable{
         if (movieTime != null ? !movieTime.equals(orderDTO.movieTime) : orderDTO.movieTime != null) {
             return false;
         }
-        if (movieIma != null ? !movieIma.equals(orderDTO.movieIma) : orderDTO.movieIma != null) {
+        if (movieImg != null ? !movieImg.equals(orderDTO.movieImg) : orderDTO.movieImg != null) {
             return false;
         }
         if (cinemaName != null ? !cinemaName.equals(orderDTO.cinemaName) : orderDTO.cinemaName != null) {
@@ -127,11 +111,11 @@ public class OrderDTO implements Serializable{
     @Override
     public int hashCode() {
         int result = cartId != null ? cartId.hashCode() : 0;
-        result = 31 * result + (bookNumble != null ? bookNumble.hashCode() : 0);
+        result = 31 * result + (bookingNum != null ? bookingNum.hashCode() : 0);
         result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
         result = 31 * result + (movieVersion != null ? movieVersion.hashCode() : 0);
         result = 31 * result + (movieTime != null ? movieTime.hashCode() : 0);
-        result = 31 * result + (movieIma != null ? movieIma.hashCode() : 0);
+        result = 31 * result + (movieImg != null ? movieImg.hashCode() : 0);
         result = 31 * result + (cinemaName != null ? cinemaName.hashCode() : 0);
         result = 31 * result + (hallName != null ? hallName.hashCode() : 0);
         result = 31 * result + (movieRound != null ? movieRound.hashCode() : 0);
@@ -142,6 +126,22 @@ public class OrderDTO implements Serializable{
         return result;
     }
 
+    public OrderDTO(Integer cartId, Integer bookingNum, String movieName, String movieVersion, String movieTime, String movieImg, String cinemaName, String hallName, String movieRound, String place, Integer originalPrice, Integer totalPrice, String tel) {
+        this.cartId = cartId;
+        this.bookingNum = bookingNum;
+        this.movieName = movieName;
+        this.movieVersion = movieVersion;
+        this.movieTime = movieTime;
+        this.movieImg = movieImg;
+        this.cinemaName = cinemaName;
+        this.hallName = hallName;
+        this.movieRound = movieRound;
+        this.place = place;
+        this.originalPrice = originalPrice;
+        this.totalPrice = totalPrice;
+        this.tel = tel;
+    }
+
     public Integer getCartId() {
         return cartId;
     }
@@ -150,12 +150,12 @@ public class OrderDTO implements Serializable{
         this.cartId = cartId;
     }
 
-    public Integer getBookNumble() {
-        return bookNumble;
+    public Integer getBookingNum() {
+        return bookingNum;
     }
 
-    public void setBookNumble(Integer bookNumble) {
-        this.bookNumble = bookNumble;
+    public void setBookingNum(Integer bookingNum) {
+        this.bookingNum = bookingNum;
     }
 
     public String getMovieName() {
@@ -182,12 +182,12 @@ public class OrderDTO implements Serializable{
         this.movieTime = movieTime;
     }
 
-    public String getMovieIma() {
-        return movieIma;
+    public String getMovieImg() {
+        return movieImg;
     }
 
-    public void setMovieIma(String movieIma) {
-        this.movieIma = movieIma;
+    public void setMovieImg(String movieImg) {
+        this.movieImg = movieImg;
     }
 
     public String getCinemaName() {

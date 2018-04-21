@@ -27,4 +27,10 @@ public class OrderDAO extends SqlSessionDaoSupport implements IOrderDAO {
         List<OrderDTO> list = getSqlSession().selectList("com.wwwy.liuxin.order.dto.OrderMapper.queryAll");
         return list;
     }
+
+    @Override
+    public List<OrderDTO> queryAny(String anyInfo) throws Exception {
+        List<OrderDTO> list = getSqlSession().selectList("com.wwwy.liuxin.order.dto.OrderMapper.queryAny", anyInfo);
+        return list;
+    }
 }

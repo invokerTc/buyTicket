@@ -5,11 +5,11 @@
 <mapper namespace="com.wwwy.liuxin.order.dto.OrderMapper">
     <resultMap id="OrderResultMap" type="com.wwwy.liuxing.order.dto.OrderDTO">
         <id property="cartId" column="cart_id" javaType="java.lang.Integer"/>
-        <result property="bookNumble" column="book_numble" javaType="java.lang.Integer"/>
+        <result property="bookingNum" column="booking_num" javaType="java.lang.Integer"/>
         <result property="movieName" column="movie_name" javaType="java.lang.String"/>
         <result property="movieVersion" column="movie_version" javaType="java.lang.String"/>
         <result property="movieTime" column="movie_time" javaType="java.lang.String"/>
-        <result property="movieIma" column="movie_ima" javaType="java.lang.String"/>
+        <result property="movieImg" column="movie_img" javaType="java.lang.String"/>
         <result property="cinemaName" column="cinema_name" javaType="java.lang.String"/>
         <result property="hallName" column="hall_name" javaType="java.lang.String"/>
         <result property="movieRound" column="movie_round" javaType="java.lang.String"/>
@@ -21,46 +21,21 @@
     </resultMap>
 
     <select id="queryAll" resultMap="OrderResultMap">
-        SELECT cart_id,book_numble,movie_name,movie_version,movie_time,movie_ima,cinema_name,hall_name,movie_round,place,original_price,total_price,tel
+        SELECT cart_id,booking_num,movie_name,movie_version,movie_time,movie_img,cinema_name,hall_name,movie_round,place,original_price,total_price,tel
         FROM tb_shoppingcart
     </select>
 
-
-
-    <select id="queryAreaById" resultMap="AreaResultMap">
-        SELECT area_id,area_name,fk_city_id FROM tb_area WHERE area_id=#{areaId}
+    <select id="queryAny" resultMap="OrderResultMap">
+        SELECT cart_id,booking_num,movie_name,movie_version,movie_time,movie_img,cinema_name,hall_name,movie_round,place,original_price,total_price,tel
+        FROM tb_shoppingcart
+        WHERE cart_id LIKE concat(concat('%',#{anyInfo}),'%')
+        OR booking_num LIKE concat(concat('%',#{anyInfo}),'%')
+        OR movie_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR movie_version LIKE concat(concat('%',#{anyInfo}),'%')
+        OR cinema_name LIKE concat(concat('%',#{anyInfo}),'%')
+        OR total_price LIKE concat(concat('%',#{anyInfo}),'%')
+        OR tel LIKE concat(concat('%',#{anyInfo}),'%')
     </select>
 
-    <insert id="insertArea">
-        INSERT INTO tb_area(area_name,fk_city_id)VALUES (#{areaName},#{fkCityId})
-    </insert>
-
-    <delete id="deleteArea">
-        DELETE FROM tb_area WHERE area_id=#{areaId}
-    </delete>
-
-    <update id="updateArea">
-        UPDATE tb_area
-        <trim prefix="set" suffixOverrides=",">
-            <if test="areaName!=null">area_name=#{areaName},</if>
-            <if test="fkCityId!=null">fk_city_id=#{fkCityId},</if>
-        </trim>
-        WHERE area_id=#{areaId}
-    </update>
-
-    <select id="queryAny" resultMap="AreaResultMap">
-        SELECT a.area_id,a.area_name,a.fk_city_id,ci.city_id,ci.city_name FROM tb_area a JOIN tb_city ci ON a.fk_city_id=ci.city_id
-        WHERE a.area_id LIKE concat(concat('%',#{anyInfo}),'%')
-        OR a.area_name LIKE concat(concat('%',#{anyInfo}),'%')
-        OR ci.city_name LIKE concat(concat('%',#{anyInfo}),'%')
-    </select>
-
-    <!--批量删除-->
-    <delete id="batchDeleteAreas" parameterType="int">
-        delete from tb_area where area_id in
-        <foreach item="areaId" collection="array" open="(" separator="," close=")">
-            #{areaId}
-        </foreach>
-    </delete>
 
 </mapper>

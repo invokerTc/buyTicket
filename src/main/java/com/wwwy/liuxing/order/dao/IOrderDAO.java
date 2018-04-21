@@ -17,4 +17,13 @@ public interface IOrderDAO {
      * @throws Exception
      */
     List<OrderDTO> queryAll()throws Exception;
+
+    /**
+     * 根据任意信息查询对应的订单信息
+     * @param anyInfo
+     * @return
+     * @throws Exception
+     */
+    List<OrderDTO> queryAny(String anyInfo)throws Exception;
+
 }
