@@ -8,6 +8,7 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /testqian.jsp=anon
                 /hall/tchDelete=anon
                 /hall/update=anon
                 /hall/anyInfo=anon
@@ -77,10 +78,11 @@
                 /hall/**=anon
                 /hou_hall_add.html=anon
                 /hallMovie/**=anon
-                /user/queryByTel=anon
                 /hou_hall_movie_list.html=anon
                 /hou_hall_movie_add.html=anon
                 /hou_hall_movie_update.html=anon
+                /order/**=anon
+                /hou_order_any_list.html=anon
                 /**=user
             </value>
         </property>

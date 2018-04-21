@@ -81,15 +81,18 @@ To change this template use File | Settings | File Templates.
 <body>
 <div id="win"
      style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:540px; margin-top:670px; border:1px solid #888; background-color:#edf; text-align:center">
+    <div style=" margin-left: 220px">
+        <button onclick="closeLogin();">x</button>
+    </div>
     <div style="margin-top: 40px">
         <div style="width: 300px;">
-            <span>用户名称：</span><span><input type="text" id="username"/></span></div>
+            <span>用户名称：</span><span><input type="text" name="userName" id="userName"/></span></div>
         <div style="width: 300px;margin-top: 20px;">
-            <span>用户密码：</span><span><input type="password" id="password"/></span></div>
+            <span>用户密码：</span><span><input type="password" name="passWord" id="passWord"/></span></div>
     </div>
     <div style="margin-top: 20px">
-        <button onclick="login()">登录</button>
-        <button onclick="closeLogin();">关闭登录框</button>
+        <button  onclick="login()">登录</button>
+        <button onclick="openregister();">注册账号</button>
     </div>
 </div>
 <div class="header">
@@ -125,7 +128,7 @@ To change this template use File | Settings | File Templates.
                 <img src="http://p0.meituan.net/movie/7dd82a16316ab32c8359debdb04396ef2897.png">
                 <span class="caret"></span>
                 <ul class="user-menu">
-                    <li><a href="javascript:void 0">登录</a></li>
+                    <li><a id="userName1" href="javascript:void 0">未登录</a></li>
                 </ul>
             </div>
         </div>
@@ -873,7 +876,7 @@ To change this template use File | Settings | File Templates.
                         <span class="value text-ellipsis" id="theaterName">江夏高德影院</span>
                     </div>
                     <div class="info-item">
-                        <span>影厅 :qian_liuxing_cinema_hall_seat.html</span>
+                        <span>影厅 :</span>
                         <span class="value text-ellipsis" id="hallName">一号厅</span>
                     </div>
                     <div class="info-item">
@@ -933,7 +936,7 @@ To change this template use File | Settings | File Templates.
                                                                            id="telephone" placeholder="输入手机号"
                                                                            onfocus="acquireFocus()"
                                                                            onblur="checkTele()"/>
-                            <input type="button" id="toRegister" name="toRegister" value="注册" onclick="openLogin()"
+                            <input type="button" id="toRegister" name="toRegister" value="登录" onclick="openLogin()"
                             />
                             <span id="teleSpan" style="font-size: small"></span>
                         </div>
@@ -966,20 +969,6 @@ To change this template use File | Settings | File Templates.
             <div class="ok-btn btn">我知道了</div>
         </div>
     </div>
-    <div id="win"
-         style="display:none; POSITION:absolute; width:300px; height:200px; margin-left:500px; margin-top:200px; border:1px solid #888; background-color:#edf; text-align:center">
-        <div style="margin-top: 40px">
-            <div style="width: 300px;">
-                <span>用户名称：</span><span><input type="text"/></span></div>
-            <div style="width: 300px;margin-top: 20px">
-                <span>用户密码：</span><span><input type="password"/></span></div>
-        </div>
-        <div style="margin-top: 20px">
-            <button onclick="login()">登录</button>
-            <button onclick="closeLogin();">关闭登录框</button>
-        </div>
-    </div>
-
 </div>
 <div class="footer">
     <p class="friendly-links">
@@ -1016,8 +1005,8 @@ To change this template use File | Settings | File Templates.
         document.getElementById("win").style.display = "none";
     }
     function login() {
-        var username = $("#username").val();
-        alert(username);
+        var usernameStr=$("#userName").val();
+        var passwordStr=$("#passWord").val();
         var errArrays = new Array();
         errArrays[0] = '账号输入错误，请重新输入';
         errArrays[1] = '登录成功';
@@ -1031,11 +1020,16 @@ To change this template use File | Settings | File Templates.
                     var index = jsonObj.code;
                     if (jsonObj.code == 1) {
                         alert(errArrays[index])
+                        document.getElementById("userName1").innerHTML = "已登录"
                         closeLogin();
                     } else {
                         alert(errArrays[index]);
                     }
                 });
+    }
+
+    function openregister() {
+        window.open("qian_register.html")
     }
 </script>
 </body>

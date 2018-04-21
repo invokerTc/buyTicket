@@ -48,6 +48,7 @@ public class CartTest {
 
     @Test
     public void testCase2() {
+        CartDTO cartDTO = cartService.getBookingCart("13245645433", "红海行动");
         CartDTO cartDTO = null;
         try {
             cartDTO = cartService.getCartDetail("13245645433", "", "红海行动");

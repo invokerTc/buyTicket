@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import java.util.List;
 
@@ -105,12 +106,12 @@ public class HallController {
 
     @RequestMapping("/insert")
     @ResponseBody
+    public String insertHall(HttpServletRequest request){
     public String insertHall(HttpServletRequest request, HttpSession session) {
         String hallName = request.getParameter("hallName");
         String theaterName = request.getParameter("theaterName");
         String hallCoordinateX = request.getParameter("hallCoordinateX");
         String hallCoordinateY = request.getParameter("hallCoordinateY");
-        String tokens = request.getParameter("tokens");
         try {
             Object token = session.getAttribute("token");
             if (null != token && token.equals(tokens)) {
@@ -124,6 +125,15 @@ public class HallController {
                 if (aBoolean) {
                     return "success";
                 }
+            TheaterDTO theaterDTO = theaterService.queryTheaterByName(theaterName);
+            HallDTO hallDTO = new HallDTO();
+            hallDTO.setHallName(hallName);
+            hallDTO.setFkTheaterId(theaterDTO.getTheaterId());
+            hallDTO.setHallCoordinateX(Integer.parseInt(hallCoordinateX));
+            hallDTO.setHallCoordinateY(Integer.parseInt(hallCoordinateY));
+            Boolean aBoolean = hallService.insertHall(hallDTO);
+            if (aBoolean){
+                return "success";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,10 +144,12 @@ public class HallController {
 
     @RequestMapping("/querySeat")
     public String queryHallSeat(String hallMovieId, Model model) {
+    public String queryHallSeat(String hallName, Model model) {
         try {
             int queryId = Integer.parseInt(hallMovieId);
             HallMovieDTO hallMovieDTO = hallMovieService.queryById(queryId);
             HallDTO hallDTO = hallService.queryByHallMovieId(queryId);
+            HallDTO hallDTO = hallService.queryByName(hallName);
             List<PositionDTO> positionDTOList = hallDTO.getPositionDTOList();
             MovieDTO movieDTO = hallDTO.getMovieDTOList().get(0);
             model.addAttribute("hallDTO", hallDTO);

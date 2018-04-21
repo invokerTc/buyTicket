@@ -3,7 +3,6 @@ package com.wwwy.liuxing.cart.service.impl;
 import com.wwwy.liuxing.cache.IMovieCache;
 import com.wwwy.liuxing.cart.dto.CartDTO;
 import com.wwwy.liuxing.cart.service.ICartService;
-import com.wwwy.liuxing.message.httpApiDemo.common.Config;
 import com.wwwy.liuxing.system.SysConfig;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/4/17.
@@ -21,8 +24,17 @@ public class CartService implements ICartService {
     private Logger logger = Logger.getLogger(CartService.class);
     @Autowired
     private IMovieCache movieCache;
-
     @Override
+    public void saveBookingCart(String tele, CartDTO cartDTO) {
+        ArrayList<String> paramList = new ArrayList<String>(20);
+        paramList.add(cartDTO.getMovieName());
+        paramList.add(cartDTO.getWatchingTime());
+        paramList.add(cartDTO.getCinemaName());
+        paramList.add(cartDTO.getHallName());
+        paramList.add(cartDTO.getSelectedSets());
+        paramList.add(cartDTO.getTotalPrice()+"");
+        String key= SysConfig.BeforeConfig.PREFIX_BOOKING+tele+cartDTO.getMovieName();
+        movieCache.saveList(key,paramList);
     public String saveCartDetail(String tele, CartDTO cartDTO) throws Exception {
         String seats = cartDTO.getSelectedSets();
         List<String> setList = getSetList(seats);
@@ -39,9 +51,10 @@ public class CartService implements ICartService {
     }
 
     @Override
+    public CartDTO getBookingCart(String tele, String movieName) {
     public CartDTO getCartDetail(String tele, String hallName, String watchingTime) throws Exception {
         CartDTO cartDTO = new CartDTO();
-        String key = SysConfig.BeforeConfig.PREFIX_BOOKING + hallName + watchingTime + tele;
+        String key=SysConfig.BeforeConfig.PREFIX_BOOKING+tele+movieName;
         List<String> resultList = movieCache.getAllByKey(key);
         cartDTO.setMovieName(resultList.get(0));
         cartDTO.setWatchingTime(resultList.get(1));

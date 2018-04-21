@@ -41,6 +41,8 @@ public class HallDao extends SqlSessionDaoSupport implements IHallDao {
     @Override
     public HallDTO queryByHallMovieId(Integer id) throws Exception {
         HallDTO hallDTO=getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryExistPosition", id);
+    public HallDTO queryByName(String name) throws Exception {
+        HallDTO hallDTO = getSqlSession().selectOne("com.wwwy.liuxing.hall.dto.HallMapper.queryExistPosition", name);
         return hallDTO;
     }
 

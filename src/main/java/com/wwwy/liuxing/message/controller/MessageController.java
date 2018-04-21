@@ -51,6 +51,11 @@ public class MessageController {
 //        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
 //        String respCode = obj.get("respCode").getAsString();
         String respCode = "00000";
+        String randNum = randomNumUtil.setRand(telephone);
+        String json = industrySMS.execute(telephone, randNum);
+        JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
+        String respCode = obj.get("respCode").getAsString();
+       /* String respCode = "00000";*/
         if (respCode.equals("00000")) {
             return "{\"code\":\"1\",\"msg\":\"验证码发送成功\"}";
         } else if (respCode.equals("00126")) {
@@ -67,8 +72,21 @@ public class MessageController {
         Random random = new Random();
         String telephone = random.nextInt() + "";
         String randNum = "234567";
+    public String login(String inputCode, String telephone, CartDTO cartDTO) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----start");
+        }
+        String randNum = randomNumUtil.getRand(telephone);
+        cartService.saveBookingCart(telephone, cartDTO);
+       /*  String randNum = "234567";*/
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----end");
+        }
         if (randNum.equals(inputCode)) {
             return "验证码正确";
+            return "订单提交成功";
+        } else {
+            return "订单提交失败";
         }
         return "验证码错误";
     }
