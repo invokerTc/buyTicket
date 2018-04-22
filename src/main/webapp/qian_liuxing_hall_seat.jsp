@@ -211,9 +211,6 @@ To change this template use File | Settings | File Templates.
                                    varStatus="i">
                             <div class="row">
                                 <c:forEach begin="0" end="${hallDTO.hallCoordinateY-1}" step="1" varStatus="j">
-                        <c:forEach begin="0" end="${hallDTO.hallCoordinateX-1}" step="1" items="${positions}" var="pos" varStatus="i">
-                        <div class="row">
-                            <c:forEach begin="0" end="${hallDTO.hallCoordinateY-1}" step="1" varStatus="j">
                             <span class="seat selectable"
                                   data-column-id="${j.index+1}"
                                   data-row-id="${i.index+1}"

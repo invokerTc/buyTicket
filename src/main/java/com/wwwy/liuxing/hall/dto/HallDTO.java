@@ -3,7 +3,6 @@ package com.wwwy.liuxing.hall.dto;
 import com.wwwy.liuxing.movie.dto.MovieDTO;
 import com.wwwy.liuxing.theater.dto.TheaterDTO;
 import com.wwwy.liuxing.position.PositionDTO;
-
 import java.io.Serializable;
 import java.util.List;
 

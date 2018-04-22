@@ -44,7 +44,7 @@ public class UserService implements IUserService{
     @Override
     public boolean setUserDTO(UserDTO userDTO,String inputCode) throws Exception {
         String telephone = userDTO.getUserTel();
-        String randNum = randomNumUtil.getRand(telephone);
+       String randNum = randomNumUtil.getRand(telephone);
        /* String randNum = "234567";*/
         logger.info(randNum.hashCode());
         logger.info(inputCode.hashCode());
@@ -112,5 +112,15 @@ public class UserService implements IUserService{
         PageInfo<UserDTO> userDTOPageInfo = new PageInfo<>(userDTOList);
         logger.info(userDTOPageInfo);
         return userDTOPageInfo;
+    }
+
+    @Override
+    public boolean queryUserByTel(String tel) throws Exception {
+        boolean flag=false;
+        UserDTO userDTO = userDao.queryUserByTel(tel);
+        if (userDTO!=null){
+            flag=true;
+        }
+        return flag;
     }
 }

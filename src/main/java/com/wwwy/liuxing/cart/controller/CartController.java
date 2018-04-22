@@ -20,13 +20,6 @@ public class CartController {
     private ICartService cartService;
 
     @RequestMapping("/showBooking")
-    public String showBooking(String tele, String movieName, Model model){
-        CartDTO cartDTO = cartService.getBookingCart(tele, movieName);
-        String selectedSets = cartDTO.getSelectedSets();
-        List<String> setList = cartService.getSetList(selectedSets);
-        model.addAttribute("cart",cartDTO);
-        model.addAttribute("setList",setList);
-        return "waiting_for_pay";
     public String showCartDetail(String tele, String hallName, String watchingTime, Model model) {
         CartDTO cartDTO = null;
         try {
@@ -44,18 +37,13 @@ public class CartController {
 
     @RequestMapping(value = "/conmmit", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String conmmit(String telephone, CartDTO cart, String hallMovieId, String selectedSets) {
-        String result = cartService.conmmitOrder(telephone, hallMovieId, selectedSets);
+    public String conmmit(String tele, CartDTO cart, String hallMovieId, String selectedSets) {
+        String result = cartService.conmmitOrder(tele, hallMovieId, selectedSets);
         try {
             if (result.equals("success")) {
-                CartDTO cartDTO = new CartDTO();
-                cartDTO.setSelectedSets(selectedSets);
-                cartDTO.setTotalPrice(cart.getTotalPrice());
-                cartDTO.setCinemaName(cart.getCinemaName());
-                cartDTO.setMovieName(cart.getMovieName());
-                cartDTO.setWatchingTime(cart.getWatchingTime());
-                cartDTO.setHallName(cart.getHallName());
-                cartService.saveCartDetail(telephone, cartDTO);
+                String watchingTime = cart.getWatchingTime();
+                String hallName = cart.getHallName();
+                cartService.saveCartDetail(tele,cart,hallName,watchingTime);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -52,11 +52,9 @@ function conmmitCart() {
         sets += selectSets.eq(i).text() + ",";
     }
     var sumPrice = $("#sumPrice").text();
-    alert(seatsIds + "====" + hallMovieId);
-    alert(filmName + "---" + watchingTime + "---" + theaterName + "----" + hallName + "----" + sumPrice + "----" + sets);
     $.post("/cart/conmmit",
         {
-            telephone: tele,
+            tele: tele,
             movieName: filmName,
             watchingTime: watchingTime,
             cinemaName: theaterName,
@@ -69,6 +67,7 @@ function conmmitCart() {
         function (data) {
             if (data == "success") {
                 alert("订单提交成功");
+                window.location.href = '/cart/showBooking?tele=' + tele + '&hallName=' + hallName + '&watchingTime=' + watchingTime;
             } else {
                 alert(data + "已经被预订");
             }
@@ -76,15 +75,18 @@ function conmmitCart() {
 }
 function codeCheck() {
     var code = $("#inputCode").val();
+    var tele = $("#telephone").val();
     var regex = /^[0-9]{6}$/;
     if (code.match(regex)) {
         $.post("/message/check",
-            {inputCode: code},
+            {
+                inputCode: code,
+                tele: tele
+            },
             function (data) {
                 if (data == "验证码错误") {
                     alert("请输入正确的验证码");
                     $("#inputCode").val("");
-                    /*window.location.href = '/cart/showBooking?tele='+tele+'&hallName='+hallName+'&watchingTime='+watchingTime;*/
                 }
             });
     } else {
@@ -100,19 +102,19 @@ function checkTele() {
     if (tele != "") {
         if (tele.match(patrn)) {
             $.post("/user/queryByTel", {tele: tele}, function (data) {
-                var parse = JSON.parse(data);
-                if (parse.code == 0) {
+                if (data == 0) {
                     $("#codeButton").attr("disabled", false);
                 } else {
                     alert("请您先注册");
                 }
             });
+
         } else {
-            /!*$("#teleSpan").text("手机号格式错误");*!/
+            $("#teleSpan").text("手机号格式错误");
             $("#codeButton").attr("disabled", true);
         }
     } else {
-        /!*$("#teleSpan").text("请输入手机号");*!/
+        $("#teleSpan").text("请输入手机号");
         $("#codeButton").attr("disabled", true);
     }
 }

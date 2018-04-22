@@ -8,13 +8,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -47,14 +50,30 @@ public class HallMovieController {
         }
     }
 
+    /**
+     * 防止重复提交
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping("/random")
+    public String repeatCommit(HttpSession session, Model model){
+        Random random = new Random();
+        int nextInt = random.nextInt();
+        session.setAttribute("token",nextInt+"");
+        model.addAttribute("token",nextInt+"");
+        return "hou_hall_movie_add";
+    }
+
     @RequestMapping("/insert")
     @ResponseBody
-    public String isnert(HttpServletRequest request){
+    public String isnert(HttpServletRequest request,HttpSession session){
         String hallId = request.getParameter("hallId");
         String movieId = request.getParameter("movieId");
         String movieRuntime = request.getParameter("movieRuntime");
         String moviePrice = request.getParameter("moviePrice");
         String movieVersion = request.getParameter("movieVersion");
+        String tokens = request.getParameter("tokens");
         HallMovieDTO hallMovieDTO = new HallMovieDTO();
         hallMovieDTO.setFkHallId(Integer.parseInt(hallId));
         hallMovieDTO.setFkMovieId(Integer.parseInt(movieId));
@@ -62,9 +81,12 @@ public class HallMovieController {
         hallMovieDTO.setMoviePrice(Integer.parseInt(moviePrice));
         hallMovieDTO.setMovieVersion(movieVersion);
         try {
-            Boolean insert = hallMovieService.insert(hallMovieDTO);
-            if(insert){
-                return "success";
+            Object token = session.getAttribute("token");
+            if(null!=token && token.equals(tokens)) {
+                Boolean insert = hallMovieService.insert(hallMovieDTO);
+                if (insert) {
+                    return "success";
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,7 +13,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import redis.clients.jedis.Jedis;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,9 +31,13 @@ public class RedisTest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
     private RandomNumUtil randomNumUtil;
     @Autowired
     private IMovieCache movieCache;
+    @Autowired
+    private IMovieService movieService;
     @Test
     public void testCase1(){
         stringRedisTemplate.opsForValue().set("username","xiaoming",1, TimeUnit.MINUTES);

@@ -38,7 +38,7 @@ public class CartTest {
         cartDTO.setSelectedSets("2-3，4-6，3-5");
         System.out.println(cartDTO);
         try {
-            String s = cartService.saveCartDetail("13579", cartDTO);
+            String s = cartService.saveCartDetail("13579", cartDTO,"abc","12:00");
             logger.info(s);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +48,6 @@ public class CartTest {
 
     @Test
     public void testCase2() {
-        CartDTO cartDTO = cartService.getBookingCart("13245645433", "红海行动");
         CartDTO cartDTO = null;
         try {
             cartDTO = cartService.getCartDetail("13245645433", "", "红海行动");
@@ -91,7 +90,7 @@ public class CartTest {
                     cartDTO.setSelectedSets("5-1");
                     String str = random.nextInt() + "";
                     try {
-                        String s = cartService.saveCartDetail(str, cartDTO);
+                        String s = cartService.saveCartDetail(str, cartDTO,"头号玩家","19:45");
                         logger.info(Thread.currentThread().getName() + "=======" + str + "============" + s);
                     } catch (Exception e) {
                         e.printStackTrace();
