@@ -5,16 +5,12 @@ import com.github.pagehelper.util.StringUtil;
 import com.wwwy.liuxing.hall.dto.HallDTO;
 import com.wwwy.liuxing.hall.dao.IHallDao;
 import com.wwwy.liuxing.hall.service.IHallService;
-import com.wwwy.liuxing.movie.dto.MovieDTO;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
-
 
 import java.util.List;
 
@@ -63,8 +59,8 @@ public class HallTest {
     @Test
     public void testHallSeat() {
         try {
-//            HallDTO hallDTO = hallService.queryByName(1);
-//            logger.info(hallDTO);
+            HallDTO hallDTO = hallService.queryByName("一号IMAX厅");
+            logger.info(hallDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,23 +80,12 @@ public class HallTest {
             e.printStackTrace();
         }
     }
-    @Test
-    public void testQu(){
-        try {
-            HallDTO hallDTO = hallService.queryByHallMovieId(7);
-            List<MovieDTO> movieDTOList = hallDTO.getMovieDTOList();
-            MovieDTO movieDTO = movieDTOList.get(0);
-            System.out.println(hallDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     public void testHallById(){
         HallDTO hallInfoById = null;
         try {
-            hallInfoById = hallDao.getHallInfoById(5);
+            hallInfoById = hallDao.getHallInfoById(1);
         } catch (Exception e) {
             e.printStackTrace();
         }

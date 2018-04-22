@@ -8,12 +8,12 @@
         <!--<property name="unauthorizedUrl" value="error404.html"/>-->
         <property name="filterChainDefinitions">
             <value>
+                /testqian.jsp=anon
                 /hall/tchDelete=anon
                 /hall/update=anon
                 /hall/anyInfo=anon
                 /hall/delete=anon
                 /movie/preupdate=anon
-                /user/queryByTel=anon
                 /movie/delete=anon
                 /pre_updete_movieinfo.html=anon
                 /movie/update=anon
@@ -40,8 +40,7 @@
                 /loginCode.html=anon
                 /qian_liuxing_cinema_hall_seat.bak.html=anon
                 /message/getCode=anon
-                /message/check=anon
-                /cart/conmmit=anon
+                /message/login=anon
                 /cart/showBooking=anon
                 /success.html=anon
                 /hallTest.html=anon
@@ -78,7 +77,6 @@
                 /hall/**=anon
                 /hou_hall_add.html=anon
                 /hallMovie/**=anon
-                /user/queryByTel=anon
                 /hou_hall_movie_list.html=anon
                 /hou_hall_movie_add.html=anon
                 /hou_hall_movie_update.html=anon

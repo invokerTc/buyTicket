@@ -151,18 +151,4 @@ public class UserController {
         }
         return "hou_userlist";
     }
-    @RequestMapping(value = "/queryByTel", produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String queryUserByTel(String tele){
-        String backResult="0";
-        try {
-            boolean flag= userService.queryUserByTel(tele);
-            if (!flag){
-                backResult="1";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return backResult;
-    }
 }

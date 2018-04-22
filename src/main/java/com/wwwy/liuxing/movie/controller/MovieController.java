@@ -11,15 +11,11 @@ import com.wwwy.liuxing.theater.service.ITheaterService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Created by wanghao on 2018/4/12.
@@ -39,14 +35,14 @@ public class MovieController {
 
     /**
      * 首页获取所有的电影列表
-     * @param cityName
      * @param modelMap
      * @return
      */
-    @RequestMapping("getAllMovie")
-    public String getAllMovieByCityName(String cityName, ModelMap modelMap){
+    @RequestMapping("/getAllMovie")
+    public String getAllMovieByCityName(ModelMap modelMap){
         logger.info("进入MovieController 的 /movie/getAllMovie  方法");
         try {
+            String cityName = "武汉";
             List<MovieDTO> movieList = movieService.getAllMovieByCityName(cityName);
             modelMap.put("movieList",movieList);
         } catch (Exception e) {
@@ -96,41 +92,20 @@ public class MovieController {
         return "hou_movielist";
     }
 
-
-    /**
-     * 防止重复提交
-     * @param session
-     * @param model
-     * @return
-     */
-    @RequestMapping("/random")
-    public String repeatCommit(HttpSession session, Model model){
-        Random random = new Random();
-        int nextInt = random.nextInt();
-        session.setAttribute("token",nextInt+"");
-        model.addAttribute("token",nextInt+"");
-        return "hou_movieadd";
-    }
-
-
     /*
     * 后台增加一条电影信息
     * */
     @RequestMapping("/insert")
-    public String insertMovieInfo(Integer page, MovieDTO movieDTO, ModelMap modelMap, HttpSession session, HttpServletRequest request){
-        String tokens = request.getParameter("tokens");
+    public String insertMovieInfo(Integer page, MovieDTO movieDTO,ModelMap modelMap){
         try {
-            Object token = session.getAttribute("token");
-            if(null!=token && token.equals(tokens)) {
-                boolean b = movieService.insertMovieInfo(movieDTO);
-                if (b) {
-                    PageInfo<MovieDTO> allMovieInfo = movieService.getAllMovieInfo(page);
-                    List<MovieDTO> list = allMovieInfo.getList();
-                    modelMap.addAttribute("pageInfo", allMovieInfo);
-                    logger.info("========================" + allMovieInfo);
-                    modelMap.addAttribute("movieDTOList", list);
-                    logger.info("============================" + list);
-                }
+            boolean b = movieService.insertMovieInfo(movieDTO);
+            if (b){
+                PageInfo<MovieDTO> allMovieInfo = movieService.getAllMovieInfo(page);
+                List<MovieDTO> list = allMovieInfo.getList();
+                modelMap.addAttribute("pageInfo",allMovieInfo);
+                logger.info("========================"+allMovieInfo);
+                modelMap.addAttribute("movieDTOList",list);
+                logger.info("============================"+list);
             }
         } catch (Exception e) {
             e.printStackTrace();

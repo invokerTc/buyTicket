@@ -1,14 +1,11 @@
 package com.wwwy.liuxing.cache;
 
-import com.wwwy.liuxing.system.SysConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,7 +31,7 @@ public class MovieCache implements IMovieCache {
     @Override
     public void saveList(String key, List list) {
         redisTemplate.opsForList().rightPushAll(key, list);
-        redisTemplate.expire(key, 14, TimeUnit.MINUTES);
+        redisTemplate.expire(key,14,TimeUnit.MINUTES);
     }
 
     @Override
@@ -56,35 +53,5 @@ public class MovieCache implements IMovieCache {
     @Override
     public void saveValueWithTime(String key, String value, long num, TimeUnit unit) {
         redisTemplate.opsForValue().set(key, value, num, unit);
-    }
-
-    @Override
-    public Set<String> getAllKeyLikePattern(String pattern) {
-        Set<String> keys = redisTemplate.keys(pattern);
-        return keys;
-    }
-
-    @Override
-    public String saveString(List<String> keyList, String hallMovieId, String value) {
-        boolean isSuccess = true;
-        String backResult = "";
-        for (String key : keyList) {
-            String realKey = SysConfig.BeforeConfig.PREFIX_BOOKING + hallMovieId + key;
-            Boolean flag = redisTemplate.opsForValue().setIfAbsent(realKey, value);
-            if (!flag) {
-                isSuccess = false;
-                backResult += key + ",";
-                return backResult;
-            }else {
-                redisTemplate.expire(realKey, 10, TimeUnit.SECONDS);
-            }
-        }
-        if (isSuccess) {
-            for (String key : keyList) {
-                String realKey = SysConfig.BeforeConfig.PREFIX_BOOKING + hallMovieId + key;
-                redisTemplate.expire(realKey, 14, TimeUnit.MINUTES);
-            }
-        }
-        return backResult;
     }
 }
