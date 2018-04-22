@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Random;
 
 /**
  * Created by Administrator on 2018/4/13.
@@ -45,6 +44,7 @@ public class MessageController {
         String json = industrySMS.execute(telephone, randNum);
         JsonObject obj = new JsonParser().parse(json).getAsJsonObject();
         String respCode = obj.get("respCode").getAsString();
+       /* String respCode = "00000";*/
         if (respCode.equals("00000")) {
             return "{\"code\":\"1\",\"msg\":\"验证码发送成功\"}";
         } else if (respCode.equals("00126")) {
@@ -54,13 +54,22 @@ public class MessageController {
         }
     }
 
-    @RequestMapping(value = "/check", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/login", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String check(String tele,String inputCode) {
-        String randNum = randomNumUtil.getRand(tele);
-        if (randNum.equals(inputCode)) {
-            return "验证码正确";
+    public String login(String inputCode, String telephone, CartDTO cartDTO) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----start");
         }
-        return "验证码错误";
+        String randNum = randomNumUtil.getRand(telephone);
+        cartService.saveBookingCart(telephone, cartDTO);
+       /*  String randNum = "234567";*/
+        if (logger.isDebugEnabled()) {
+            logger.debug("login----end");
+        }
+        if (randNum.equals(inputCode)) {
+            return "订单提交成功";
+        } else {
+            return "订单提交失败";
+        }
     }
 }

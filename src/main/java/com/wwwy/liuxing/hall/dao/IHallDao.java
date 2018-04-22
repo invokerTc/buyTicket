@@ -1,6 +1,7 @@
 package com.wwwy.liuxing.hall.dao;
 
 import com.wwwy.liuxing.hall.dto.HallDTO;
+
 import java.util.List;
 
 /**
@@ -17,11 +18,11 @@ public interface IHallDao {
     HallDTO queryHallByTheaterIdAndHallId(Integer theaterId,Integer hallId) throws Exception;
 
     /**
-     * 根据影厅电影中间表id查询影厅
+     * 根据影厅名称查询影厅的座位
      * @param name
      * @return
      */
-    HallDTO queryByHallMovieId(Integer id) throws Exception;
+    HallDTO queryByName(String name) throws Exception;
 
     /**
      * 查询出所有的影厅

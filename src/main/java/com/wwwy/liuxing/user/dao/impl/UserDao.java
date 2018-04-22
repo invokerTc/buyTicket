@@ -53,10 +53,4 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
         logger.info(userDTOList);
         return userDTOList;
     }
-
-    @Override
-    public UserDTO queryUserByTel(String tel) throws Exception {
-        UserDTO userDTO = getSqlSession().selectOne("com.wwwy.liuxing.user.dto.UserMapper.queryUserByTel", tel);
-        return userDTO;
-    }
 }
